@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>BANA6043: SAS Intro</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">BANA6043: SAS Intro</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+<h4 class="date"><em>Week 1 Lecture Series</em></h4>
+
+</div>
+
+
+<div id="the-sas-environment" class="section level1">
+<h1><span class="header-section-number">1</span> The SAS Environment</h1>
+<p>Working with SAS frequently involves use of:</p>
+<ol style="list-style-type: decimal">
+<li>Libraries<br />
+</li>
+<li>Program Editor<br />
+</li>
+<li>Output Window<br />
+</li>
+<li>Log Window</li>
+</ol>
+</div>
+<div id="libraries" class="section level1">
+<h1><span class="header-section-number">2</span> Libraries</h1>
+<p>Think of SAS libraries as locations for your work. Just as you can store files in multiple locations on a hard drive, you can also store data in multiple libraries within SAS.</p>
+<p>Typically, however, you work with only two libraries: the work library and a library you specify.</p>
+<ol style="list-style-type: decimal">
+<li>The WORK library
+<ul>
+<li>a <strong>temporary</strong> library</li>
+<li>the <strong>default</strong> library<br />
+</li>
+<li>SAS data sets stored here are temporary!</li>
+</ul></li>
+<li>A specified library
+<ul>
+<li>must be created at the start of every SAS session</li>
+<li>uses a <strong>libref</strong> (short for library reference)<br />
+</li>
+<li>SAS data sets stored here are permanent</li>
+</ul></li>
+</ol>
+<p>This code below will create a library called <strong>mylib</strong>, which is the <strong>libref</strong>. The <strong>libname</strong> statement points to a SAS-Data folder on the C:\ drive. Note that pointing to physical locations on your machine is not supported in SAS OnDemand.</p>
+<pre class="sas"><code>libname mylib &#39;C:\SAS-Data&#39;;</code></pre>
+<p>There are rules to SAS librefs, the most important of which is that they are limited to 8 characters. See <a href="http://support.sas.com/documentation/cdl/en/lrcon/62955/HTML/default/viewer.htm#a000986902.htm">this SAS doc</a> for more information.</p>
+</div>
+<div id="the-program-editor" class="section level1">
+<h1><span class="header-section-number">3</span> The Program Editor</h1>
+<p>This is where you write your SAS program.</p>
+<div id="exercise" class="section level2">
+<h2><span class="header-section-number">3.1</span> Exercise</h2>
+<p>Let’s export some data from a built-in R data set and then import it into SAS.</p>
+<div id="r-export" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> R export</h3>
+<pre class="r"><code>head(morley) #shows the first few rows of the morley dataset</code></pre>
+<pre><code>##     Expt Run Speed
+## 001    1   1   850
+## 002    1   2   740
+## 003    1   3   900
+## 004    1   4  1070
+## 005    1   5   930
+## 006    1   6   850</code></pre>
+<pre class="r"><code>write.csv(morley, &#39;C:/Users/T530/Desktop/morley.csv&#39;) 
+#writes the morley data set to my desktop</code></pre>
+</div>
+<div id="sas-import" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> SAS import</h3>
+<p>A few notes on what I did before importing:</p>
+<ol style="list-style-type: decimal">
+<li>uploaded morley.csv to my sasuser.v94 folder</li>
+<li>used the import wizard, which generated the code below</li>
+</ol>
+<pre class="sas"><code>/* Generated Code (IMPORT) */
+/* Source File: morley.csv */
+/* Source Path: /home/rileymy0/sasuser.v94 */
+/* Code generated on: 12/23/18, 2:18 PM */
+
+%web_drop_table(WORK.IMPORT);
+
+FILENAME REFFILE &#39;/home/rileymy0/sasuser.v94/morley.csv&#39;;
+
+PROC IMPORT DATAFILE=REFFILE
+    DBMS=CSV
+    OUT=WORK.IMPORT;
+    GETNAMES=YES;
+RUN;
+    
+proc contents data=work.import; run;
+
+%web_open_table(WORK.IMPORT);</code></pre>
+<p>The code can be described as follows:</p>
+<ol style="list-style-type: decimal">
+<li>the first four lines are comments</li>
+<li>the next line and the final line, which begin with %, are SAS macros for the OnDemand platform</li>
+<li>the FILENAME line creates a file reference, named <strong>reffile</strong> that points to the morley.csv location</li>
+<li>the PROC IMPORT step imports the data from <strong>reffile</strong>, specifying that it is a CSV and that it has header names (<strong>getnames=yes</strong>)</li>
+<li>the OUT statement in the PROC specifies the name of the imported dataset and uses the WORK <strong>libref</strong>
+<ul>
+<li>therefore, the PROC IMPORT uses morley.csv to create a SAS data set called IMPORT in the WORK library</li>
+</ul></li>
+<li>the code then uses PROC CONTENTS to display the contents of the morley dataset
+<ul>
+<li><a href="https://mrrisley.github.io/BANA6043/SAS-Output/morley-proc-contents.html">click here</a> for the PROC CONTENTS output</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="sas-statement-rules" class="section level2">
+<h2><span class="header-section-number">3.2</span> SAS Statement Rules</h2>
+<p>The code above demonstrates the following features of the SAS language:</p>
+<ol style="list-style-type: decimal">
+<li><strong>EVERY</strong> SAS statement ends in a semi-colon.</li>
+<li>SAS is <strong>NOT</strong> case sensitive</li>
+<li>programs can be written on multiple lines</li>
+<li>statements can be written on same line as other statements</li>
+</ol>
+</div>
+<div id="sas-comments" class="section level2">
+<h2><span class="header-section-number">3.3</span> SAS comments</h2>
+<p>SAS has two methods of commenting:</p>
+<pre class="sas"><code>*This is one example of a comment;
+
+/* This is another example of a comment */
+  
+proc contents data=work.import; run; /*this type is better for in-line*/
+/* because this comment type doesn&#39;t have a semi-colon */</code></pre>
+</div>
+</div>
+<div id="log-window" class="section level1">
+<h1><span class="header-section-number">4</span> Log Window</h1>
+<p>In the import above, the log displayed the following:</p>
+<pre><code> 1          OPTIONS NONOTES NOSTIMER NOSOURCE NOSYNTAXCHECK;
+ 70         
+ 71         PROC CONTENTS DATA=WORK.IMPORT; RUN;
+ 
+ NOTE: PROCEDURE CONTENTS used (Total process time):
+       real time           0.04 seconds
+       user cpu time       0.04 seconds
+       system cpu time     0.00 seconds
+       memory              2388.78k
+       OS Memory           32176.00k
+       Timestamp           12/24/2018 04:09:20 PM
+       Step Count                        31  Switch Count  0
+       Page Faults                       0
+       Page Reclaims                     481
+       Page Swaps                        0
+       Voluntary Context Switches        0
+       Involuntary Context Switches      0
+       Block Input Operations            0
+       Block Output Operations           16
+       
+ 
+ 72         
+ 73         OPTIONS NONOTES NOSTIMER NOSOURCE NOSYNTAXCHECK;
+ 85</code></pre>
+<p>The log is useful to check on the progress of a SAS program execution:</p>
+<ol style="list-style-type: decimal">
+<li>progress displays as blue text</li>
+<li>warnings display as green text</li>
+<li>errors display as red text</li>
+</ol>
+<p>The SAS log is the <strong>only</strong> place to find information relevant to debugging errors in your program.</p>
+</div>
+<div id="output-or-results-window" class="section level1">
+<h1><span class="header-section-number">5</span> Output or Results Window</h1>
+<p>This displays any output from your SAS program. For example, the PROC CONTENTS output above was displayed in the results window.</p>
+<p>Let’s print the morley data in SAS, which will also display in the Results window.</p>
+<pre class="sas"><code>PROC PRINT DATA=WORK.IMPORT; RUN;</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/morley-proc-print.html">Click here</a> for the PROC PRINT output.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
