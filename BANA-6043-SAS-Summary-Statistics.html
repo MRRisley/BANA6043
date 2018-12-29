@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>BANA6043: SAS Summary Stats</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">BANA6043: SAS Summary Stats</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+<h4 class="date"><em>Week 1 Lecture Series</em></h4>
+
+</div>
+
+
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">1</span> Intro</h1>
+<p>SAS makes summary statistics fairly simple. The following are the most common ways to generate data and statistical summaries:</p>
+<ol style="list-style-type: decimal">
+<li>PROC FREQ
+<ul>
+<li>generates table of frequencies of values for a particular variable</li>
+<li>can answer the question, “how many?”</li>
+<li>useful for <strong>categorical</strong> variables</li>
+</ul></li>
+<li>PROC MEANS
+<ul>
+<li>provides basic descriptive statistics such as mean, standard deviation, minimum and maximum</li>
+<li>useful for <strong>continuous</strong> variables</li>
+</ul></li>
+<li>PROC UNIVARIATE
+<ul>
+<li>provides more detailed descriptive statistics than PROC MEANS</li>
+</ul></li>
+</ol>
+</div>
+<div id="proc-freq" class="section level1">
+<h1><span class="header-section-number">2</span> PROC FREQ</h1>
+<p>The SAS document is <a href="http://support.sas.com/documentation/cdl/en/procstat/66703/HTML/default/viewer.htm#procstat_freq_syntax01.htm">here</a>.</p>
+<p>Frequency tables answer the question, “how many?”</p>
+<p>For example, in a data set of cars, you may ask, “how many cars are blue?” PROC FREQ will give you this information, as well as counts for all other colors.</p>
+<p>Let’s see how PROC FREQ works with a data set of car evaluations.</p>
+<div id="car-evaluation-data-description" class="section level2">
+<h2><span class="header-section-number">2.1</span> Car Evaluation Data Description</h2>
+<p>The <a href="https://archive.ics.uci.edu/ml/datasets/Car+Evaluation">data set</a> is sourced from the UCI Machine Learning Repository.</p>
+<p>The target variable is vehicle “quality”, which has the variable name “class” in the data set.</p>
+<p>There are several explanatory variables, including price and safety.</p>
+<p><a href="https://mrrisley.github.io/BANA6043/data/car-evaluation.csv">Here is the .csv file.</a></p>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Files/import-car-evaluation.sas">Here is the SAS import procedure.</a></p>
+</div>
+<div id="proc-freq-example" class="section level2">
+<h2><span class="header-section-number">2.2</span> PROC FREQ Example</h2>
+<p>We can run a frequency table on all variables in the data set through the following code:</p>
+<pre class="sas"><code>proc freq data=mrrlib.car_eval;
+run;</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-freq-car-evaluation.html">OUTPUT</a></p>
+<p>Note that all explanatory variables have the same frequency, but vehicle quality is not evenly distributed. This data set is output from a hierarchical decision model. Interactions among the explanatory variables ultimately inform the vehicle quality.</p>
+<p>If we just wanted to see the frequency table for the target variable, we can use the tables statement:</p>
+<pre class="sas"><code>proc freq data=mrrlib.car_eval;
+tables class;
+run;</code></pre>
+<p>On the surface, the data set and PROC FREQ output seem pretty boring. However, PROC FREQ can be powerful when evaluating two-way frequencies.</p>
+<p>Of all the variables, suppose we assume that safety is a primary determinant of vehicle quality. After all, most drivers don’t particularly like an unsafe car.</p>
+<p>We can run a two-way frequency table on class and safety. We simply use the asterisk symbol (*) between the two variables:</p>
+<pre class="sas"><code>proc freq data=mrrlib.car_eval;
+tables class*safety;
+run;</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-freq-car-evaluation-ex2.html">OUTPUT</a></p>
+<p>We can see that only unacceptable quality cars have a safety rating of low and that only very good quality cars have a safety rating of high.</p>
+</div>
+<div id="proc-freq-with-options" class="section level2">
+<h2><span class="header-section-number">2.3</span> PROC FREQ with Options</h2>
+<p>The code below specifies options for the tables statement. Options of this sort require a forward slash (/). These options return: (1) the Pearson chi-square coefficient and associated p-value as well as (2) a two-way frequency plot.</p>
+<pre class="sas"><code>proc freq data=mrrlib.car_eval;
+tables class*safety /
+    chisq plots(only)=freqplot(twoway=cluster);;
+run;</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-freq-car-evaluation-ex3.html">OUTPUT</a></p>
+<p>As shown in the output, there is evidence of an association between safety and quality.</p>
+<p>You can also do a three-way (or more) frequency. These become somewhat difficult to read, however. They can sometimes be useful when the variables include some binary data.</p>
+</div>
+</div>
+<div id="proc-means" class="section level1">
+<h1><span class="header-section-number">3</span> PROC MEANS</h1>
+<p>The SAS document is <a href="https://documentation.sas.com/?docsetId=proc&amp;docsetTarget=n1qnc9bddfvhzqn105kqitnf29cp.htm&amp;docsetVersion=9.4&amp;locale=en">here</a>.</p>
+<p>PROC MEANS provides the following descriptive statistics for a distribution of values:</p>
+<ol style="list-style-type: decimal">
+<li>Measures of location
+<ul>
+<li>mean</li>
+<li>median</li>
+<li>mode</li>
+</ul></li>
+<li>Measures of spread
+<ul>
+<li>range</li>
+<li>percentiles</li>
+<li>standard deviation and variance</li>
+</ul></li>
+<li>Measures of shape
+<ul>
+<li>kurtosis, skewness</li>
+</ul></li>
+</ol>
+<p>It can also provide other information, such as confidence intervals.</p>
+<p>Let’s see how PROC FREQ works with the Morley data set.</p>
+<div id="morley-data-description" class="section level2">
+<h2><span class="header-section-number">3.1</span> Morley Data Description</h2>
+<p>The Morley data set represents measurements of the speed of light from an 1879 experiment. The data include three variables: (1) experiment number, (2) run number, and (3) the measured speed. 5 experiments were conducted, each with 20 runs (or observations). See <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/morley.html">the R document</a> for more information.</p>
+<p><a href="https://mrrisley.github.io/BANA6043/data/morley.csv">Here is the .csv file.</a></p>
+</div>
+<div id="proc-means-example" class="section level2">
+<h2><span class="header-section-number">3.2</span> PROC MEANS Example</h2>
+<p>Because descriptive statistics do not make much sense for the experiment and run numbers, we will limit output only for the speed variable through the var statement.</p>
+<pre class="sas"><code>proc means data=mrrlib.morley;
+    var speed;
+run;</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-means-ex1.html">OUTPUT</a></p>
+<p>We can see that for the 100 runs, the average speed of light was 852.4 km/sec with a range of 620 to 1070 km/sec.</p>
+</div>
+<div id="proc-means-with-options" class="section level2">
+<h2><span class="header-section-number">3.3</span> PROC MEANS with Options</h2>
+<p>What if we want to output summary statistics for each of the five experiments? We can use the BY statement, as shown in the code below.</p>
+<p>In addition, we can add options to the PROC. The maxdec option limits the number of decimals to display in output, while “n mean median mode …” provide specified statistical measures other than the default. In this example, the CLM option provides a 95% confidence interval for the mean. If we wanted a 90% CI, we’d change alpha to 0.10.</p>
+<pre class="sas"><code>proc means data=mrrlib.morley maxdec=1 
+n mean clm alpha=0.05 median mode min max skewness;
+    var speed;
+    by expt;
+run;</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-means-ex2.html">OUTPUT</a></p>
+</div>
+</div>
+<div id="proc-univariate" class="section level1">
+<h1><span class="header-section-number">4</span> PROC UNIVARIATE</h1>
+<p>The SAS document is <a href="http://support.sas.com/documentation/cdl/en/procstat/66703/HTML/default/viewer.htm#procstat_univariate_syntax01.htm">here</a>.</p>
+<p>PROC UNIVARIATE provides a variety of statistics for a supplied variable. PROC UNIVARIATE is useful when you need more sophistical statistical output such as:</p>
+<ol style="list-style-type: decimal">
+<li>tests for normality</li>
+<li>outlier analysis</li>
+<li>trimmed/Winsorized means, which account for outliers</li>
+<li>confidence intervals around the standard deviation and quantiles</li>
+</ol>
+<p>We’ll use the Morley data set again to demonstrate PROC UNIVARIATE.</p>
+<div id="proc-univariate-example" class="section level2">
+<h2><span class="header-section-number">4.1</span> PROC UNIVARIATE Example</h2>
+<p>The below code produces the default output, which includes a summary of moments, basic measures, tests for location, quantiles, and extreme observations.</p>
+<pre class="sas"><code>proc univariate data=mrrlib.morley; 
+    var speed;
+run;</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-univariate-ex1.html">OUTPUT</a></p>
+<p>Note: the test of location are against a null of a mean of zero, which is not very intuitive.</p>
+</div>
+<div id="proc-univariate-with-options" class="section level2">
+<h2><span class="header-section-number">4.2</span> PROC UNIVARIATE with Options</h2>
+<div id="histogram" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Histogram</h3>
+<pre class="sas"><code>proc univariate data=mrrlib.morley noprint; 
+    histogram speed / midpoints=uniform; 
+    class expt;
+    inset mean=&quot;Mean Speed&quot; / position=ne;
+    label expt=&quot;Experiment Number&quot;
+run;</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-univariate-ex2.html">OUTPUT</a></p>
+<p>The code above has the following features:</p>
+<ol style="list-style-type: decimal">
+<li>calls the noprint option in the PROC in order to supress the default output shown above</li>
+<li>uses the HISTOGRAM statement with the midpoints=uniform option, which creates a uniform number of bins for all plots</li>
+<li>uses the CLASS statement to produce the output for each experiment
+<ul>
+<li>instead of the BY statement, the CLASS statement is used to ensure all x-axes have the same range</li>
+</ul></li>
+<li>uses the INSET statement to create a legend with the mean for every experiment
+<ul>
+<li>the position=ne option places the legend in the “northeast” (top right) corner</li>
+</ul></li>
+<li>uses the expt variable as label</li>
+</ol>
+</div>
+<div id="normality-testing" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Normality Testing</h3>
+<pre class="sas"><code>ods graphics on;
+ods select Moments TestsForNormality ProbPlot;
+proc univariate data=mrrlib.morley normaltest; 
+   var speed;
+   by expt;
+   probplot speed / normal (mu=est sigma=est)
+                        square;
+   label expt = &#39;Experiment Number&#39; speed=&quot;Speed&quot;;
+   inset  mean std / format=6.4;
+run;</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-univariate-ex3.html">OUTPUT</a></p>
+<p>The code above has the following features:</p>
+<ol style="list-style-type: decimal">
+<li>turns on <a href="http://support.sas.com/documentation/cdl/en/procstat/66703/HTML/default/viewer.htm#procstat_univariate_details30.htm#procstat.univariate.graphsystems">ODS Graphics</a>, which creates high quality graphical output</li>
+<li>uses the ods select statement to only include Moments, TestsForNormality, and ProbPlot from PROC UNIVARIATE in the output</li>
+<li>uses the normaltest option to display tests for normality</li>
+<li>uses the by statement to produce the output for each experiment</li>
+<li>uses the probplot statement to create probability plots, which are similar to Q-Q plots
+<ul>
+<li>the normal option requests a reference line of a normal distribution with a mean and standard deviation</li>
+<li>(mu=est sigma=est) requests the reference line to have the same mean and standard deviation as the sample</li>
+<li>square requests the plot be in the shape of a square</li>
+</ul></li>
+<li>uses the LABEL statement to create labels</li>
+<li>uses the INSET statement to include a legend with mean and standard deviation
+<ul>
+<li>the format option specifies max place values of 6 and max decimal places of 4</li>
+</ul></li>
+</ol>
+<p>The data are normal when:</p>
+<ol style="list-style-type: decimal">
+<li>skewness = 0 and kurtosis = 3</li>
+<li>the goodness-of-fit tests <strong>fail to reject</strong> the null hypothesis of normality</li>
+<li>the points on the probability plot are near-linear and align with the reference line</li>
+</ol>
+</div>
+<div id="testing-measures-of-location" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Testing Measures of Location</h3>
+<p>As noted above, the tests for location in PROC UNIVARIATE are by default a <strong>two-tailed</strong> hypothesis test against a null of a mean of zero.</p>
+<p>In the Morley data set, the experiment records the speed of light in km/sec with 299,000 km/sec subtracted from the result.</p>
+<p>The speed of light in a vaccuum, c, is 299,792,458 meters/sec. Let’s use SAS to determine whether the results of each experiment confirm this measurement.</p>
+<pre class="sas"><code>ods graphics on;
+ods select testsforlocation;
+proc univariate data=mrrlib.morley
+mu0=792.458; 
+    var speed;
+    title &quot;Two-Tailed Test against Mean of 792.5: All Runs&quot;;
+run; 
+
+ods graphics on;
+ods select testsforlocation;
+proc univariate data=mrrlib.morley
+location=792.458; /*location is equivalent to mu0*/
+    var speed;
+    class expt;
+    title &quot;Two-Tailed Test against Mean of 792.5: Each Experiment&quot;;
+run;</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-univariate-ex4.html">OUTPUT</a></p>
+<p>We test the hypothesis first against all 100 runs. We then test the hypothesis against each of the 5 experiments. The tests of location reject the hypothesis that the mean speed of light is 299,792.5 km/sec.</p>
+<p>The code above has the following features:</p>
+<ol style="list-style-type: decimal">
+<li>turns on <a href="http://support.sas.com/documentation/cdl/en/procstat/66703/HTML/default/viewer.htm#procstat_univariate_details30.htm#procstat.univariate.graphsystems">ODS Graphics</a>, which creates high quality graphical output</li>
+<li>uses the ods select statement to only include TestsforLocation</li>
+<li>uses the mu0 (location) option for PROC UNIVARIATE</li>
+<li>uses the <strong>global</strong> TITLE statement to label output</li>
+<li>stacks two PROC UNIVARIATE in the output</li>
+</ol>
+<p>PROC UNIVARIATE only supports two-tailed tests against a mean. However, the PROC provides alternatives to Student’s t for data that are not normally distributed.</p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
