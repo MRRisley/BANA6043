@@ -4,8 +4,16 @@ This is a collection of material for Stat Computing at UC.
 ## Syllabus
 [Click here for the syllabus.](https://mrrisley.github.io/BANA6043/syllabus/BANA5143&6043_001_Risley.pdf)
 
+## Week 1
+1. [Software for this course.](https://mrrisley.github.io/BANA6043/BANA-6043-Software.html)
+2. [Intro to SAS.](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Intro.html)
+3. [Summary Statistics in SAS.](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Summary-Statistics.html)
+
++ [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
++ [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
+
 ## Course Resources
-**The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/)**
+**The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).**
 
 **R:**
 1. R Cookbook by Paul Teetor
@@ -17,12 +25,3 @@ This is a collection of material for Stat Computing at UC.
 2. An Introduction to SAS University Edition by Ronald Cody
 3. Essential Statistics Using SAS by Geoff Der and Brian Everitt
 4. [Free SAS e-learning](https://www.sas.com/en_us/learn/academic-programs/resources/free-sas-e-learning.html)
-
-## Week 1
-1. [Software for this course.](https://mrrisley.github.io/BANA6043/BANA-6043-Software.html)
-2. [Intro to SAS.](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Intro.html)
-3. [Summary Statistics in SAS.](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Summary-Statistics.html)
-
-+ [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
-+ [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
-
