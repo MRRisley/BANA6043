@@ -4,6 +4,18 @@ This is a collection of material for Stat Computing at UC.
 ## Syllabus
 [Click here for the syllabus.](https://mrrisley.github.io/BANA6043/syllabus/BANA5143&6043_001_Risley.pdf)
 
+## Course Resources
+**The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/)**  
+**R:**  
+1. R Cookbook by Paul Teetor
+2. R for Data Science by Hadley Wickham and Garrett Grolemund
+3. [This website](http://cmdlinetips.com/2018/01/free-online-resources-books-to-learn-r-and-data-science/) lists 16 free R books/resources.  
+**SAS:**  
+1. The Little SAS Book: A Primer by Lora Delwiche and Susan Slaughter
+2. An Introduction to SAS University Edition by Ronald Cody
+3. Essential Statistics Using SAS by Geoff Der and Brian Everitt
+4. [Free SAS e-learning](https://www.sas.com/en_us/learn/academic-programs/resources/free-sas-e-learning.html)
+
 ## Week 1
 1. [Software for this course.](https://mrrisley.github.io/BANA6043/BANA-6043-Software.html)
 2. [Intro to SAS.](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Intro.html)
