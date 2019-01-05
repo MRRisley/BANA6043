@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>BANA6043: SAS X-Y Analysis: Scatter Plots</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">BANA6043: SAS X-Y Analysis: Scatter Plots</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+<h4 class="date"><em>Week 2 Lecture Series</em></h4>
+
+</div>
+
+
+<div id="x-y-analysis-intro" class="section level1">
+<h1><span class="header-section-number">1</span> X-Y Analysis Intro</h1>
+<p>Comparing two variables is a simple and intuitive way to evaluate possible relationships among them. I refer to this as X-Y analysis. It’s also referred to as bivariate analysis.</p>
+<p>X-Y analysis can include:</p>
+<ol style="list-style-type: decimal">
+<li>scatter plots</li>
+<li>correlation matrices</li>
+<li>regression</li>
+</ol>
+</div>
+<div id="diamonds-data" class="section level1">
+<h1><span class="header-section-number">2</span> Diamonds Data</h1>
+<p>Our analysis in this lecture will rely on the diamonds dataset, which is an R dataset included in the ggplot2 package.</p>
+<p><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">The R document on the data set can be found here.</a></p>
+<p>The dataset includes features of 50,000+ diamonds, including price, carat, cut, color, and clarity.</p>
+<p>Below is the R code that outputs the diamonds data set. Then, we’ll import it into SAS for analysis.</p>
+<pre class="r"><code>###install ggplot2 package
+install.packages(&#39;ggplot2&#39;)
+#only needs to be done once</code></pre>
+<pre class="r"><code>###load ggplot2 package
+library(ggplot2)
+
+###load diamonds dataset &amp; pull R doc
+data(&#39;diamonds&#39;)
+help(diamonds)
+
+head(diamonds) #first 6 rows</code></pre>
+<pre><code>## # A tibble: 6 x 10
+##   carat cut       color clarity depth table price     x     y     z
+##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+## 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+## 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+## 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+## 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+## 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+<pre class="r"><code>nrow(diamonds) #number of rows</code></pre>
+<pre><code>## [1] 53940</code></pre>
+<pre class="r"><code>#output to my desktop
+write.csv(diamonds, &quot;C:/users/t530/desktop/diamonds.csv&quot;)</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/data/diamonds.csv">Here is the .csv file.</a></p>
+</div>
+<div id="understanding-the-data" class="section level1">
+<h1><span class="header-section-number">3</span> Understanding the Data</h1>
+<p>For now, we want to explore the relationship between carat and price. Generally, larger carat diamonds are more expensive.</p>
+<p>We’ll explore the data as part of <a href="https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-2.html">In-Class Assignment 2</a>.</p>
+</div>
+<div id="scatter-plot-with-sgplot" class="section level1">
+<h1><span class="header-section-number">4</span> Scatter Plot with SGPLOT</h1>
+<p>I am fond of saying that, by themselves, numbers are meaningless. This may be overexaggeration, but the point is that they rarely tell the full story. Data visualization is key to forming insights.</p>
+<p>Scatter plots are a basic analytical tool to evaluate possible relationships among variables through visual means.</p>
+<p>Let’s plot price against carat size (i.e., price on the y-axis and carat on the x-axis). Scatter plots are requested in SAS with a SCATTER statment in a PROC SGPLOT. SG stands for “Statistical Graphics”.</p>
+<p><a href="http://support.sas.com/documentation/cdl/en/grstatproc/62603/HTML/default/viewer.htm#sgplot-syn.htm">Click here for the PROC SGPLOT document</a>.</p>
+<p><a href="http://support.sas.com/documentation/cdl/en/grstatproc/62603/HTML/default/viewer.htm#scatter-stmt.htm">Click here for the SCATTER statement document</a>.</p>
+<p><strong>Note: you need to use ODS graphics with PROC SGPLOT.</strong></p>
+<pre class="sas"><code>ods graphics on;
+proc sgplot data=mrrlib.diamonds;
+    scatter x=carat y=price;
+    title &#39;Plot of Price by Carat Size&#39;;
+run;
+ods graphics off;</code></pre>
+<div class="figure">
+<img src="images/SGPLOT-SCATTER-1.JPG" />
+
+</div>
+<p>In the code above:</p>
+<ol style="list-style-type: decimal">
+<li>We use the SCATTER statement, assigning carat to the x-axis and price to the y-axis. The x and y arguments are <strong>required</strong>. You can switch their order, however.</li>
+<li>We use the global title option (which we can move outside of the PROC if we wanted).</li>
+</ol>
+<p>Observations:</p>
+<ol style="list-style-type: decimal">
+<li>It appears that as carat size increases, the price of the diamond increases.</li>
+<li>It also appears that this relationship is <strong>non-linear</strong>. A linear relationship is one that follows a straight line.</li>
+<li>Because there are so many observations (over 50k), the visualization suffers from <strong>over-plotting</strong>. This means that points are so stacked on top of one another that it is difficult to understand the density of data within a fully-colored area.</li>
+</ol>
+</div>
+<div id="scatter-plot-with-options" class="section level1">
+<h1><span class="header-section-number">5</span> Scatter Plot with Options</h1>
+<div id="remove-overplotting" class="section level2">
+<h2><span class="header-section-number">5.1</span> Remove Overplotting</h2>
+<p>Transparent colors are a great tool for data visualization when you have large-scale data. It aids in showing the distribution of data.</p>
+<p>You can also change the marker type, size, and color in order to promote readability of the visualization.</p>
+<pre class="sas"><code>ods graphics on;
+proc sgplot data=mrrlib.diamonds;
+    scatter x=carat y=price / 
+            transparency = 0.9
+            markerattrs=(symbol=circlefilled
+                         size=5
+                         color=coral);
+    title &#39;Pretty Plot #1 of Price by Carat Size&#39;;
+run;
+ods graphics off;</code></pre>
+<div class="figure">
+<img src="images/SGPLOT-SCATTER-2.JPG" />
+
+</div>
+<p>The code does the following:</p>
+<ol style="list-style-type: decimal">
+<li>Uses the <code>TRANSPARENCY</code> option to add transparency to the markers. This is a value between 0 (no transparency) and 1.0 (complete transparency). I chose 0.9 by fiddling around with a few possible values.</li>
+<li>Uses the <code>MARKERATTRS</code> option to change the marker symbol, size and color. <strong>Note that this is an option with sub-options.</strong> That’s why we use parentheses in order to call them.</li>
+<li>There are 24 possible markers. <a href="http://support.sas.com/documentation/cdl/en/grstatproc/62603/HTML/default/viewer.htm#a003199399.htm#sgplmarkers">See the possible marker symbols here</a>.</li>
+<li>Size is measured in pixels by default. You can change this with another option (to inches, for example).</li>
+<li>I use a pre-defined SAS color, called “coral”. SAS has a lot of pre-defined colors that are good for visualization. <a href="https://documentation.sas.com/?docsetId=graphref&amp;docsetTarget=n161ukdyz9wpfsn1nh8sihforvyq.htm&amp;docsetVersion=9.4&amp;locale=en">See the SAS pre-defined colors here</a>. R has a lot of the same ones.</li>
+</ol>
+</div>
+<div id="change-plot-format" class="section level2">
+<h2><span class="header-section-number">5.2</span> Change Plot Format</h2>
+<p>SAS’s default labels are usually pretty readable. However, imagine that your variable name for “carat” were “crt”. Or, imagine you need more tick marks than the ones supplied by default by SAS.</p>
+<pre class="sas"><code>ods graphics on;
+proc sgplot data=mrrlib.diamonds noborder;
+    scatter x=carat y=price / 
+            transparency = 0.9
+            markerattrs=(symbol=circlefilled
+                         size=5
+                         color=dodgerblue);
+    
+    title color=black &#39;Pretty Plot #2 of Price by Carat Size&#39;;
+    footnote  color=gray &#39;Note: data has carat sizes &gt; 3&#39;;
+    
+    xaxis 
+        label=&quot;Carat Size&quot; 
+        labelattrs=(color=dimgray weight=bold)
+        values = (0 1 2 3)
+        valueattrs=(color=gray)
+        minor
+        display=(noline);
+        
+    yaxis 
+        label=&quot;Price of Diamond&quot; 
+        labelattrs=(color=dimgray weight=bold)
+        valueattrs=(color=gray)
+        grid 
+        gridattrs=(color=lightgray)
+        minorgrid       
+        minorgridattrs=(color=lightgray)
+        display=(noline noticks);
+        
+    format price dollar.;
+    
+run;
+ods graphics off;</code></pre>
+<div class="figure">
+<img src="images/SGPLOT-SCATTER-3.JPG" />
+
+</div>
+<p>While the code above looks daunting, it’s more about the way that SAS works rather than anything complex. The code requests the following:</p>
+<ol style="list-style-type: decimal">
+<li>TITLE and FOOTNOTE statements</li>
+</ol>
+<ul>
+<li>color <strong>must</strong> come before the text</li>
+<li>these are global options</li>
+<li><a href="https://documentation.sas.com/?docsetId=grstatproc&amp;docsetTarget=n1ukd9sqgqiwwhn1mrx4c1rbse1j.htm&amp;docsetVersion=9.4&amp;locale=en">TITLE and FOOTNOTE documentation</a></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>XAXIS and YAXIS statements</li>
+</ol>
+<ul>
+<li>statements are used with SG procedures</li>
+<li><code>label</code> is the axis label</li>
+<li><code>labelattrs</code> change the label attributes</li>
+<li><code>valueattrs</code> change the attributes of the values displayed on the axis</li>
+<li><code>values</code> change the values on the axis</li>
+<li><code>minor</code> shows minor tick marks</li>
+<li><code>display</code> can suppress the axis line, tick marks, label, or values</li>
+<li><code>grid</code> will place gridlines at every major tick mark</li>
+<li><code>gridattrs</code> change the attributes of the major gridlines</li>
+<li><code>minorgrid</code> and <code>minorgridattrs</code> are for minor gridlines</li>
+<li><code>min</code> and <code>max</code> (not shown) change the minimum and maximum values on the axis</li>
+<li><a href="https://documentation.sas.com/?docsetId=grstatproc&amp;docsetTarget=p07m2vpyq75fgan14m6g5pphnwlr.htm&amp;docsetVersion=9.4&amp;locale=en">XAXIS and YAXIS documentation</a></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>FORMAT statement</li>
+</ol>
+<ul>
+<li>can be used in all DATA or PROC steps</li>
+<li>changes the format of the data in the output</li>
+<li><code>dollar.</code> is a SAS format that displays the number as a dollar</li>
+<li><a href="http://support.sas.com/documentation/cdl/en/lestmtsref/63323/HTML/default/viewer.htm#n0d5oq7e0oia0wn13nsins0x8nmh.htm">FORMAT statement documentation</a></li>
+<li><a href="http://support.sas.com/documentation/cdl/en/leforinforref/63324/HTML/default/viewer.htm#titlepage.htm">SAS Formats</a></li>
+<li>can also use the <code>VALUESFORMAT</code> option in XAXIS or YAXIS</li>
+<li>we will cover formats more in depth</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>noborder option in PROC SGPLOT supresses the outer border</li>
+</ol>
+</div>
+<div id="add-a-regression-fit-line" class="section level2">
+<h2><span class="header-section-number">5.3</span> Add a Regression Fit Line</h2>
+<p>We can add a regression fit line to the plot by adding a REG statement to the PROC SGPLOT.</p>
+<p><a href="http://support.sas.com/documentation/cdl/en/grstatproc/62603/HTML/default/viewer.htm#reg-stmt.htm">Here’s the REG statement documentation</a></p>
+<p>We’ll replace the SCATTER statement with the REG statement below:</p>
+<pre class="sas"><code>    reg x=carat y=price / 
+            lineattrs=(color=black thickness=3)
+            markerattrs=(color=dodgerblue size=3)
+            cli
+            cliattrs=(clilineattrs=(color=black));</code></pre>
+<div class="figure">
+<img src="images/SGPLOT-SCATTER-4.JPG" />
+
+</div>
+<p>The following are the primary differences from the examples above:</p>
+<ol style="list-style-type: decimal">
+<li>The <code>cli</code> option displays the Confidence Intervals around the fit line. You can specify the <code>alpha</code> option to change it from the default 95% interval.</li>
+<li>I specified <code>noautolegend</code> as an option for PROC SGPLOT to suppress the default legend from the REG statement.</li>
+<li>I added a minimum and maximum value for the y-axis because the inclusion of the fit line changed the default values of 0 and 20,000 from the prior plotting exercises.</li>
+<li>I removed the transparency option and changed the marker instead. The transparency option also changes the transparency of the fit line, which was not desired.</li>
+</ol>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
