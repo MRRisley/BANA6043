@@ -1,5 +1,5 @@
-# BANA6043
-This is a collection of material for Stat Computing at UC.
+# BANA6043: Stat Computing
+This is a course taught at the University of Cincinnati.
 
 ## Syllabus
 [Click here for the syllabus.](https://mrrisley.github.io/BANA6043/syllabus/BANA5143&6043_001_Risley.pdf)
