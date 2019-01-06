@@ -341,7 +341,12 @@ run;</code></pre>
 <pre class="sas"><code>proc freq data=mrrlib.car_eval;
 tables class*safety;
 run;</code></pre>
-<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-freq-car-evaluation-ex2.html">OUTPUT</a></p>
+<center>
+<div class="figure">
+<img src="images/FREQ-1.JPG" />
+
+</div>
+</center>
 <p>We can see that only unacceptable quality cars have a safety rating of low and that only very good quality cars have a safety rating of high.</p>
 </div>
 <div id="proc-freq-with-options" class="section level2">
@@ -391,7 +396,12 @@ run;</code></pre>
 <pre class="sas"><code>proc means data=mrrlib.morley;
     var speed;
 run;</code></pre>
-<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-means-ex1.html">OUTPUT</a></p>
+<center>
+<div class="figure">
+<img src="images/MEANS-1.JPG" />
+
+</div>
+</center>
 <p>We can see that for the 100 runs, the average speed of light was 852.4 km/sec with a range of 620 to 1070 km/sec.</p>
 </div>
 <div id="proc-means-with-options" class="section level2">
@@ -403,7 +413,12 @@ n mean clm alpha=0.05 median mode min max skewness;
     var speed;
     by expt;
 run;</code></pre>
-<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-means-ex2.html">OUTPUT</a></p>
+<center>
+<div class="figure">
+<img src="images/MEANS-2.JPG" />
+
+</div>
+</center>
 </div>
 </div>
 <div id="proc-univariate" class="section level1">
