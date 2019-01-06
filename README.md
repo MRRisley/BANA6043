@@ -13,10 +13,10 @@ This is a collection of material for Stat Computing at UC.
 + [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
 
 ## Week 2: X-Y Analysis in SAS
-1. [Scatter Plots in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-XY-Scatter.html)
+1. [Scatter Plots in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Scatter.html)
     + [SAS Paper on Plotting](https://mrrisley.github.io/BANA6043/resources/SASGraphBasics.pdf)
     + [ODS Graphics Tips](https://mrrisley.github.io/BANA6043/resources/ODSGraphicsTips.pdf)
-2. [Correlation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-XY-Corr.html)
+2. [Correlation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Corr.html)
 
 + [Week 2 In-Class Assignment](BANA-6043-In-Class-Assignment-2.html)
 
