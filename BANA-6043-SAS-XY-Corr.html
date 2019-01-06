@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>BANA6043: SAS X-Y Analysis: Correlation</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">BANA6043: SAS X-Y Analysis: Correlation</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+<h4 class="date"><em>Week 2 Lecture Series</em></h4>
+
+</div>
+
+
+<div id="correlation-intro" class="section level1">
+<h1><span class="header-section-number">1</span> Correlation Intro</h1>
+<p>Correlation is an intuitive way to evaluate the strength of a linear relationship between two variables.</p>
+<p>In general, X-Y relationships exist on a spectrum, ranging from a strong negative relationship to a strong positive relationship. In the middle, there is no relationship.</p>
+<ol style="list-style-type: decimal">
+<li>a <strong>positive</strong> relationship between two variables means that they both increase together and that they both decrease together
+<ul>
+<li>example: as the carat size of a diamond increases, the price of the diamond increases</li>
+</ul></li>
+<li>a <strong>negative</strong> relationship between two variables means that one decreases as the other increases or vice versa
+<ul>
+<li>example: as the quantity of a good increases, its price decreases</li>
+</ul></li>
+<li><strong>no relationship</strong> suggests that increases or decreases in one variable do not correspond to any increases ordecreases in the other variable. In this way they are said to be <strong>independent</strong>.
+<ul>
+<li>example: US home prices and the amount of television I watch a day have no relationship</li>
+</ul></li>
+</ol>
+<p>The Pearson Correlation coefficient is an easy way to gauge the existence and/or the strength of an X-Y relationship. The coefficient is a number that ranges from -1 (a <em>perfectly</em> negative relationship) to 1 (a <em>perfectly</em> positive relationship). 0 represents no <em>linear</em> relationship. Variables can still have relationships even with a coefficient of zero. <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">The Wikipedia article is a pretty good introduction.</a></p>
+<p>Pearson’s Correlation coefficient is also referred to as Pearson’s <em>r</em>.</p>
+<p>In general:</p>
+<ol style="list-style-type: decimal">
+<li>0.7 &lt; <em>r</em> &lt; 1.0 or -0.7 &gt; <em>r</em> &gt; -1.0 indicates a <strong>strong</strong> linear relationship</li>
+<li>0.5 &lt; <em>r</em> &lt; 0.7 or -0.5 &gt; <em>r</em> &gt; -0.7 indicates a <strong>moderate</strong> linear relationship</li>
+<li>0.3 &lt; <em>r</em> &lt; 0.5 or -0.3 &gt; <em>r</em> &gt; -0.5 indicates a <strong>weak</strong> linear relationship</li>
+<li>-0.3 &lt; <em>r</em> &lt; 0.3 indicates <strong>no</strong> linear relationship</li>
+</ol>
+<p><strong>Note: These are guidelines.</strong> The interpretation of <em>r</em> rests upon the question you are trying to answer. You may need “strong evidence” of a linear relationship or just “evidence” of a linear relationship.</p>
+<p>We will continue to rely on the diamonds dataset for this lecture.</p>
+</div>
+<div id="proc-corr" class="section level1">
+<h1><span class="header-section-number">2</span> PROC CORR</h1>
+<p>PROC CORR is the SAS procedure for computing correlation coefficients. <a href="http://support.sas.com/documentation/cdl/en/procstat/67528/HTML/default/viewer.htm#procstat_corr_syntax.htm">Here is the SAS document.</a></p>
+<p>Let’s evaluate the default output. We’ll also include the variables x, y, and z in our evaluation. These correspond to the length, width, and depth of the diamond, respectively. I add labels to these variables with a LABEL statement to improve readability of the output.</p>
+<pre class="sas"><code>proc corr data=mrrlib.diamonds;
+    var price carat x y z;
+    label x=&quot;length&quot; y=&quot;width&quot; z=&quot;depth&quot;;
+run;</code></pre>
+<center>
+<div class="figure">
+<img src="images/CORR-1.JPG" />
+
+</div>
+</center>
+<p>In the default output, we see: (1) simple statistics and (2) Pearson Correlation Coefficients.</p>
+<p>The Pearson Correlation coefficients are presented in matrix form. In general, we see that price has a strong positive correlation each with carat, length, width, and depth. We can also see that carat, which represents the size of the diamond, also has a positive relationship each with length, width, and depth. All values of <em>r</em> are greater than 0.9.</p>
+<p>Below the <em>r</em> is the <em>p</em>-value associated with the coefficient. If the <em>p</em>-value is &lt; 0.05, we can say that the relationship is statistically signifcant. <strong>Be careful</strong>, however, because there can be statistical significance for <strong>no</strong> relationship. So, an <em>r</em> of -0.01 and a <em>p</em>-value less than 0.05 indicates that there is statistically significant evidence of no linear relationship between the two variables. <strong>It does not mean</strong> that there is a statistically significant relationship.</p>
+<p>PROC CORR can provide additional correlation coefficients.</p>
+<pre class="sas"><code>proc corr data=mrrlib.diamonds pearson spearman nosimple;
+    var price carat x y z;
+    label x=&quot;length&quot; y=&quot;width&quot; z=&quot;depth&quot;;
+run;</code></pre>
+<p>The code above uses the PROC CORR options to request Spearman’s rank-order correlation coefficient in addition to Pearson’s. It also suppresses the simple statistics output.</p>
+<center>
+<div class="figure">
+<img src="images/CORR-2.JPG" />
+
+</div>
+</center>
+</div>
+<div id="correlation-matrix-plots" class="section level1">
+<h1><span class="header-section-number">3</span> Correlation Matrix Plots</h1>
+<p>SAS can display matrices with scatter plots as well. However, with the number of observation in the dataset, the load on SAS becomes noticeable. The below scripts each took about two minutes to run.</p>
+<p>To run these quickly, you can specify the <code>obs=</code> option for the <code>data</code> option in the proc: <code>data=mrrlib.diamonds(obs=1000)</code>. This will run the procedure on the first 1000 observations only.</p>
+<div id="with-proc-corr" class="section level2">
+<h2><span class="header-section-number">3.1</span> with PROC CORR</h2>
+<pre class="sas"><code>ods graphics on;
+
+proc corr data=mrrlib.diamonds
+nomiss plots=matrix(histogram) plots(maxpoints=none)
+nosimple nocorr;
+
+    var price carat x y z;
+    
+run;
+
+ods graphics off;</code></pre>
+<p>The PROC CORR options explained:</p>
+<ol style="list-style-type: decimal">
+<li><code>nomiss</code> excludes missing values. This is a common option on many statistical procedures.</li>
+<li><code>plots=matrix(histogram)</code> requests the matrix plot with histograms on the diagonal.</li>
+<li><code>plots(maxpoints=none)</code> overrides the default of 5,000. This allows the PROC to run with the many observations in the dataset.</li>
+<li><code>nosimple</code> suppresses simple statistics.</li>
+<li><code>nocorr</code> suppresses correlation statistics.</li>
+</ol>
+<center>
+<div class="figure">
+<img src="images/CORR-3.JPG" />
+
+</div>
+</center>
+</div>
+<div id="with-proc-sgscatter" class="section level2">
+<h2><span class="header-section-number">3.2</span> with PROC SGSCATTER</h2>
+<p>We haven’t shown this PROC, but it exists. <a href="https://documentation.sas.com/?docsetId=grstatproc&amp;docsetVersion=9.4&amp;docsetTarget=n1je1qlb5bvtypn1rhbeyqw5h9rc.htm&amp;locale=en">Documentation is here.</a> I have found it useful for generating these plots because you can better control the output.</p>
+<pre class="sas"><code>ods graphics on;
+title color=dimgray &quot;Diamond Scatter Matrix with PROC SGSCATTER&quot;;
+
+proc sgscatter data=mrrlib.diamonds;
+
+    matrix price carat x y z / transparency=0.5
+                               diagonal=(histogram normal)
+                               markerattrs=(color=dodgerblue);
+
+run;
+ods graphics off;</code></pre>
+<p>The PROC explained:</p>
+<ol style="list-style-type: decimal">
+<li><code>matrix</code> statement calls the matrix plot</li>
+<li><code>price carat x y z</code> are the variables analyzed</li>
+<li><code>/</code> specifies the options for the matrix statement</li>
+<li><code>transparency</code> modifies the transparency of <em>all</em> plot elements (unfortunately)</li>
+<li><code>diagonal=(histogram normal)</code> calls a histogram and a normal curve overlay in the diagonal of the matrix. <strong>Note:</strong> the overlay is to evaluate whether the underlying data are normal. Deviance from the curve suggests non-normal data and congruence with it suggests normal data. Only x, y, and z appear to be normally distributed.</li>
+<li><code>marketattrs=(color=dodgerblue)</code> specifies that the markers are to have the predefined color ‘dodgerblue’</li>
+</ol>
+<center>
+<div class="figure">
+<img src="images/CORR-4.JPG" />
+
+</div>
+</center>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
