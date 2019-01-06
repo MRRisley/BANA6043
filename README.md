@@ -4,13 +4,21 @@ This is a collection of material for Stat Computing at UC.
 ## Syllabus
 [Click here for the syllabus.](https://mrrisley.github.io/BANA6043/syllabus/BANA5143&6043_001_Risley.pdf)
 
-## Week 1
-1. [Software for this course.](https://mrrisley.github.io/BANA6043/BANA-6043-Software.html)
-2. [Intro to SAS.](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Intro.html)
-3. [Summary Statistics in SAS.](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Summary-Statistics.html)
+## Week 1: Intro to SAS
+1. [Software for this course](https://mrrisley.github.io/BANA6043/BANA-6043-Software.html)
+2. [Intro to SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Intro.html)
+3. [Summary Statistics in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Summary-Statistics.html)
 
 + [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
 + [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
+
+## Week 2: X-Y Analysis in SAS
+1. [Scatter Plots in SAS](BANA-6043-XY-Scatter.html)
+    + [SAS Paper on Plotting](/resources/SASGraphBasics.pdf)
+    + [ODS Graphics Tips](/resources/ODSGraphicsTips.pdf)
+2. [Correlation in SAS](BANA-6043-XY-Corr.html)
+
++ [Week 2 In-Class Assignment](BANA-6043-In-Class-Assignment-2.html)
 
 ## Course Resources
 **The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).**
