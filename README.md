@@ -1,4 +1,4 @@
-# BANA6043: Stat Computing
+## Stat Computing
 This is a course taught at the University of Cincinnati.
 
 ## Syllabus
