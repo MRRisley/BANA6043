@@ -17,7 +17,7 @@
 3. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
 
 + [Week 2 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-2.html)
-+ [Homework 2](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
++ [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
 
 ## Course Resources
 **The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).**
