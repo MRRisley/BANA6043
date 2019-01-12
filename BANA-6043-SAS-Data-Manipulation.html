@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>BANA6043: SAS Data Manipulation</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">BANA6043: SAS Data Manipulation</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+<h4 class="date"><em>Week 2 Lecture Series</em></h4>
+
+</div>
+
+
+<div id="data-statements" class="section level1">
+<h1><span class="header-section-number">1</span> DATA statements</h1>
+<p>We have seen a number of PROC statements, which execute procedures on a supplied dataset. On the other hand, DATA statements create, manipulate, and import/export the data.</p>
+<p>DATA and PROC steps are the foundation of working in SAS. Data is rarely ready for analysis “as is”. It is often said that data scrubbing and cleaning make up 80% of the work of an analytics task. I have found this to be my experience as well.</p>
+</div>
+<div id="data-statement-basics" class="section level1">
+<h1><span class="header-section-number">2</span> DATA statement basics</h1>
+<p><a href="http://support.sas.com/documentation/cdl/en/lrcon/62955/HTML/default/viewer.htm#a001125856.htm">The SAS documentation for DATA steps are here.</a></p>
+<p>In general, a DATA statement specifies:</p>
+<ol style="list-style-type: decimal">
+<li>an output data set, which can be temporary (the WORK library) or permanent</li>
+<li>a beginning dataset
+<ul>
+<li>an already existing dataset</li>
+<li>manually-input data</li>
+<li>an imported dataset</li>
+</ul></li>
+<li>logic to create other variables</li>
+</ol>
+<p>Let’s start with a DATA statement that uses the <code>datalines</code> statement:</p>
+<pre class="sas"><code>data temp;
+    input first_name $1-8 last_name $9-19 worth;
+    datalines;
+Michael Jordan     1.7
+Jeff    Bezos      136.9
+Elon    Musk       22.4
+Bill    Gates      94.7
+Mark    Zuckerberg 53.6
+Kylie   Jenner     0.9
+;
+run;
+
+proc print data=work.temp; run;
+
+proc contents data=work.temp; run;</code></pre>
+<p>The code above accomplishes the following:</p>
+<ol style="list-style-type: decimal">
+<li><code>data temp;</code> creates a dataset named temp in the WORK library</li>
+<li><code>input first_name $1-8 last_name $9-19 worth 4.1;</code> specifies three varibles will be put into the dataset: first_name, last_name, and worth. It also specifies the data types through <strong>informats</strong>.
+<ul>
+<li><code>first_name $1-8</code> specifies that the varible first_name is of type character ($) and spans columns 1-8. This means it will treat the first 8 characters as the variable first_name. <code>$1-8</code> is the informat.</li>
+<li><code>last_name $9-19</code> specifies that the character variable last_name occupies columns 9-19.</li>
+<li><code>worth</code> does not have an informat afterward. Without <code>$</code>, the data is read as a numeric type with a default length of 8.</li>
+</ul></li>
+<li><code>datalines;</code> specifies that what follows it is to be treated as raw data. You can also use <code>cards</code> or <code>lines</code>.</li>
+<li><code>proc print data=work.temp; run;</code> prints the data</li>
+<li><code>proc contents</code> shows the details of the dataset</li>
+</ol>
+<p>The printed data are shown below:</p>
+<center>
+<div class="figure">
+<img src="images/DATA-1.JPG" />
+
+</div>
+</center>
+<div id="sas-informats-and-formats" class="section level2">
+<h2><span class="header-section-number">2.1</span> SAS Informats and Formats</h2>
+<p>I will not spend much time on SAS informats. An informat tells SAS the format of the data we are reading in. For example, if the data is a date, we need to tell SAS to read it as a date. SAS has made importing data and specifying data types relatively easy through point-and-click methods. Nonetheless, it is important to know what an informat is. <a href="https://support.sas.com/documentation/cdl/en/leforinforref/64790/HTML/default/viewer.htm#n0cq8eha2o93mdn1lg8n5ursmkxm.htm">Here’s the SAS documentation for informats.</a></p>
+<p>SAS formats, on the other hand, allow you to format the data when displayed in <strong>output</strong>. This is an important distinction that you should understand. They have similar syntax. We will use SAS formats to prettify output.</p>
+</div>
+</div>
+<div id="manipulating-data" class="section level1">
+<h1><span class="header-section-number">3</span> Manipulating Data</h1>
+<p>We will now manipulate the diamonds data set. First, let’s take a deeper look at the structure of the dataset.</p>
+<pre class="sas"><code>proc contents data=mrrlib.diamonds; run;</code></pre>
+<center>
+<div class="figure">
+<img src="images/DATA-2.JPG" />
+
+</div>
+</center>
+<p>Through a DATA step, we’ll make the following changes:</p>
+<ol style="list-style-type: decimal">
+<li>drop the variable VAR1, which was just the observation number from the R export</li>
+<li>transform variables carat and price using the natural logarithm</li>
+<li>drop variables x, y, and z and replace them with the names length, width and depth</li>
+<li>drop variables depth, which is the total depth percentage, as well as the variable table</li>
+</ol>
+<pre class="sas"><code>data temp;
+    set mrrlib.diamonds;
+    drop var1 x y z depth table;
+    length_x=x;
+    width_y=y;
+    depth_z=z;
+    lcarat=log(carat);
+    lprice=log(price);
+run;
+
+proc contents data=temp; run;
+
+proc print data=temp(obs=10); run;</code></pre>
+<p>The code explained:</p>
+<ol style="list-style-type: decimal">
+<li><code>data temp;</code> creates a temporary dataset named temp in the WORK library. Remember that the WORK library is the default.</li>
+<li><code>set mrrlib.diamonds;</code> uses the diamonds dataset as the starting data for temp</li>
+<li><code>drop var1 x y z depth table;</code> drops the listed variables from the final data set</li>
+<li>the next lines contain logic for variables that were not a part of the original dataset. +you can re-name a variable by assigning the original variable a new name and then dropping the original variable +notice that if I used <code>depth=z</code> the variable would not exist in the final dataset because we drop the variable depth. depth represented a different variable in the original dataset.</li>
+<li><code>log()</code> is the <em>natural</em> log in SAS</li>
+<li><code>proc contents data=temp; run;</code> displays the new dataset</li>
+<li><code>proc print data=temp(obs=10); run;</code> prints 10 observations starting at observation 1 (the default)</li>
+</ol>
+<center>
+<div class="figure">
+<img src="images/DATA-3.JPG" />
+
+</div>
+<div class="figure">
+<img src="images/DATA-4.JPG" />
+
+</div>
+</center>
+<p><a href="https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html">Homework #2</a> will involve exploring how these transformations affect the X-Y analysis we demonstrated here in class.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

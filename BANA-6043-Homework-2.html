@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>Homework #2</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework #2</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+<h4 class="date"><em>Week 2 Lecture Series</em></h4>
+
+</div>
+
+
+<div id="details" class="section level3">
+<h3>Details</h3>
+<ol style="list-style-type: decimal">
+<li>Due by the start of next class.</li>
+<li>Turn-in through the link on Blackboard.</li>
+<li>Use the manipulated diamonds dataset. <a href="https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html">See SAS Data Manipulation lecture.</a></li>
+</ol>
+</div>
+<div id="part-1-test-normality" class="section level3">
+<h3>Part 1: Test Normality</h3>
+<p>Using PROC UNIVARIATE and the HISTOGRAM statement, determine whether the log transformations of price and carat result in relatively more normal data.</p>
+<p>The analysis variables are: price, lprice, carat, lcarat.</p>
+<p>You can execute the analysis for the four variables in one PROC or four separate PROCs, one for each variable.</p>
+<p>The goal is to determine the effectiveness of the log transformation.</p>
+<ol style="list-style-type: decimal">
+<li>Use ODS graphics.</li>
+<li>Use the <code>ods select</code> statement to return only the normality tests (<code>testsfornormality</code>) and the histograms (<code>histogram</code>).</li>
+<li>Use the <code>normaltest</code> option for PROC UNIVARIATE to display the tests for normality.</li>
+<li>Use the <code>normal</code> option for the histogram to plot a normal density curve against the data. Remember this requires a <code>/</code></li>
+<li>Use the <code>noprint</code> option within the <code>normal</code> option in order to supress tests of the data fit against the normal density curve. Remember that sub-options within an option require parentheses.</li>
+</ol>
+<p><a href="http://support.sas.com/documentation/cdl/en/procstat/66703/HTML/default/viewer.htm#procstat_univariate_syntax01.htm">The PROC UNIVARIATE documentation is here.</a></p>
+<p><strong>Screenshot the output.</strong></p>
+<p>Then, based on the output, answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li>Does the normal density plot fit price or lprice or neither more accurately?</li>
+<li>Does the normal density plot fit carat or lcarat or neither more accurately?</li>
+<li>Do the normality tests suggest the data are normal?</li>
+</ol>
+</div>
+<div id="part-2-plot-lprice-vs.lcarat" class="section level3">
+<h3>Part 2: Plot lprice vs. lcarat</h3>
+<ol style="list-style-type: decimal">
+<li>Generate a scatter plot using PROC SGPLOT.</li>
+<li>Plot lprice on the y-axis and lcarat on the x-axis</li>
+<li>specify the transparency option in order to avoid overplotting</li>
+<li>add a title</li>
+</ol>
+<p><strong>Screenshot the output.</strong></p>
+<p>Answer the following question:</p>
+<ol style="list-style-type: decimal">
+<li>In comparison to the plot of price vs. carat in the lecture material, does the log transformation result in a more direct linear relationship between the two variables?</li>
+</ol>
+</div>
+<div id="part-3-manipulate-the-data-again" class="section level3">
+<h3>Part 3: Manipulate the data again</h3>
+<p>Create another temporary dataset that takes the <strong>square root</strong> of price and carat. <code>SQRT()</code> is the SAS function, or you can exponentiate with <code>**(1/2)</code>. Be sure to include the log transformed and untransformed variables in the dataset as well (see Parts 4 and 5).</p>
+</div>
+<div id="part-4-correlation-matrix" class="section level3">
+<h3>Part 4: Correlation Matrix</h3>
+<p>Use PROC CORR to compute Pearson’s <em>r</em> correlation coefficient with all six variables together: price, lprice, carat, lcarat, the square root of price, and the square root of carat. Suppress the simple statistics in the output.</p>
+<p>Using the output, answer the following questions. Remember, we are only interested in how carat size influences the price of the diamond. We are not interested in whether there is a relationship between price and the square root of price. There will be, but it doesn’t have any practical implications.</p>
+<ol style="list-style-type: decimal">
+<li>What is Pearson’s <em>r</em> for each of the following:
+<ul>
+<li>price by carat</li>
+<li>lprice by lcarat</li>
+<li>square root of price by square root of carat</li>
+<li>lprice by the square root of carat</li>
+</ul></li>
+<li>According to (1), which transformation has the strongest linear relationship? The weakest?</li>
+</ol>
+</div>
+<div id="part-5-correlation-matrix-plot" class="section level3">
+<h3>Part 5: Correlation Matrix Plot</h3>
+<p>Use either PROC CORR or PROC SGSCATTER to create a correlation matrix with scatterplots. Include histograms of the data on the diagonal of the matrix. You do not need to “prettify” the output.</p>
+<p><strong>Screenshot the output.</strong></p>
+<p>Answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li>Does the square root transformation of carat appear to be more normally distributed than the log transformation of carat?</li>
+<li>Do the plots of the data support your answer to (2) in Part 4? Why?</li>
+</ol>
+</div>
+<div id="submission" class="section level3">
+<h3>Submission:</h3>
+<p>Your submission should include:</p>
+<ol style="list-style-type: decimal">
+<li>a Word document with the screenshot and answers to the questions above</li>
+<li>your SAS code</li>
+</ol>
+<p>Upload to Blackboard!</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
