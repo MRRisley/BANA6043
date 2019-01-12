@@ -1,6 +1,3 @@
-## Stat Computing
-This is a course taught at the University of Cincinnati.
-
 ## Syllabus
 [Click here for the syllabus.](https://mrrisley.github.io/BANA6043/syllabus/BANA5143&6043_001_Risley.pdf)
 
@@ -17,8 +14,10 @@ This is a course taught at the University of Cincinnati.
     + [SAS Paper on Plotting](https://mrrisley.github.io/BANA6043/resources/SASGraphBasics.pdf)
     + [ODS Graphics Tips](https://mrrisley.github.io/BANA6043/resources/ODSGraphicsTips.pdf)
 2. [Correlation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Corr.html)
+3. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
 
 + [Week 2 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-2.html)
++ [Homework 2](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
 
 ## Course Resources
 **The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).**
