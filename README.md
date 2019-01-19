@@ -1,5 +1,5 @@
 ## Syllabus
-[Click here for the syllabus.](https://mrrisley.github.io/BANA6043/syllabus/BANA5143&6043_001_Risley.pdf)
+[Click here for the syllabus.](https://mrrisley.github.io/BANA6043/syllabus/BANA5143-6043_001-002_Risley.pdf)
 
 ## Week 1: Intro to SAS
 1. [Software for this course](https://mrrisley.github.io/BANA6043/BANA-6043-Software.html)
