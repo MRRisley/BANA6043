@@ -6,6 +6,7 @@
 2. [Intro to SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Intro.html)
     + [Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-1-SAS-Intro.txt)
 3. [Summary Statistics in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Summary-Statistics.html)
+    + [Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-1-SAS-Summary-Stats.txt)
 
 + [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
 + [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
