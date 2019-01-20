@@ -1,0 +1,226 @@
+/*****************************************************************/
+/********* Code to Accompany Week 1: SAS Summary Stats ***********/
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/*********************** 2 PROC FREQ *****************************/
+/*****************************************************************/
+/*
+This part uses car_eval.csv. 
+*/
+
+proc freq data=mrrlib.car_eval;
+run;
+
+/*
+ * This is the default PROC FREQ. It produces frequency tables
+ * for ALL variables in the supplied data set.
+ */
+
+proc freq data=mrrlib.car_eval;
+tables class;
+run;
+
+/*
+ * When used with PROC FREQ, the tables statement requests 
+ * frequency tables only for the variables supplied.
+ * 
+ * With this code, only the frequency table for the variable
+ * 'class' will be supplied. 
+ */
+
+proc freq data=mrrlib.car_eval;
+tables class class*safety;
+run;
+
+/*
+ * The tables statement here requests the frequency table
+ * for 'class', as well as two-way frequency for 'class'
+ * and 'safety'. The two-way frequency provides frequencies
+ * across combinations of two variables.
+ */
+
+
+proc freq data=mrrlib.car_eval;
+tables class*safety /
+    chisq plots(only)=freqplot(twoway=cluster);
+run;
+
+/*
+ * This code calls options for the tables statement.
+ * Options in statements are always supplied after a
+ * forward slash ( / ). Here we provide two options.
+ * 
+ * chisq provides chi-square statistics that determine
+ * whether there is statistical evidence of a relationship.
+ * A p-value of < 0.05 would indicate a statistically
+ * significant relationship.
+ * 
+ * plots(only)=freqplot(twoway=cluster) produces a 
+ * two-way frequency plot * 
+ */
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/*********************** 3 PROC MEANS ****************************/
+/*****************************************************************/
+/*
+This part uses morley.csv. 
+*/
+
+proc means data=mrrlib.morley;
+    var speed;
+run;
+
+/*
+ * This calls the default output from the PROC MEANS
+ * procedure. We use the var statement in order to
+ * request output only for the variable speed.
+ */
+
+proc means data=mrrlib.morley maxdec=1 
+n mean clm alpha=0.05 median mode min max skewness;
+    var speed;
+    by expt;
+run;
+
+/*
+ * This uses many options from the PROC MEANS procedure. 
+ * There are many, many more.
+ * 
+ * n provides the count
+ * mean provides the average
+ * clm alpha = 0.05 provides a 95% confidence interval for the mean
+ * median provides the median, and so on
+ * 
+ * We use the var statement again to only request output 
+ * for the variable speed.
+ * 
+ * The BY statement tells SAS to process the output for speed
+ * for each expt (experiment) grouping.
+ * 
+ * BY statements require the data to be sorted on the BY variable.
+ * Here, the data is already sorted on it. If it wasn't, we'd
+ * see an error.
+ */
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/********************* 4 PROC UNIVARIATE *************************/
+/*****************************************************************/
+/*
+This part uses morley.csv. 
+*/
+
+
+/********************** Default Output ***************************/
+
+proc univariate data=mrrlib.morley; 
+    var speed;
+run;
+
+/*
+ * This calls the default output from the PROC UNIVARIATE
+ * procedure. We use the var statement in order to
+ * request output only for the variable speed.
+ */
+
+
+/********************** Histogram Output **************************/
+
+proc univariate data=mrrlib.morley noprint; 
+    histogram speed / midpoints=uniform; 		/* produces a histogram */
+    class expt;									/* produces output grouping by each expt */			
+    inset mean="Mean Speed" / position=ne;		/* puts a label inside the graph */
+    label expt="Experiment Number";				/* provides a label for the variable expt */
+run;
+
+/*
+ * This calls the PROC UNIVARIATE procuedure with the noprint
+ * option. This suppresses the standard stats output seen above.
+ * 
+ * The histogram statement provides a histogram for the variable
+ * speed. With the class statement, a histogram will be provided
+ * for each expt. The midpoints=uniform option ensures that all
+ * plots have the same number of "bins", which are how the bars
+ * of a histogram are generated. Each bar represents one bin.
+ * 
+ * inset mean="Mean Speed" / position=ne; is a statement to provide
+ * an inset label with the mean of the data referred to as "Mean Speed".
+ * The / position=ne option places it in the top right of the graph.
+ * 
+ * label expt="Experiment Number"; replaces the variable expt with the 
+ * label "Experiment Number" in the output.
+ */
+
+
+/********************** Normality Testing **************************/
+
+ods graphics on;
+ods select Moments TestsForNormality ProbPlot;
+proc univariate data=mrrlib.morley normaltest; 
+   var speed;
+   by expt;
+   probplot speed / normal (mu=est sigma=est)
+                        square;
+   label expt = 'Experiment Number' speed="Speed";
+   inset  mean std / format=6.4;
+run;
+
+/*
+ * The code above has the following features:
+ * (1)  turns on ODS Graphics, which creates high quality graphical output
+ * (2)  uses the ods select statement to only include Moments, TestsForNormality, and ProbPlot from PROC UNIVARIATE in the output
+ * (3)  uses the normaltest option to display tests for normality
+ * (4)  uses the by statement to produce the output for each experiment
+ * (5)  uses the probplot statement to create probability plots, which are similar to Q-Q plots
+ * (6)  the normal option requests a reference line of a normal distribution with a mean and standard deviation
+ * (7)  (mu=est sigma=est) requests the reference line to have the same mean and standard deviation as the sample
+ * (8)  square requests the plot be in the shape of a square
+ * (9)  uses the LABEL statement to create labels
+ * (10) uses the INSET statement to include a legend with mean and standard deviation
+ * (11) the format option specifies max place values of 6 and max decimal places of 4
+ * 
+ * The data are normal when:
+ * (1) skewness = 0 and kurtosis = 3
+ * (2) the goodness-of-fit tests fail to reject the null hypothesis of normality
+ * (3) the points on the probability plot are near-linear and align with the reference line
+ */
+
+
+/********************** Tests of Location **************************/
+
+ods graphics on;
+ods select testsforlocation;
+
+proc univariate data=mrrlib.morley mu0=792.458; 
+    var speed;
+    title "Two-Tailed Test against Mean of 792.5: All Runs";
+run; 
+
+ods graphics on;
+ods select testsforlocation;
+
+proc univariate data=mrrlib.morley location=792.458; /*location is equivalent to mu0*/
+    var speed;
+    class expt;
+    title "Two-Tailed Test against Mean of 792.5: Each Experiment";
+run;
+
+/*
+ * The code:
+ * (1) turns on ODS Graphics, which creates high quality graphical output
+ * (2) uses the ods select statement to only include TestsforLocation
+ * (3) uses the mu0 (location) option for PROC UNIVARIATE
+ * (4) uses the global TITLE statement to label output
+ * (5) stacks two PROC UNIVARIATE in the output
+*/
