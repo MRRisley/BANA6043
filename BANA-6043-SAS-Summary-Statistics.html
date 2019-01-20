@@ -354,7 +354,7 @@ run;</code></pre>
 <p>The code below specifies options for the tables statement. Options of this sort require a forward slash (/). These options return: (1) the Pearson chi-square coefficient and associated p-value as well as (2) a two-way frequency plot.</p>
 <pre class="sas"><code>proc freq data=mrrlib.car_eval;
 tables class*safety /
-    chisq plots(only)=freqplot(twoway=cluster);;
+    chisq plots(only)=freqplot(twoway=cluster);
 run;</code></pre>
 <p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-freq-car-evaluation-ex3.html">OUTPUT</a></p>
 <p>As shown in the output, there is evidence of an association between safety and quality.</p>
@@ -449,7 +449,7 @@ run;</code></pre>
     histogram speed / midpoints=uniform; 
     class expt;
     inset mean=&quot;Mean Speed&quot; / position=ne;
-    label expt=&quot;Experiment Number&quot;
+    label expt=&quot;Experiment Number&quot;;
 run;</code></pre>
 <p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-univariate-ex2.html">OUTPUT</a></p>
 <p>The code above has the following features:</p>
