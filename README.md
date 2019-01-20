@@ -9,6 +9,7 @@
     + [Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-1-SAS-Summary-Stats.txt)
 
 + [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
++ DataCamp Chapter: Importing data from flat files with utils
 + [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
 
 ## Week 2: X-Y Analysis in SAS
