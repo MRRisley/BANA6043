@@ -1,0 +1,82 @@
+/*****************************************************************/
+/********* Code to Accompany Week 1: SAS Intro Lecture ***********/
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/*********************** 2 Libraries *****************************/
+/*****************************************************************/
+
+/**************** Use code to generate a library: ****************/
+
+/* Desktop version: */
+libname mylib 'C:\SAS-Data'; 	
+
+/* SAS OnDemand: */
+libname mrrlib3 '/home/rileymy0/data3';
+
+
+/*            There are also point-and-click methods.            */
+
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/******************** 3.1.2 SAS import ***************************/
+/*****************************************************************/
+
+
+/*        Point-and-click methods are the easiest way!           */
+
+
+/**************** Use code to generate a library: ****************/
+
+FILENAME REFFILE '/home/rileymy0/sasuser.v94/morley.csv';
+
+/* 
+FILENAME statement creates a
+file reference called REFILE. 
+It points to the morley CSV file. 
+*/
+
+PROC IMPORT DATAFILE=REFFILE
+    DBMS=CSV
+    OUT=MRRLIB.MORLEY;
+    GETNAMES=YES;
+RUN;
+
+/* 
+PROC IMPORT is the import procedure. 
+
+It uses the options:
+(a) DATAFILE to point to the REFILE created above.
+(b) DBMS to designate that it is a Comma Separted Values (CSV) file.
+(c) OUT to specify the library and name of output SAS data set.
+
+It also uses the GETNAMES statement to use the first row as
+variable names.
+
+RUN tells it to run the procedure.
+*/  
+  
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/*************** 5 Output or Results Window **********************/
+/*****************************************************************/
+
+PROC PRINT DATA=MRRLIB.MORLEY; RUN;
+
+/* 
+PROC PRINT shows the Morley data in the Output window. 
+
+Be careful because this will print ALL ROWS, which does
+not work well when the data are larger.
+*/  
