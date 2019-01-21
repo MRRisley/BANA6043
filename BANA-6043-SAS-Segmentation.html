@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>BANA6043: Grouping Data in SAS</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">BANA6043: Grouping Data in SAS</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+<h4 class="date"><em>Week 3 Lecture Series</em></h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>Using the diamonds dataset, this applied lecture demonstrates methods to subset–or group–your data. Subsetting data is also be referred to as segmenting or stratifying data. Stratification is a common data analysis technique. It allows you to understand the way relationships among variables may differ <em>within</em> your population.</p>
+<p>The lecture introduces a number of common SAS techniques:</p>
+<ol style="list-style-type: decimal">
+<li>BY-group processing, which allows you to group your data</li>
+<li>PROC SORT, which sorts your data for BY-group processing</li>
+<li>PROC FORMAT, which allows you to control the display of your data in output</li>
+<li>IF/THEN/ELSE logic in a DATA step</li>
+</ol>
+<p>This lecture also introduces other useful techniques, including:</p>
+<ol style="list-style-type: decimal">
+<li>PROC HPBIN in order to segment data (called <strong>binning</strong>)</li>
+<li>more uses of PROC SGPLOT</li>
+<li>PROC SGPANEL in order to produce panel displays of data</li>
+<li>a WHERE statement, which allows you to subset the data</li>
+</ol>
+</div>
+<div id="proc-hpbin" class="section level1">
+<h1><span class="header-section-number">2</span> PROC HPBIN</h1>
+<p>This “High-Performance” (HP) procedure can create categories for continuous data. A binning process allows you to explore relationships within a subset of data. With PROC HPBIN, the SAS user can request more complex methods to segment the data, including weight of evidence (WOE) and information value (IV). These processes use calculations to determine the selection of bins that promote granularity while still containing meaningful information.</p>
+<p><a href="http://support.sas.com/documentation/cdl/en/prochp/67530/HTML/default/viewer.htm#prochp_hpbin_syntax01.htm">PROC HPBIN documentation.</a></p>
+<p>Outside of these more sophisticated methods, PROC HPBIN can also cut data with two relatively common methods: (1) <code>bucket</code> and (2) <code>quantile</code>.</p>
+<div id="binning-with-the-bucket-option" class="section level2">
+<h2><span class="header-section-number">2.1</span> binning with the <code>bucket</code> option</h2>
+<p>This binning method cuts data uniformly. Imagine you have credit scores in the data ranging from 700 to 800. A <code>bucket</code> binning procedure with 2 bins would cut the data along the midpoint: (a) credit scores 700 to 750 and (b) credit scores 750 to 800. A bucket method with 4 bins would cut the data from 700-725, 725-750, 750-775, and 775-800.</p>
+<p>In essence, the <code>bucket</code> method computes equal intervals for a variable’s range.</p>
+<pre class="sas"><code>proc hpbin data=mrrlib.diamonds numbin=10 bucket;
+     input carat price;
+run;</code></pre>
+<ol style="list-style-type: decimal">
+<li><code>numbin</code> option specifies the number of bins for the procedure</li>
+<li><code>input carat price;</code> tells SAS to perform the operation for variables carat and price</li>
+</ol>
+<center>
+<div class="figure">
+<img src="images/HPBIN-1.JPG" />
+
+</div>
+</center>
+</div>
+<div id="binning-with-the-quantile-option" class="section level2">
+<h2><span class="header-section-number">2.2</span> binning with the <code>quantile</code> option</h2>
+<p>A more sophisticated method, called <code>quantile</code>, will find breakpoints that each contain a certain percentage of data. For example, the <code>quantile</code> method with 2 bins would cut the data along the median such that 50% of the data are contained in the first bin and 50% in the second. This method approximates the quantiles, so each bin does not contain the same exact amount of observations, but it is close.</p>
+<pre class="sas"><code>proc hpbin data=mrrlib.diamonds output=out numbin=5 quantile;
+     input carat price;
+     id carat price;
+run;</code></pre>
+<center>
+<div class="figure">
+<img src="images/HPBIN-2.JPG" />
+
+</div>
+</center>
+<ol style="list-style-type: decimal">
+<li><code>output=out</code> creates a temporary dataset called out</li>
+<li><code>id carat price;</code> tells SAS to also include the variables carat and price in addition to the bin information</li>
+</ol>
+<p>The code below shows the first 20 observations of the dataset out.</p>
+<pre class="sas"><code>proc print data=out(obs=20); run;</code></pre>
+<center>
+<div class="figure">
+<img src="images/HPBIN-3.JPG" />
+
+</div>
+</center>
+</div>
+</div>
+<div id="boxplots-with-sgplot" class="section level1">
+<h1><span class="header-section-number">3</span> Boxplots with SGPLOT</h1>
+<p>You can create boxplots in SAS with PROC SGPLOT that are horizontal or vertical. Horizontal boxplots use the <code>HBOX</code> statement and vertical use the <code>VBOX</code> statement. <a href="http://support.sas.com/documentation/cdl/en/grstatproc/62603/HTML/default/viewer.htm#vbox-stmt.htm">The VBOX statement SAS documentation.</a></p>
+<p>Boxplots are a great way to visualize data because they include a great deal of information, including: 1. mean 2. median 3. 25th and 75th percentiles 4. minimum and maximum 5. outliers</p>
+<p><a href="http://support.sas.com/documentation/cdl/en/grstatproc/62603/HTML/default/viewer.htm#vbox-stmt.htm">Parts of a boxplot explained.</a></p>
+<p>The code below creates 5 box plots of price for each carat bin created above.</p>
+<pre class="sas"><code>ods graphics on;
+proc sgplot data=out;
+    vbox price / group=BIN_carat;
+run;
+ods graphics off;</code></pre>
+<center>
+<div class="figure">
+<img src="images/VBOX-1.JPG" />
+
+</div>
+</center>
+<div id="with-proc-sort" class="section level2">
+<h2><span class="header-section-number">3.1</span> with PROC SORT</h2>
+<p>Unfortunately, the graph doesn’t order the bins by default. We can accomplish this through a PROC SORT.</p>
+<pre class="sas"><code>proc sort data=out;
+    by BIN_carat;
+run;
+
+ods graphics on;
+proc sgplot data=out;
+    vbox price / group=BIN_carat;
+run;
+ods graphics off;</code></pre>
+<center>
+<div class="figure">
+<img src="images/VBOX-2.JPG" />
+
+</div>
+</center>
+</div>
+<div id="with-proc-format" class="section level2">
+<h2><span class="header-section-number">3.2</span> with PROC FORMAT</h2>
+<p>Finally, we can add labels to the bin number to provide more information. A PROC FORMAT is a very logical way to accomplish this in SAS.</p>
+<p>PROC FORMAT is a procedure that creates a format for the output display of one or more variables. <a href="http://support.sas.com/documentation/cdl/en/proc/65145/HTML/default/viewer.htm#p06ciqes4eaqo6n0zyqtz9p21nfb.htm">Here is the SAS documentation.</a></p>
+<pre class="sas"><code>proc format;
+    value carat_format   1=&#39;&lt; 0.355&#39;
+                         2=&#39;&lt; 0.535&#39;
+                         3=&#39;&lt; 0.905&#39;
+                         4=&#39;&lt; 1.135&#39;
+                         5=&#39;&gt;= 1.135&#39;;
+run;</code></pre>
+<p>PROC FORMAT uses the value statement. It then takes a variable name for a format. At this point, it is not applied to an actual variable in a dataset. It is just a sequence of logic for formatting.</p>
+<p>In this example: 1. We create a <strong>numeric</strong> format called <code>carat_format</code>. If it were a character format, we’d place a dollar sign ( $ ) in front of the variable name. 2. The logic for the format follows the format name. When the value is one, it will display as ‘&lt; 0.355’, when it is 2, it will display as ‘&lt; 0.535’, etc.</p>
+<p>We then call this created format through a FORMAT statement in the PROC SGPLOT:</p>
+<pre class="sas"><code>ods graphics on;
+proc sgplot data=out;
+    vbox price / group=BIN_carat;
+    format BIN_carat carat_format.;
+run;
+ods graphics off;</code></pre>
+<p>In the format statement, we tell SAS to format the variable <code>BIN_carat</code> with the format <code>carat_format.</code> <strong>Note that formats use a period to designate them as formats.</strong></p>
+<center>
+<div class="figure">
+<img src="images/VBOX-3.JPG" />
+
+</div>
+</center>
+</div>
+</div>
+<div id="histograms-with-sgplot-and-sgpanel" class="section level1">
+<h1><span class="header-section-number">4</span> Histograms with SGPLOT and SGPANEL</h1>
+<p>First, let’s just produce a single histogram with the bins we created.</p>
+<pre class="sas"><code>ods graphics on;
+proc sgplot data=out;
+    histogram price / group=BIN_carat;
+    format BIN_carat carat_format.;
+run;
+ods graphics off;</code></pre>
+<p>Everything about this code is equivalent to the last code chunk, except that we replace a VBOX statement with a HISTOGRAM statement.</p>
+<center>
+<div class="figure">
+<img src="images/HIST-1.JPG" />
+
+</div>
+</center>
+<div id="sgpanel" class="section level2">
+<h2><span class="header-section-number">4.1</span> SGPANEL</h2>
+<p>PROC SGPANEL is very similar to PROC SGPLOT except that it optimizes the display of graphs you intend to show together in a panel.</p>
+<pre class="sas"><code>ods graphics on;
+proc sgpanel data=out;
+    panelby BIN_carat;
+    histogram price;
+    format BIN_carat BIN_carat.;
+run;
+ods graphics off;</code></pre>
+<p>Here we use the <code>panelby</code> statement to create panels for each carat bin.</p>
+<center>
+<div class="figure">
+<img src="images/PANEL-1.JPG" />
+
+</div>
+</center>
+</div>
+<div id="sgpanel-with-where" class="section level2">
+<h2><span class="header-section-number">4.2</span> SGPANEL with WHERE</h2>
+<p>We can use a WHERE statement to use only a subset of the data. The WHERE statement is available in most procedures.</p>
+<p>As shown in the panel above, it is difficult to understand the distribution for the first bin of data (i.e., the smallest carat diamonds). Therefore, the code below uses the WHERE statement to exclude the first bin.</p>
+<pre class="sas"><code>ods graphics on;
+proc sgpanel data=out;
+    panelby BIN_carat / onepanel;
+    histogram price;
+    where BIN_carat in (2 3 4 5);
+    format BIN_carat BIN_carat.;
+run;
+ods graphics off;</code></pre>
+<p>Here we use the where statement to only include the carat bins 2, 3, 4, 5.</p>
+<p>This where statement will produce the same result:</p>
+<pre class="sas"><code>where BIN_carat ^= 1;</code></pre>
+<p><code>^=</code> means “not equal to”. You can also use <code>ne</code>, short for “not equal”.</p>
+<center>
+<div class="figure">
+<img src="images/PANEL-2.JPG" />
+
+</div>
+</center>
+</div>
+</div>
+<div id="creating-subsetted-data" class="section level1">
+<h1><span class="header-section-number">5</span> Creating subsetted data</h1>
+<p>If we were to focus our analysis on a data subset, it is far more efficient to conduct the analysis on a modified dataset rather than to constantly invoke the where statement.</p>
+<p>Imagine we want to do a focused analysis on diamonds with a BIN_carat of 3. First, we’ll use PROC HPBIN to output a dataset with most of the original variables from the diamonds dataset.</p>
+<pre class="sas"><code>proc hpbin data=mrrlib.diamonds output=out
+     numbin=5 quantile;
+     input carat price;
+     id carat price clarity color cut depth table;
+run;</code></pre>
+<p>The binning results are shown below:</p>
+<center>
+<div class="figure">
+<img src="images/HPBIN-4.JPG" />
+
+</div>
+</center>
+<div id="subsetting-with-ifthen" class="section level2">
+<h2><span class="header-section-number">5.1</span> Subsetting with IF/THEN</h2>
+<p>IF/THEN logic is common to programming. SAS data steps support it, as shown in the IF/THEN statement below. We use the out dataset from the prior PROC HPBIN.</p>
+<pre class="sas"><code>data temp_if;
+    set out;
+    if bin_carat ne 3 then delete;
+run;
+
+proc print data=temp_if(firstobs=20 obs=30); run;</code></pre>
+<p>The code explained:</p>
+<ol style="list-style-type: decimal">
+<li>We create a temporary dataset, <code>temp_if</code>.</li>
+<li>We start with <code>out</code> as the dataset using the <code>set</code> statement.</li>
+<li>If the variable bin-carat does not equal 3, then we delete the observation.</li>
+<li>With PROC PRINT, we use the options <code>firstobs=20 obs=30</code> to print observations 20 through 30. Note that <code>obs</code> &gt;= <code>firstobs</code>.</li>
+</ol>
+<center>
+<div class="figure">
+<img src="images/IF-THEN-1.JPG" />
+
+</div>
+</center>
+</div>
+<div id="subsetting-with-where" class="section level2">
+<h2><span class="header-section-number">5.2</span> Subsetting with WHERE</h2>
+<p>Using a WHERE statement to subset data is relatively <strong>more efficient</strong> than using an IF/THEN statement. The logic is applied before the dataset enters memory, whereas with IF/THEN, the dataset is first created and then the logic is applied.</p>
+<pre class="sas"><code>data temp_where;
+    set out;
+    where bin_carat = 3;
+run;
+
+proc means data=temp_if N; run;
+proc means data=temp_where N; run;</code></pre>
+<p>The two PROC MEANS demonstrate that both methods of dataset creation produce the same number of observations.</p>
+<center>
+<div class="figure">
+<img src="images/WHERE-1.JPG" />
+
+</div>
+<div class="figure">
+<img src="images/WHERE-2.JPG" />
+
+</div>
+</center>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

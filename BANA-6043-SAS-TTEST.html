@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>BANA6043: <i>t</i>-tests in SAS</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">BANA6043: <em>t</em>-tests in SAS</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+<h4 class="date"><em>Week 3 Lecture Series</em></h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>Using the morley dataset, this lecture demonstrates how to conduct hypothesis testing in SAS through PROC TTEST.</p>
+<p>As a refresher, the morley dataset contains measures of the speed of light from 5 experiments, each with 20 runs:</p>
+<pre class="sas"><code>proc print data=mrrlib.morley(obs=25 drop=VAR1); run;</code></pre>
+<p>Here we specify the <code>drop</code> option to exclude the variable <code>VAR1</code>, which is an unnamed column with row numbers output by R. This option is always available for the data option.</p>
+<center>
+<div class="figure">
+<img src="images/TTEST-1.JPG" />
+
+</div>
+</center>
+</div>
+<div id="hypothesis-testing" class="section level1">
+<h1><span class="header-section-number">2</span> Hypothesis Testing</h1>
+<p>Hypothesis testing is a widely used statistical method in order to <strong>infer</strong> information about the larger population that represents your data sample.</p>
+<p>Inferences are drawn from the properties of the sample, including sample mean and the number of observations. Then hypothesis testing uses those properties to assess whether they support certain conclusions about the population.</p>
+<div id="conceptual-example" class="section level2">
+<h2><span class="header-section-number">2.1</span> Conceptual Example</h2>
+<p>Imagine you read on the internet that the average height of a male in the United States in 2016 was 7 feet (2.1 meters). Even though people tell you if it’s on the internet, it’s true, you have your reservations.</p>
+<p>Therefore, you obtain a random sample of 100 US males and record their height. You notice that the average height among them is 5 feet and 7 inches (1.7 meters). Hypothesis testing cantell you whether that quoted figure on the internet is possible given what you’ve just seen.</p>
+<div id="the-null-and-alternative" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> The Null and Alternative</h3>
+<p>Using statistics, you can test the hypothesis that the average US male is 7 feet tall. <em>Your</em> hypothesis is that 7 feet is wrong.</p>
+<p>We have two hypotheses, then: (1) The average US male is 7 feet tall, and (2) the average US male is <strong>not</strong> 7 feet tall. Hypothesis testing involves the formulation of two hypotheses: the null hypothesis and the alternative hypothesis.</p>
+<p>The null hypothesis is designated as H<sub>0</sub> and is your <em>default</em> position. Therefore, the null hypothesis for this experiment is:</p>
+<blockquote>
+<p><strong>H<sub>0</sub>:</strong> the average US male height = 7 feet</p>
+</blockquote>
+<p>In statistics, you would see:</p>
+<blockquote>
+<p><strong>H<sub>0</sub>:</strong> μ<sub>height</sub> = 7 feet</p>
+</blockquote>
+<p>where μ is your population mean for height.</p>
+<p>The alternative hypothesis is designated as H<sub>1</sub> and is your <em>contrary</em> position. Therefore, the alternative hypothesis for this experiment is:</p>
+<blockquote>
+<p><strong>H<sub>1</sub>:</strong> the average US male height = 7 feet</p>
+</blockquote>
+<p>Or, in statistical notation:</p>
+<blockquote>
+<p><strong>H<sub>1</sub>:</strong> μ<sub>height</sub> &lt;&gt; 7 feet</p>
+</blockquote>
+</div>
+<div id="one-sided-vs.two-sided-tests" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> One-Sided vs. Two-Sided tests</h3>
+<p>In the example above, we simply believed that the mean of 7 feet was not true. This is a <strong>two-tailed</strong> or <strong>two-sided</strong> hypothesis test. We are testing whether the true population mean <em>is different from</em> 7. This means that it can be greater than 7 (the upper tail) or less than 7 (the lower tail).</p>
+<p>A two-tailed hypothesis will always have an alternative hypothesis of “does not equal”:</p>
+<blockquote>
+<p>Two-tailed:</p>
+<p><strong>H<sub>1</sub>:</strong> μ<sub>height</sub> &lt;&gt; x</p>
+</blockquote>
+<p>A <strong>one-tailed or one-sided</strong> test uses an alternative hypothesis of “less than” or “greater than”.</p>
+<p>Usually the parameters of your experiment determine whether a one-tailed is more appropriate than a two-tailed.</p>
+<p>For example, you could be testing a <em>minimum threshold</em> for concentration levels of a polutant in a water sample. You want to test whether the 20 samples of water you collected suggest that the true population mean is greater than this threshold. This is a one-sided (upper) hypothesis test.</p>
+<p>Using the example above, we think there is enough empirical evidence in our daily lives to believe the internet figure of 7 feet is <em>overstated</em>. Therefore, we can test the one-sided (lower) hypothesis test that the average US male height is less than 7 feet:</p>
+<blockquote>
+<p><strong>H<sub>1</sub>:</strong> μ<sub>height</sub> &lt; 7 feet</p>
+</blockquote>
+<p>Therefore, the general form of a one-tailed hypothesis test is:</p>
+<blockquote>
+<p>One-tailed (Upper):</p>
+<p><strong>H<sub>1</sub>:</strong> μ<sub>height</sub> &gt; x</p>
+</blockquote>
+<blockquote>
+<p>One-tailed (Lower):</p>
+<p><strong>H<sub>1</sub>:</strong> μ<sub>height</sub> &lt; x</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="proc-ttest" class="section level1">
+<h1><span class="header-section-number">3</span> PROC TTEST</h1>
+<p>The most common method to hypothesis test a sample mean is the <em>t</em>-test. The examples above are all examples of when a <em>t</em>-test would be appropriate. SAS’s PROC TTEST allows us to implement this statistical procedure.</p>
+<p><a href="https://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#ttest_toc.htm">PROC TTEST documentation.</a></p>
+</div>
+<div id="hypothesis-for-morley-data" class="section level1">
+<h1><span class="header-section-number">4</span> Hypothesis for Morley data</h1>
+<p>We’ll use the morley dataset in order to expand on the hypothesis testing we showed during Week 1.</p>
+<p>In the Morley data set, the experiment records the speed of light in km/sec with 299,000 km/sec subtracted from the result.</p>
+<p>The speed of light in a vaccuum, c, is 299,792.458 kilometeres/second. Do the results from the morley data set confirm this?</p>
+<p>To answer the question, the null hypothesis is:</p>
+<blockquote>
+<p><strong>H<sub>0</sub>:</strong> μ<sub>speed</sub> = 299,792.458 km/s</p>
+</blockquote>
+<p>We’ll test against the alternative:</p>
+<blockquote>
+<p><strong>H<sub>0</sub>:</strong> μ<sub>speed</sub> &lt;&gt; 299,792.458 km/s</p>
+</blockquote>
+<div id="manipulate-the-data" class="section level2">
+<h2><span class="header-section-number">4.1</span> Manipulate the data</h2>
+<p>First, we’ll create a temporary dataset, <code>temp</code>, which adds 299,000 to the variable <code>speed</code>.</p>
+<p>While this is not necessary for the <em>t</em>-test, we can interpret the output in km/s.</p>
+<pre class="sas"><code>data temp;
+    set mrrlib.morley(drop = var1);
+    speed = 299000 + speed;
+run;
+
+proc print data=temp(obs=5); run;</code></pre>
+<p>Here we do the following:</p>
+<ol style="list-style-type: decimal">
+<li>drop <code>var1</code></li>
+<li>create a new value for speed by adding 299,000 to the original value</li>
+<li>print the first 5 observations</li>
+</ol>
+<center>
+<div class="figure">
+<img src="images/TTEST-2.JPG" />
+
+</div>
+</center>
+</div>
+<div id="two-sided-t-test" class="section level2">
+<h2><span class="header-section-number">4.2</span> two-sided <em>t</em>-test</h2>
+<p>By default, SAS uses a two-sided <em>t</em>-test.</p>
+<pre class="sas"><code>proc ttest data=temp h0=299792.458 plots=none;
+    var speed;
+run;</code></pre>
+<p>The code tells SAS to test the mean of the variable <code>speed</code> against the null hypothesis of 299,792 km/s. The code also suppresses the default plots.</p>
+<center>
+<div class="figure">
+<img src="images/TTEST-3.JPG" />
+
+</div>
+</center>
+<p>The results show that the mean of <code>speed</code> is 299,852 km/s across 100 observations.</p>
+<p>The output also displays confidence limits for the mean and standard deviation. Note that the null hypothesis value of 299,792 does not fall in this confidence interval.</p>
+<p>Finally, we see the results of the <em>t</em>-test. Because the <em>p</em>-value shown under the column Pr &gt; |t| is less than 0.05, we reject the null hypothesis in favor of the alternative. Therefore, the morley data do not provide sufficient evidence that the speed of light is equal to 299,792 km/s.</p>
+</div>
+<div id="t-test-with-plots" class="section level2">
+<h2><span class="header-section-number">4.3</span> <em>t</em>-test with plots</h2>
+<p>Let’s check out what SAS has for plots with PROC TTEST.</p>
+<div id="default-plots" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> default plots</h3>
+<p>Here we explicity specify a <em>p</em>-value threshold of 0.05 for confidence limits (the default). Note that this is for the confidence limits only. If we wanted to use a <em>p</em>-value threshold for the <em>t</em>-test, we simply determine whether the <em>p</em>-value shown is greater or less than the threshold.</p>
+<pre class="sas"><code>ods graphics on;
+proc ttest data=temp h0=792.458 alpha=0.05;
+    var speed;
+run;
+ods graphics off;</code></pre>
+<p>The first graph is a histogram of the data with an overlaid normal and kernel density curve. The normal density curve shows what shape the data would have under the assumption of normality. The kernel density curve shows what the data actually look like.</p>
+<p>The histogram is followed by a boxplot of the data together with a shaded area (green) of mean’s confidence limits.</p>
+<p>Finally, a Q-Q (quantile-quantile) plot is shown.</p>
+<center>
+<div class="figure">
+<img src="images/TTEST-4.JPG" />
+
+</div>
+</center>
+<p>Why does SAS provide these graphs?</p>
+<blockquote>
+<p><strong>Because the accuracy of a <em>t</em>-test assumes the data are normally distributed!!!</strong></p>
+</blockquote>
+</div>
+<div id="plot-requests" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> plot requests</h3>
+<p>Assuming the data are normally distributed, which they appear to be, we can request plots that specifically relate to the hypothesis test.</p>
+<pre class="sas"><code>ods graphics on;
+proc ttest data=temp h0=792.458 plots(showh0 only)=(boxplot interval) alpha=0.1;
+    var speed;
+run;
+ods graphics off;</code></pre>
+<p><code>plots(showh0 only)</code> requests that the null hypothesis be displayed on the plots and that only the graphs that follow the equal sign be included in the output. Here <code>=(boxplot interval)</code> requests a boxplot and interval plot.</p>
+<p>In the plots, we can clearly see that the null value of 299,792 falls well below the confidence limit of the mean of the morley data.</p>
+<center>
+<div class="figure">
+<img src="images/TTEST-5.JPG" />
+
+</div>
+</center>
+</div>
+</div>
+</div>
+<div id="multiple-t-tests-with-by" class="section level1">
+<h1><span class="header-section-number">5</span> Multiple <em>t</em>-tests with <code>by</code></h1>
+<p>We can produce <em>t</em>-tests along segments of data with a BY statement.</p>
+<div id="sorting-the-data" class="section level2">
+<h2><span class="header-section-number">5.1</span> Sorting the data</h2>
+<p>The use of the BY statement requires the data be sorted. PROC SORT is the method to sort the data. In the code below, we sort the data by <code>expt</code> and then print an abbreviated version of PROC CONTENTS, which shows that the data are sorted by <code>expt</code>.</p>
+<pre class="sas"><code>proc sort data=temp;
+    by expt;
+run;
+
+proc contents data=temp short; run;</code></pre>
+<center>
+<div class="figure">
+<img src="images/TTEST-6.JPG" />
+
+</div>
+</center>
+</div>
+<div id="using-the-by-statement" class="section level2">
+<h2><span class="header-section-number">5.2</span> Using the <code>by</code> statement</h2>
+<p>In the code below, we request <em>t</em>-tests against the null for every experiment in the data set:</p>
+<pre class="sas"><code>proc ttest data=temp h0=792.458 plots=none;
+    var speed;
+    by expt;
+    label expt = &#39;Experiment Number&#39;;
+run;</code></pre>
+<p><a href="https://mrrisley.github.io/BANA6043/SAS-Output/proc-ttest-ex7.html">OUTPUT</a></p>
+<p>We can see from the output that Experiment 4 fails to reject the null hypothesis with a <em>p</em>-value of 0.0504 under a strict interpretation. From a practical standpoint, however, there is a good deal of evidence that the alternative hypothesis should be accepted.</p>
+</div>
+</div>
+<div id="testing-two-population-means-with-class" class="section level1">
+<h1><span class="header-section-number">6</span> Testing two population means with <code>class</code></h1>
+<p>We can also use hypothesis tests to determine whether two populations have significantly different means.</p>
+<p><em>t</em>-tests can <strong>only</strong> test two populations. For this exercise, we’ll test the mean of experiment 1 against the other experiments as well as experiment 1 against experiment 2.</p>
+<p>This sort of testing could include the following examples:</p>
+<ol style="list-style-type: decimal">
+<li>do males and females have the same average compensation within the financial industry?</li>
+<li>is there a difference between the experiment and control group?</li>
+<li>does a Toyota car have significantly better gas mileage than a Ford car?</li>
+</ol>
+<div id="testing-experiment-1-vs.experiments-2-5" class="section level2">
+<h2><span class="header-section-number">6.1</span> Testing experiment 1 vs. experiments 2-5</h2>
+<div id="manipulate-the-data-1" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Manipulate the data</h3>
+<p>The <code>class</code> statement is required to test the means of two samples. The variable supplied in the class statement must have only two levels, or values. Therefore, supplying <code>expt</code> as the variable will result in an error:</p>
+<pre><code> 1          OPTIONS NONOTES NOSTIMER NOSOURCE NOSYNTAXCHECK;
+ 70         
+ 71         proc ttest data=temp plots=none;
+ 72         var speed;
+ 73         class expt;
+ 74         run;
+ 
+ ERROR: The CLASS variable has more than two levels.</code></pre>
+<p>Therefore, we must manipulate the data.</p>
+<pre class="sas"><code>data temp;
+    set temp;
+    if expt = 1 then expt1 = 1; else expt1 = 0;
+run;
+
+proc print data=temp(firstobs=15 obs=25); run;</code></pre>
+<p>Here we add another variable to the <code>temp</code> dataset using IF/THEN/ELSE.</p>
+<p>The variable <code>expt1</code> is 1 when it is experiment 1 and 0 otherwise.</p>
+<center>
+<div class="figure">
+<img src="images/TTEST-8.JPG" />
+
+</div>
+</center>
+</div>
+<div id="format-the-data" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Format the data</h3>
+<p>We want the output to have intuitive labels, so we use a PROC FORMAT to generate a format for the variable <code>expt1</code>.</p>
+<pre class="sas"><code>proc format;
+    value expt_lab 1 = &#39;Expt 1&#39;
+                   0 = &#39;Expt 2-5&#39;;
+run;</code></pre>
+</div>
+<div id="the-t-test" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> the <em>t</em>-test</h3>
+<p>The code below tests the null hypothesis that the mean of experiment 1 is the same as the mean of experiments 2-5:</p>
+<blockquote>
+<p><strong>H<sub>0</sub>:</strong> μ<sub>1</sub> = μ<sub>2-5</sub></p>
+</blockquote>
+<p>The alternative is that they differ:</p>
+<blockquote>
+<p><strong>H<sub>1</sub>:</strong> μ<sub>1</sub> &lt;&gt; μ<sub>2-5</sub></p>
+</blockquote>
+<p><strong>Note that we remove the </strong> <code>h0</code> <strong>option from the proc.</strong></p>
+<pre class="sas"><code>ods graphics on;
+proc ttest data=temp plots(showh0 only)=(histogram boxplot) alpha=0.05;
+    var speed;
+    class expt1;
+    format expt1 expt_lab.;
+    label expt1=&#39;Experiment #&#39;;
+run;
+ods graphics off;</code></pre>
+<center>
+<div class="figure">
+<img src="images/TTEST-9a.JPG" />
+
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="images/TTEST-9b.JPG" />
+
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="images/TTEST-9c.JPG" />
+
+</div>
+</center>
+<p>Two <em>t</em>-tests are output by default:</p>
+<ol style="list-style-type: decimal">
+<li>A <strong>pooled <em>t</em>-test</strong> assumes equal variance between the two populations.</li>
+<li>The <strong>Satterthwaite <em>t</em>-test</strong> assumes unequal variance.</li>
+</ol>
+<p>The <strong>Folded F test</strong> tests the null hypothesis of equal variances.</p>
+<p>Based on these results, both <em>t</em>-tests suggest that the means are different. In addition, the Folded <em>F</em>-test suggests the data do not have equal variances, in which case the <strong>Satterhwaite <em>t</em>-test</strong> is the more appropriate test.</p>
+</div>
+</div>
+<div id="testing-expt-2-vs.expt-3" class="section level2">
+<h2><span class="header-section-number">6.2</span> Testing expt 2 vs. expt 3</h2>
+<p>The SAS program below tests the null hypothesis that the average speed of light from experiment 2 is the same as that from experiment 3.</p>
+<pre class="sas"><code>data temp;
+    set temp;
+    if expt = 2 then expt2 = 1; else expt2 = 0;
+    where expt in (2 3);
+run;
+
+proc print data=temp; run;
+
+proc format;
+    value expt_lab 1 = &#39;Expt 2&#39;
+                   0 = &#39;Expt 3&#39;;
+run;
+
+ods graphics on;
+proc ttest data=temp plots(showh0 only)=(histogram boxplot) alpha=0.05;
+    var speed;
+    class expt2;
+    format expt2 expt_lab.;
+    label expt2=&#39;Experiment #&#39;;
+run;
+ods graphics off;</code></pre>
+<center>
+<div class="figure">
+<img src="images/TTEST-10aa.JPG" />
+
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="images/TTEST-10a.JPG" />
+
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="images/TTEST-10b.JPG" />
+
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="images/TTEST-10c.JPG" />
+
+</div>
+</center>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
