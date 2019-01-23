@@ -240,16 +240,15 @@ $(document).ready(function () {
 </div>
 <div id="part-3-manipulate-the-data-again" class="section level3">
 <h3>Part 3: Manipulate the data again</h3>
-<p>Create another temporary dataset that takes the <strong>square root</strong> of price and carat. <code>SQRT()</code> is the SAS function, or you can exponentiate with <code>**(1/2)</code>. Be sure to include the log transformed and untransformed variables in the dataset as well (see Parts 4 and 5).</p>
+<p>Create another temporary dataset that takes the <strong>square root</strong> of carat and price. <code>SQRT()</code> is the SAS function, or you can exponentiate with <code>**(1/2)</code>. Be sure to include the log transformed in the dataset as well (see Parts 4 and 5).</p>
 </div>
 <div id="part-4-correlation-matrix" class="section level3">
 <h3>Part 4: Correlation Matrix</h3>
-<p>Use PROC CORR to compute Pearson’s <em>r</em> correlation coefficient with all six variables together: price, lprice, carat, lcarat, the square root of price, and the square root of carat. Suppress the simple statistics in the output.</p>
-<p>Using the output, answer the following questions. Remember, we are only interested in how carat size influences the price of the diamond. We are not interested in whether there is a relationship between price and the square root of price. There will be, but it doesn’t have any practical implications.</p>
+<p>Use PROC CORR to compute Pearson’s <em>r</em> correlation coefficient with four variables: lprice, lcarat, the square root of price, and the square root of carat. Suppress the simple statistics in the output.</p>
+<p>Using the output, answer the following questions. Remember, we are only interested in how carat size influences the price of the diamond. This means we are not interested in whether there is a relationship between price and the square root of price, for example. There will be, but it doesn’t have any practical implications.</p>
 <ol style="list-style-type: decimal">
 <li>What is Pearson’s <em>r</em> for each of the following:
 <ul>
-<li>price by carat</li>
 <li>lprice by lcarat</li>
 <li>square root of price by square root of carat</li>
 <li>lprice by the square root of carat</li>
@@ -259,7 +258,7 @@ $(document).ready(function () {
 </div>
 <div id="part-5-correlation-matrix-plot" class="section level3">
 <h3>Part 5: Correlation Matrix Plot</h3>
-<p>Use either PROC CORR or PROC SGSCATTER to create a correlation matrix with scatterplots. Include histograms of the data on the diagonal of the matrix. You do not need to “prettify” the output.</p>
+<p>Use either PROC CORR or PROC SGSCATTER to create a correlation matrix with scatterplots for the same four variables. Include histograms of the data on the diagonal of the matrix. You do not need to “prettify” the output.</p>
 <p><strong>Screenshot the output.</strong></p>
 <p>Answer the following questions:</p>
 <ol style="list-style-type: decimal">
