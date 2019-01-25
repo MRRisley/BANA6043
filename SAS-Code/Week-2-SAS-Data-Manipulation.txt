@@ -1,0 +1,118 @@
+/*****************************************************************/
+/******** Code to Accompany Week 2: SAS Data Manipulation ********/
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/****************** 2 DATA statement basics **********************/
+/*****************************************************************/
+
+/*                       Create data                             */
+
+data temp;
+    input first_name $1-8 last_name $9-19 worth;
+    datalines;
+Michael Jordan     1.7
+Jeff    Bezos      136.9
+Elon    Musk       22.4
+Bill    Gates      94.7
+Mark    Zuckerberg 53.6
+Kylie   Jenner     0.9
+;
+run;
+
+proc print data=work.temp; run;
+
+proc contents data=work.temp; run;
+
+/*
+ * data temp; creates a dataset named temp in the WORK library
+ * 
+ * input first_name $1-8 last_name $9-19 worth 4.1; specifies three 
+ * varibles will be put into the dataset: first_name, last_name, and worth. 
+ * It also specifies the data types through informats.
+ * 
+ * first_name $1-8 specifies that the varible first_name is of type 
+ * character ($) and spans columns 1-8. This means it will treat the first 8 
+ * characters as the variable first_name. $1-8 is the informat.
+ * 
+ * last_name $9-19 specifies that the character variable last_name occupies 
+ * columns 9-19. worth does not have an informat afterward. Without $, the 
+ * data is read as a numeric type with a default length of 8.
+ * 
+ * datalines; specifies that what follows it is to be treated as raw data. 
+ * You can also use cards or lines.
+ * 
+ * proc print data=work.temp; run; prints the data
+ * 
+ * proc contents shows the details of the dataset
+ */
+
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/****************** 3 Data Manipulation **************************/
+/*****************************************************************/
+
+/* explore diamonds */
+proc contents data=mrrlib.diamonds; run;
+
+
+/*
+ * Through a DATA step, we’ll make the following changes:
+		 * drop the variable VAR1, which was just the observation number from the R export
+		 * transform variables carat and price using the natural logarithm
+		 * drop variables x, y, and z and replace them with the names length, width and depth
+		 * drop variables depth, which is the total depth percentage, as well as the variable table
+ */
+
+data temp;
+    set mrrlib.diamonds(drop=depth);
+    
+    length=x;
+    width=y;
+    depth=z;
+    lcarat=log(carat);
+    lprice=log(price);
+    
+	drop var1 x y z table;
+run;
+
+proc contents data=temp; run;
+
+proc print data=temp(obs=10); run;
+
+
+
+/*
+ * data temp; creates a temporary dataset named temp in the WORK library. 
+ * Remember that the WORK library is the default.
+ * 
+ * set mrrlib.diamonds(drop=depth); uses the diamonds dataset as the starting data for temp
+ * and drops the original variable depth 
+ * 
+ * drop var1 x y z table; drops the listed variables from the final data set
+ * 
+ * the next lines contain logic for variables that were not a part of the original dataset. 
+		 * 	You can re-name a variable by assigning the original variable a new name and then 
+		 * 	dropping the original variable 
+		 * 
+		 * 	notice that I drop depth in the set statement. If we drop in the drop statement, 
+		 *  it will remove the variable we create, depth = z. depth represented a different variable in the 
+		 * 	original dataset.
+ * 
+ * log() is the natural log in SAS
+ * 
+ * proc contents data=temp; run; displays the new dataset
+ * 
+ * proc print data=temp(obs=10); run; prints 10 observations starting at observation 1 (the default)
+ */
+
+/*****************************************************************/
+
+

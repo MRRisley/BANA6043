@@ -1,0 +1,111 @@
+/*****************************************************************/
+/**** Code to Accompany Week 2: SAS X-Y Analysis: Correlation ****/
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/*********************** 2 PROC CORR *****************************/
+/*****************************************************************/
+
+/*                      Default Output                           */
+
+proc corr data=mrrlib.diamonds;
+    var price carat x y z;
+    label x="length" y="width" z="depth";
+run;
+
+/*
+ * Let’s evaluate the default output. We’ll also include the variables 
+ * x, y, and z in our evaluation. These correspond to the length, width, 
+ * and depth of the diamond, respectively. I add labels to these 
+ * variables with a LABEL statement to improve readability of the 
+ * output.
+ */
+
+
+
+/*                        w/Spearman                             */
+
+proc corr data=mrrlib.diamonds pearson spearman nosimple;
+    var price carat x y z;
+    label x="length" y="width" z="depth";
+run;
+
+/*
+ * The code above uses the PROC CORR options to request Spearman’s 
+ * rank-order correlation coefficient in addition to Pearson’s. It 
+ * also suppresses the simple statistics output.
+ */
+
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/*************** 3 Correlation Matrix Plots **********************/
+/*****************************************************************/
+
+
+/*                    3.1 with PROC CORR                          */
+
+ods graphics on;
+
+proc corr data=mrrlib.diamonds
+nomiss plots=matrix(histogram) plots(maxpoints=none)
+nosimple nocorr;
+
+    var price carat x y z;
+    
+run;
+
+ods graphics off;
+
+/*
+ * nomiss excludes missing values. This is a common option on many statistical procedures.
+ * 
+ * plots=matrix(histogram) requests the matrix plot with histograms on the diagonal.
+ * 
+ * plots(maxpoints=none) overrides the default of 5,000. This allows the PROC to run with the many observations in the dataset
+ * .
+ * nosimple suppresses simple statistics.
+ * 
+ * nocorr suppresses correlation statistics.
+ */
+
+
+
+/*                 3.2 with PROC SGSCATTER                      */
+
+ods graphics on;
+title color=dimgray "Diamond Scatter Matrix with PROC SGSCATTER";
+
+proc sgscatter data=mrrlib.diamonds;
+
+    matrix price carat x y z / transparency=0.5
+                               diagonal=(histogram normal)
+                               markerattrs=(color=dodgerblue);
+
+run;
+ods graphics off;
+
+/* 
+ * matrix statement calls the matrix plot
+ * 
+ * price carat x y z are the variables analyzed
+ * 
+ * forward slash / specifies the options for the matrix statement
+ * 
+ * transparency modifies the transparency of all plot elements (unfortunately)
+ * 
+ * diagonal=(histogram normal) calls a histogram and a normal curve overlay 
+ * in the diagonal of the matrix. Note: the overlay is to evaluate whether the 
+ * underlying data are normal. Deviance from the curve suggests non-normal data 
+ * and congruence with it suggests normal data. Only x, y, and z appear to be 
+ * normally distributed.
+ * 
+ * marketattrs=(color=dodgerblue) specifies that the markers are to have the 
+ * predefined color ‘dodgerblue’
+/*****************************************************************/

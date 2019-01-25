@@ -1,0 +1,200 @@
+/*****************************************************************/
+/**** Code to Accompany Week 2: SAS X-Y Analysis: Scatterplots ***/
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/************** 4 Scatter Plot with SG Plot **********************/
+/*****************************************************************/
+
+/* must use ODS Graphics */
+
+ods graphics on;
+proc sgplot data=mrrlib.diamonds;
+    scatter x=carat y=price;
+    title 'Plot of Price by Carat Size';
+run;
+ods graphics off;
+
+/*
+ * We use the SCATTER statement, assigning carat to the x-axis and price to the y-axis. 
+ * The x and y arguments are required. You can switch their order, however.
+ * 
+ * We use the global title statement. Because it’s global, we can move outside of the 
+ * PROC if we wanted.
+ */
+
+/*****************************************************************/
+
+
+
+
+/*****************************************************************/
+/**************** 5 Scatter Plot w/Options ***********************/
+/*****************************************************************/
+
+
+/*                 5.1 Remove Overplotting                       */
+
+ods graphics on;
+proc sgplot data=mrrlib.diamonds;
+    scatter x=carat y=price / 
+            transparency = 0.9
+            markerattrs=(symbol=circlefilled
+                         size=5
+                         color=coral);
+    title 'Pretty Plot #1 of Price by Carat Size';
+run;
+ods graphics off;
+
+/*
+ * The forward slash / denotes that what follows are options for the scatter statement
+ * 
+ * transparency changes the transparency of the graphed elements. This is a value between 
+ * 0 (no transparency) and 1.0 (complete transparency). I chose 0.9 by fiddling around 
+ * with a few possible values.
+ * 
+ * 
+ * markerattrs=(symbol=circlefilled size=5 color=coral) option to change the marker 
+ * symbol, size and color. Note that these are sub-options within the markerattrs option. 
+ * That’s why we use parentheses in order to call them.
+ * 
+ * Size is measured in pixels by default. You can change this with another option (to inches, for example).
+ * 
+ * I use a pre-defined SAS color, called “coral”. SAS has a lot of pre-defined colors that are good 
+ * for visualization. See the lecture for the link. R has a lot of the same ones.
+ */
+
+
+
+/*                 5.2 Change Plot Format                       */
+
+ods graphics on;
+proc sgplot data=mrrlib.diamonds noborder;
+    scatter x=carat y=price / 
+            transparency = 0.9
+            markerattrs=(symbol=circlefilled
+                         size=5
+                         color=dodgerblue);
+    
+    title color=black 'Pretty Plot #2 of Price by Carat Size';
+    footnote  color=gray 'Note: data has carat sizes > 3';
+    
+    xaxis 
+        label="Carat Size" 
+        labelattrs=(color=dimgray weight=bold)
+        values = (0 1 2 3)
+        valueattrs=(color=gray)
+        minor
+        display=(noline);
+        
+    yaxis 
+        label="Price of Diamond" 
+        labelattrs=(color=dimgray weight=bold)
+        valueattrs=(color=gray)
+        grid 
+        gridattrs=(color=lightgray)
+        minorgrid       
+        minorgridattrs=(color=lightgray)
+        display=(noline noticks);
+        
+    format price dollar.;
+    
+run;
+ods graphics off;
+
+/* 
+ * TITLE and FOOTNOTE statements:
+	 * color must come before the text
+	 * these are global options
+ * 
+ * XAXIS and YAXIS statements:
+	 * these statements are used with SG procedures
+	 * label is the axis label
+	 * labelattrs change the label attributes
+	 * valueattrs change the attributes of the values displayed on the axis
+	 * values change the values on the axis
+	 * minor shows minor tick marks
+	 * display can suppress the axis line, tick marks, label, or values
+	 * grid will place gridlines at every major tick mark
+	 * gridattrs change the attributes of the major gridlines
+	 * minorgrid and minorgridattrs are for minor gridlines
+	 * min and max (not shown) change the minimum and maximum values on the axis
+ * 
+ * FORMAT statement:
+	 * can be used in all DATA or PROC steps
+	 * changes the format of the data in the output
+	 * dollar. is a SAS format that displays the number as a dollar
+	 * can also use the valuesformat option in XAXIS or YAXIS
+	 * we will cover formats more in depth
+ * 
+ * noborder option in PROC SGPLOT supresses the outer border of the graph
+ */
+
+
+
+/*                 5.3 Add a Regression Fit Line                      */  
+ 
+ods graphics on;
+proc sgplot data=mrrlib.diamonds noborder noautolegend;
+    reg x=carat y=price / 
+            lineattrs=(color=black thickness=3)
+            markerattrs=(color=dodgerblue size=3)
+            cli
+            cliattrs=(clilineattrs=(color=black));
+    
+    title color=black 'Price by Carat Size with Fit Line';
+    footnote  color=gray 'Note: data has carat sizes > 3';
+    
+    xaxis 
+        label="Carat Size" 
+        labelattrs=(color=dimgray weight=bold)
+        values = (0 1 2 3)
+        valueattrs=(color=gray)
+        minor
+        display=(noline);
+        
+    yaxis 
+        label="Price of Diamond" 
+        labelattrs=(color=dimgray weight=bold)
+        valueattrs=(color=gray)
+        grid 
+        gridattrs=(color=lightgray)
+        minorgrid       
+        minorgridattrs=(color=lightgray)
+        display=(noline noticks)
+        min=0 max=20000;
+        
+    format price dollar.;
+ 
+run;
+ods graphics off;
+
+/*
+ * Differences from 5.2 example:
+ * 
+ * lineattrs=(color=black thickness=3) changes the color of the 
+ * fit line to black and its thickness to 3px (3 pixels)
+ * 
+ * cli displays the Confidence Intervals around the fit line. You can 
+ * specify the alpha option to change it from the default 95% interval.
+ * 
+ * cliattrs=(clilineattrs=(color=black)) changes the color of the 
+ * confidence limits to black. Notice that this is a sub-option to 
+ * a sub-option of an option. Welcome to SAS.
+ * 
+ * noautolegend as an option for PROC SGPLOT suppresses the default 
+ * legend from the REG statement
+ * 
+ * I added a minimum and maximum value for the y-axis because the inclusion 
+ * of the fit line changed the default values of 0 and 20,000 from the prior 
+ * plotting exercises.
+ * 
+ * I removed the transparency option and changed the marker size instead. 
+ * The transparency option also changes the transparency of the fit line, 
+ * which was not desired.
+ */
+
+/*****************************************************************/
