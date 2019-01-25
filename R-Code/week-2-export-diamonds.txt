@@ -1,0 +1,20 @@
+# Week 2 Lecture 
+# X-Y Analysis: Scatter Plots
+
+###install ggplot2 package
+install.packages('ggplot2')
+#only needs to be done once
+
+###load ggplot2 package
+library(ggplot2)
+#must be done at start of every R session
+
+###load diamonds dataset & pull R doc
+data('diamonds')
+help(diamonds)
+
+head(diamonds) #first 6 rows
+nrow(diamonds) #number of rows
+
+#output to my desktop
+write.csv(diamonds, "C:/users/t530/desktop/diamonds.csv")
