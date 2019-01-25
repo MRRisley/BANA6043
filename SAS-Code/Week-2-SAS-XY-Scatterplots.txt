@@ -1,4 +1,4 @@
-/*****************************************************************/
+Ôªø/*****************************************************************/
 /**** Code to Accompany Week 2: SAS X-Y Analysis: Scatterplots ***/
 /*****************************************************************/
 
@@ -22,7 +22,7 @@ ods graphics off;
  * We use the SCATTER statement, assigning carat to the x-axis and price to the y-axis. 
  * The x and y arguments are required. You can switch their order, however.
  * 
- * We use the global title statement. Because itís global, we can move outside of the 
+ * We use the global title statement. Because it‚Äôs global, we can move outside of the 
  * PROC if we wanted.
  */
 
@@ -59,11 +59,11 @@ ods graphics off;
  * 
  * markerattrs=(symbol=circlefilled size=5 color=coral) option to change the marker 
  * symbol, size and color. Note that these are sub-options within the markerattrs option. 
- * Thatís why we use parentheses in order to call them.
+ * That‚Äôs why we use parentheses in order to call them.
  * 
  * Size is measured in pixels by default. You can change this with another option (to inches, for example).
  * 
- * I use a pre-defined SAS color, called ìcoralî. SAS has a lot of pre-defined colors that are good 
+ * I use a pre-defined SAS color, called ‚Äúcoral‚Äù. SAS has a lot of pre-defined colors that are good 
  * for visualization. See the lecture for the link. R has a lot of the same ones.
  */
 
