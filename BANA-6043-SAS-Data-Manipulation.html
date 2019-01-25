@@ -368,13 +368,15 @@ proc contents data=work.temp; run;</code></pre>
 <li>drop variables depth, which is the total depth percentage, as well as the variable table</li>
 </ol>
 <pre class="sas"><code>data temp;
-    set mrrlib.diamonds;
-    drop var1 x y z depth table;
-    length_x=x;
-    width_y=y;
-    depth_z=z;
+    set mrrlib.diamonds(drop=depth);
+    
+    length=x;
+    width=y;
+    depth=z;
     lcarat=log(carat);
     lprice=log(price);
+    
+    drop var1 x y z table;
 run;
 
 proc contents data=temp; run;
@@ -383,9 +385,13 @@ proc print data=temp(obs=10); run;</code></pre>
 <p>The code explained:</p>
 <ol style="list-style-type: decimal">
 <li><code>data temp;</code> creates a temporary dataset named temp in the WORK library. Remember that the WORK library is the default.</li>
-<li><code>set mrrlib.diamonds;</code> uses the diamonds dataset as the starting data for temp</li>
-<li><code>drop var1 x y z depth table;</code> drops the listed variables from the final data set</li>
-<li>the next lines contain logic for variables that were not a part of the original dataset. +you can re-name a variable by assigning the original variable a new name and then dropping the original variable +notice that if I used <code>depth=z</code> the variable would not exist in the final dataset because we drop the variable depth. depth represented a different variable in the original dataset.</li>
+<li><code>set mrrlib.diamonds(drop=depth);</code> uses the diamonds dataset as the starting data for temp and drops the original variable depth</li>
+<li><code>drop var1 x y z table;</code> drops the listed variables from the final data set</li>
+<li>the next lines contain logic for variables that were not a part of the original dataset.
+<ul>
+<li>you can re-name a variable by assigning the original variable a new name and then dropping the original variable</li>
+<li>notice that I drop depth in the set statement. If we drop in the drop statement, it will remove the variable we create, depth = z. depth represented a different variable in the original dataset.</li>
+</ul></li>
 <li><code>log()</code> is the <em>natural</em> log in SAS</li>
 <li><code>proc contents data=temp; run;</code> displays the new dataset</li>
 <li><code>proc print data=temp(obs=10); run;</code> prints 10 observations starting at observation 1 (the default)</li>
