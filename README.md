@@ -14,7 +14,7 @@
 
 ## Week 2: X-Y Analysis in SAS
 1. [Scatter Plots in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Scatter.html)
-    + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-XY-Scatterplots.txt) & [R Code](https://mrrisley.github.io/BANA6043/R-Code/Week-2-export-diamonds.txt)
+    + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-XY-Scatterplots.txt) & [R Code](https://mrrisley.github.io/BANA6043/R-Code/week-2-export-diamonds.txt)
     + [SAS Paper on Plotting](https://mrrisley.github.io/BANA6043/resources/SASGraphBasics.pdf)
     + [ODS Graphics Tips](https://mrrisley.github.io/BANA6043/resources/ODSGraphicsTips.pdf)
 2. [Correlation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Corr.html)
