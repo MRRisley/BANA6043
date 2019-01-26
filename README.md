@@ -9,8 +9,8 @@
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-1-SAS-Summary-Stats.txt)
 
 + [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
-+ DataCamp Chapter: Importing data from flat files with utils
 + [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
++ DataCamp Chapter: Importing data from flat files with utils
 
 ## Week 2: X-Y Analysis in SAS
 1. [Scatter Plots in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Scatter.html)
@@ -24,6 +24,7 @@
 
 + [Week 2 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-2.html)
 + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
++ DataCamp Chapter: Introduction to R: Intro to Basics
 
 ## Course Resources
 **The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).**
