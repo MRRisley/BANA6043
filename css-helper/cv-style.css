@@ -1,0 +1,13 @@
+hk1 {
+    display: table;
+    width: 100%;
+}
+
+hk2 {
+    display: table-cell;
+    width: 75%;
+}
+
+hk2:last-child {
+    text-align: right;
+}
