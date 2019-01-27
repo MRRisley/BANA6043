@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>In-Class Assignment #3</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">In-Class Assignment #3</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+<h4 class="date"><em>Week 3 Lecture Series</em></h4>
+
+</div>
+
+
+<div id="details" class="section level3">
+<h3>Details</h3>
+<ol style="list-style-type: decimal">
+<li>Due by the start of next class.</li>
+<li>Turn-in through the link on Blackboard.</li>
+<li>Use a new dataset from the <code>ggplot2</code> package, msleep</li>
+</ol>
+</div>
+<div id="upload-msleep-to-sas" class="section level3">
+<h3>1. upload msleep to SAS</h3>
+<pre class="r"><code>#should have already installed the package
+library(ggplot2)
+
+
+#call the help doc for msleep data
+?msleep
+
+
+#set a working directory - this is the same concept as a SAS library
+
+setwd(&#39;C:/r-out/&#39;) #use forward slashes
+
+setwd(&#39;C:\\r-out\\&#39;) #if using a backslash, use it twice
+
+getwd() #will return the current working directory
+
+
+#output data set
+
+write.csv(msleep, &quot;msleep.csv&quot;)
+#without a location specified, R uses your wd</code></pre>
+<div id="r-working-directory" class="section level5">
+<h5>R working directory</h5>
+<p>Your working directory in R is conceptually the same thing as a SAS library. You use the R function <code>setwd()</code> to point R to the location you want to use.</p>
+</div>
+<div id="r-special-characters" class="section level5">
+<h5>R special characters</h5>
+<p>Special characters are a common feature of programming languages. In R, the backslash, <code>\</code>, is a special character. The more common special characters are quotation marks, which are reserved for strings.</p>
+<p>In the example above, we can <strong>escape</strong> the special character by supplying it <em>twice</em>. Again, this is a common way to escape special characters in most programming languages.</p>
+</div>
+</div>
+<div id="proc-contents-and-proc-means" class="section level3">
+<h3>2. PROC CONTENTS and PROC MEANS</h3>
+<p>Using PROC CONTENTS and PROC MEANS, answer the following questions:</p>
+<blockquote>
+<p>Q2.1 how many observations are in the dataset?</p>
+<p>Q2.2 how many variables are in the dataset, excluding VAR1?</p>
+<p>Q2.3 what is the mean, min, and max total amount of sleep and body weight?</p>
+</blockquote>
+</div>
+<div id="manipulate-dataset" class="section level3">
+<h3>3. manipulate dataset</h3>
+<p>Create a new column, bodywtlbs, to convert kg to pounds (1 kg = 2.2 lbs).</p>
+</div>
+<div id="histograms" class="section level3">
+<h3>4. histograms</h3>
+<p>Using SGPLOT, make histograms of bodywt, bodywtlbs, and sleep_total. Set the <code>nbins</code> option for the <code>histogram</code> statement equal to 10.</p>
+<blockquote>
+<p>Q4.1 screenshot the 3 histograms</p>
+<p>Q4.2 does bodyweight appear to have any outliers?</p>
+<p>Q4.3 does sleep seem to be normally distributed?</p>
+</blockquote>
+</div>
+<div id="subset-the-data" class="section level3">
+<h3>5. subset the data</h3>
+<p>Exclude observations with a weight in pounds greater than 1,000.</p>
+<blockquote>
+<p>Q5.1 how many observations are deleted?</p>
+</blockquote>
+</div>
+<div id="test-normality" class="section level3">
+<h3>6. test normality</h3>
+<p>Using PROC UNIVARIATE:</p>
+<ul>
+<li>use the <code>normal</code> option in PROC UNIVARIATE to request normality tests</li>
+<li>use the histogram statement with the <code>normal</code> option to overlay a normal curve</li>
+</ul>
+<blockquote>
+<p>Q6.1 are bodywt, bodywtlbs, and sleep_total normally distributed? why?</p>
+</blockquote>
+</div>
+<div id="bin-the-data" class="section level3">
+<h3>7. bin the data</h3>
+<p>Using HPBIN:</p>
+<ul>
+<li>use the <code>quantile</code> option</li>
+<li>set <code>numbins</code> to 3</li>
+<li>specify an out dataset that is <strong>permanent</strong></li>
+<li>bin bodywt and bodywtlbs</li>
+<li>use the id statement to include original variables in output</li>
+</ul>
+<blockquote>
+<p>Q7.1 what are the bins for bodywt and bodywtlbs?</p>
+</blockquote>
+</div>
+<div id="print-first-10-rows" class="section level3">
+<h3>8. print first 10 rows</h3>
+<blockquote>
+<p>Q8.1 screenshot it</p>
+</blockquote>
+</div>
+<div id="submission" class="section level2">
+<h2>Submission:</h2>
+<p>Your submission should include a Word document with the answers/screenshots to the questions above.</p>
+<p>Upload to Blackboard!</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
