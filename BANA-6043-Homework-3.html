@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>Homework #3</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework #3</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+<h4 class="date"><em>Week 3 Lecture Series</em></h4>
+
+</div>
+
+
+<div id="details" class="section level3">
+<h3>Details</h3>
+<ol style="list-style-type: decimal">
+<li>Due by the start of next class.</li>
+<li>Turn-in through the link on Blackboard.</li>
+<li>Use the <code>msleep2</code> dataset created in In-Class Assignment #3.</li>
+</ol>
+</div>
+<div id="create-formats-for-the-bins" class="section level3">
+<h3>1. create formats for the BINs</h3>
+<center>
+<div class="figure">
+<img src="images/hw-3.JPG" />
+
+</div>
+</center>
+<p>You should have the same BINs after In-Class Assignment #3. Create formats for both <code>bodywt</code> and <code>bodywtlbs</code> based on the BINs above.</p>
+<p><strong>Use the formats generated in (1.) for (2.), (4.), (5.), and (6.) below.</strong></p>
+</div>
+<div id="verify-the-data" class="section level3">
+<h3>2. verify the data</h3>
+<p>Generate a two-way frequency table between <code>bodywt</code> and <code>bodywtlbs</code> to ensure that all observations in BINS 1, 2, 3 for <code>bodywt</code> are the same for those for <code>bodywtlbs</code>.</p>
+</div>
+<div id="sort-the-data" class="section level3">
+<h3>3. sort the data</h3>
+<p>You can choose either pounds or kilograms for the remainder of the homework. Sort the data by the BIN of the weight measure of your choice.</p>
+</div>
+<div id="plot-sleep_total-with-a-boxplot-for-each-bin" class="section level3">
+<h3>4. plot <code>sleep_total</code> with a boxplot for each BIN</h3>
+<blockquote>
+<p>Q4.1: do the BINs appear to have different means? why?</p>
+</blockquote>
+<blockquote>
+<p>Q4.2: screenshot the plot</p>
+</blockquote>
+</div>
+<div id="plot-sleep_total-with-a-histogram-for-each-bin-on-a-panel" class="section level3">
+<h3>5. plot <code>sleep_total</code> with a histogram for each BIN <em>on a panel</em></h3>
+<blockquote>
+<p>Q5.1: do the BINs appear to have different means? why?</p>
+</blockquote>
+<blockquote>
+<p>Q5.2: screenshot the panel</p>
+</blockquote>
+</div>
+<div id="conduct-t-tests-for-bin-1-vs.2-1-vs.3-2-vs.3." class="section level3">
+<h3>6. conduct <em>t</em>-tests for BIN 1 vs. 2, 1 vs. 3, 2 vs. 3.</h3>
+<blockquote>
+<p>Q6.1: are the means of BIN 1 vs. 2 different? why?</p>
+</blockquote>
+<blockquote>
+<p>Q6.2: are the means of BIN 1 vs. 3 different? why?</p>
+</blockquote>
+<blockquote>
+<p>Q6.3: are the means of BIN 2 vs. 3 different? why?</p>
+</blockquote>
+</div>
+<div id="create-a-new-variable-that-combines-observations-from-bins-1-2-into-one-group-and-keeps-bin-3-as-a-separate-group" class="section level3">
+<h3>7. create a new variable that combines observations from BINs 1 &amp; 2 into one group and keeps BIN 3 as a separate group</h3>
+</div>
+<div id="create-formats-for-these-bins" class="section level3">
+<h3>8. create formats for these bins</h3>
+<p><strong>Use the formats generated in (8.) for (9.) and (10.) below.</strong></p>
+</div>
+<div id="plot-sleep_total-with-a-boxplot-for-each-new-bin" class="section level3">
+<h3>9. plot <code>sleep_total</code> with a boxplot for each new BIN</h3>
+<blockquote>
+<p>Q9.1: do the two groups appear to have different means? why?</p>
+</blockquote>
+<blockquote>
+<p>Q9.2: screenshot the plot</p>
+</blockquote>
+</div>
+<div id="conduct-t-tests-for-bin-1-vs.2-1-vs.3-2-vs.3.-1" class="section level3">
+<h3>10. conduct <em>t</em>-tests for BIN 1 vs. 2, 1 vs. 3, 2 vs. 3.</h3>
+<blockquote>
+<p>Q10.1: are the means of the two groups different? why?</p>
+</blockquote>
+</div>
+<div id="submission" class="section level3">
+<h3>Submission:</h3>
+<p>Your submission should include:</p>
+<ol style="list-style-type: decimal">
+<li>a Word document with the answers to the questions above</li>
+<li>your SAS code</li>
+</ol>
+<p>Upload to Blackboard!</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
