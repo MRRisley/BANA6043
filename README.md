@@ -27,10 +27,13 @@
 + DataCamp Chapter: Introduction to R: Intro to Basics
 
 ## Week 3: Segmenting and *t*-tests in SAS
-1. [Segmenting Data in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Segmentation.html)
-2. [*t*-tests in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-TTEST.html)
+1. [Pearson's *r* vs. Spearman's *rho*](https://mrrisley.github.io/BANA6043/R-Code/r-vs-rho.R)
+2. [Segmenting Data in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Segmentation.html)
+3. [*t*-tests in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-TTEST.html)
 
 + [Week 3 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-3.html)
++ [Week 3 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-3.html)
+
 
 ## Course Resources
 **The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).**
