@@ -32,8 +32,7 @@
 3. [*t*-tests in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-TTEST.html)
 
 + [Week 3 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-3.html)
-
-**No Homework**
++ **No Homework**
 + DataCamp Chapter: Introduction to R: Vectors
 + DataCamp Chapter: Introduction to R: Matrix
 
