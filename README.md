@@ -33,7 +33,10 @@
 
 + [Week 3 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-3.html)
 + [Week 3 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-3.html)
++ DataCamp Chapter: Introduction to R: Vectors
++ DataCamp Chapter: Introduction to R: Matrix
 
+**Midterm Next Class**
 
 ## Course Resources
 **The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).**
