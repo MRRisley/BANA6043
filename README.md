@@ -26,10 +26,9 @@
 + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
 + DataCamp Chapter: Introduction to R: Intro to Basics
 
-## Week 3: Segmenting and *t*-tests in SAS
+## Week 3: Segmenting and 
 1. [Pearson's *r* vs. Spearman's *rho*](https://mrrisley.github.io/BANA6043/R-Code/r-v-rho.R)
 2. [Segmenting Data in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Segmentation.html)
-3. [*t*-tests in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-TTEST.html)
 
 + [Week 3 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-3.html)
 + **No Homework**
@@ -37,6 +36,12 @@
 + DataCamp Chapter: Introduction to R: Matrix
 
 **Midterm Next Class**
+
+## Week 4: *t*-tests and ANOVA in SAS
+1. [*t*-tests in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-TTEST.html)
+
++ DataCamp Chapter: Introduction to R: data frames
++ DataCamp Chapter: Data Analysis in R, the data.table Way: novice
 
 ## Course Resources
 **The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).**
