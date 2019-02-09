@@ -40,6 +40,8 @@
 ## Week 4: *t*-tests and ANOVA in SAS
 1. [*t*-tests in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-TTEST.html)
 
++ **No In-Class Assignment**
++ [Week 4 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-3.html)
 + DataCamp Chapter: Introduction to R: data frames
 + DataCamp Chapter: Data Analysis in R, the data.table Way: novice
 
