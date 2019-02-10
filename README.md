@@ -45,6 +45,11 @@
 + DataCamp Chapter: Introduction to R: data frames
 + DataCamp Chapter: Data Analysis in R, the data.table Way: novice
 
+## Week 5: ANOVA
+1. [ANOVA in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-ANOVA.html)
+
+
+
 ## Course Resources
 **The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).**
 
