@@ -26,7 +26,7 @@
 + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
 + DataCamp Chapter: Introduction to R: Intro to Basics
 
-## Week 3: Segmenting and 
+## Week 3: More on Correlation and Segmenting in SAS 
 1. [Pearson's *r* vs. Spearman's *rho*](https://mrrisley.github.io/BANA6043/R-Code/r-v-rho.R)
 2. [Segmenting Data in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Segmentation.html)
 
@@ -37,7 +37,7 @@
 
 **Midterm Next Class**
 
-## Week 4: *t*-tests and ANOVA in SAS
+## Week 4: *t*-tests in SAS
 1. [*t*-tests in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-TTEST.html)
 
 + **No In-Class Assignment**
