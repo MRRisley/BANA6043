@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>BANA6043: ANOVA in SAS</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">BANA6043: ANOVA in SAS</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+<h4 class="date"><em>Week 3 Lecture Series</em></h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>Using the morley and warpbreaks datasets, this lecture demonstrates how to conduct hypothesis testing in SAS through PROC ANOVA.</p>
+<p>The primary difference between <em>t</em>-tests and ANOVA is the number of groups you can analyze. <em>t</em>-tests are limited to a comparison between two groups while ANOVA can compare multiple groups as well as interactions between groups. ANOVA uses the <em>F</em> distribution and is sometimes referred to as an <em>F</em>-test.</p>
+</div>
+<div id="anova-hypotheses" class="section level1">
+<h1><span class="header-section-number">2</span> ANOVA hypotheses</h1>
+<p>For a <em>t</em>-test you have a null that compares two means:</p>
+<blockquote>
+<p><strong>H<sub>0</sub>:</strong> μ<sub>1</sub> = μ<sub>2</sub></p>
+</blockquote>
+<p>For ANOVA, you compare more than two means:</p>
+<blockquote>
+<p><strong>H<sub>0</sub>:</strong> μ<sub>1</sub> = μ<sub>2</sub> = μ<sub>3</sub> = … = μ<sub>n</sub></p>
+<p>where n = total number of groups</p>
+</blockquote>
+<p>The ANOVA alternative hypothesis is usually not written in mathematical notation:</p>
+<blockquote>
+<p><strong>H<sub>1</sub>:</strong> <em>at least one</em> mean is different from the rest</p>
+</blockquote>
+<p>The following outcomes would result in a rejection of the null in favor of the alternative:</p>
+<ol style="list-style-type: decimal">
+<li>one mean is different from the rest</li>
+<li>two means are different from the rest, <em>but</em> they are not different from one another</li>
+<li>two means are different from the rest, <em>and</em> they are different from on another</li>
+<li>(all other possible combinations)</li>
+<li>all means are different from one another</li>
+</ol>
+</div>
+<div id="anova-on-morley-dataset" class="section level1">
+<h1><span class="header-section-number">3</span> ANOVA on morley dataset</h1>
+<p>As a refresher, the morley dataset contains measures of the speed of light from 5 experiments, each with 20 runs:</p>
+<pre class="sas"><code>proc print data=mrrlib.morley(obs=25 drop=VAR1); run;</code></pre>
+<center>
+<div class="figure">
+<img src="images/TTEST-1.JPG" />
+
+</div>
+</center>
+<div id="the-hypothesis" class="section level2">
+<h2><span class="header-section-number">3.1</span> the hypothesis</h2>
+<p>We will test the hypothesis that all the means from the five experiments are the same. From a practical perspective, we could reword this as:</p>
+<blockquote>
+<p>we are testing the hypothesis that the experimental design influenced the values of the speed of light</p>
+</blockquote>
+<p>Formally, the null hypothesis is:</p>
+<blockquote>
+<p><strong>H<sub>0</sub>:</strong> μ<sub>expt1</sub> = μ<sub>expt2</sub> = μ<sub>expt3</sub> = μ<sub>expt4</sub> = μ<sub>expt5</sub></p>
+</blockquote>
+<p>And the alternative:</p>
+<blockquote>
+<p><strong>H<sub>1</sub>:</strong> <em>at least one</em> mean is different from the rest</p>
+</blockquote>
+</div>
+<div id="the-procedure" class="section level2">
+<h2><span class="header-section-number">3.2</span> the procedure</h2>
+<p><a href="https://support.sas.com/documentation/cdl/en/statug/63962/HTML/default/viewer.htm#anova_toc.htm">PROC ANOVA SAS documentation.</a></p>
+<pre class="sas"><code>ods graphics on;
+
+proc anova data=mrrlib.morley; 
+    class expt;
+    model speed = expt;
+    label expt = &quot;Experiment #&quot;;
+run;
+
+ods graphics off;</code></pre>
+<ol style="list-style-type: decimal">
+<li>the <code>model</code> statement specifies your target variable of interest as well as one or more effects you with to test
+<ul>
+<li>we are testing whether experiment (our main effect) influences the measured speed of light <br><br></li>
+</ul></li>
+<li><strong>any</strong> effect variables specified on the right hand side of the model <strong>must</strong> be present in the `<code>class</code> statement <br><br></li>
+<li><code>label</code> statement will convert instances of “expt” in the output to “Experiment #”</li>
+</ol>
+<center>
+<p><img src="images/anova-1.JPG" /> <br><br> <img src="images/anova-2.JPG" /></p>
+</center>
+</div>
+<div id="output-interpretation" class="section level2">
+<h2><span class="header-section-number">3.3</span> output interpretation</h2>
+<ol style="list-style-type: decimal">
+<li>the first box shows details of the model, some of which are repeated below it
+<ul>
+<li>DF (degrees of freedom) is used to determine the <em>F</em> statistic</li>
+<li><em>p</em>-value is the statistical significance of the model <br><br></li>
+</ul></li>
+<li><em>R</em>-square tells you the amount of variance in speed that is explained by expt
+<ul>
+<li>15% explained <br><br></li>
+</ul></li>
+<li>Root MSE (Mean Squared Error) tells you the average error when using expt to predict speed <br><br></li>
+<li>significant <em>p</em>-value indicates that <strong>expt has a significant effect on speed</strong> because at least one mean speed from the experiments is different from the others <br><br></li>
+<li>boxplot provides a visual display of the distributions of speed for each experiment</li>
+</ol>
+</div>
+</div>
+<div id="anova-on-warpbreaks-dataset" class="section level1">
+<h1><span class="header-section-number">4</span> ANOVA on warpbreaks dataset</h1>
+<p>As a refresher, the warpbreak dataset contains data on the number of breaks in yarn per loom for 54 runs. Half the runs use Wool Type A and the other half use Wool Type B. For each wool type, three degrees of tension are applied–low, medium, and high.</p>
+<pre class="sas"><code>proc print data=mrrlib.warpbreaks(obs=10 drop=VAR1); run;</code></pre>
+<center>
+<div class="figure">
+<img src="images/warp-1.JPG" />
+
+</div>
+</center>
+<div id="simple-effect-models" class="section level2">
+<h2><span class="header-section-number">4.1</span> simple effect models</h2>
+<p>We will test the hypothesis that the number of breaks are the same for each wool type. We will also test the hypothesis that the number of breaks are the same for each tension type. We will test them independently.</p>
+<p>Formally, the null hypotheses are:</p>
+<blockquote>
+<p><strong>H<sub>0</sub>:</strong> μ<sub>A</sub> = μ<sub>B</sub></p>
+</blockquote>
+<blockquote>
+<p><strong>H<sub>0</sub>:</strong> μ<sub>L</sub> = μ<sub>M</sub> = μ<sub>H</sub></p>
+</blockquote>
+<p>And the alternatives for both null hypotheses:</p>
+<blockquote>
+<p><strong>H<sub>1</sub>:</strong> <em>at least one</em> mean is different from the rest</p>
+</blockquote>
+<div id="the-procedure-1" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> the procedure</h3>
+<pre class="sas"><code>ods graphics on;
+
+proc anova data=mrrlib.warpbreaks;
+    class tension;
+    model breaks = tension;
+run;
+
+proc anova data=mrrlib.warpbreaks;
+    class wool;
+    model breaks = wool;
+run;
+
+
+proc ttest data=mrrlib.warpbreaks plots=none;
+    class wool;
+    var breaks;
+run;
+
+ods graphics off;</code></pre>
+<center>
+<br><br>
+<h5>
+<b>tension</b>
+</h5>
+<p><img src="images/anova-3.JPG" /> <br><br> <img src="images/anova-4.JPG" /> <br><br></p>
+</center>
+<center>
+<br><br>
+<h5>
+<b>wool</b>
+</h5>
+<p><img src="images/anova-5.JPG" /> <br><br> <img src="images/anova-6.JPG" /> <br><br></p>
+</center>
+</div>
+<div id="conclusions" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> conclusions</h3>
+<ol style="list-style-type: decimal">
+<li>tension has a significant effect on the number of breaks <br><br></li>
+<li>wool does not have a significant effect on the number of breaks at α = 0.10</li>
+</ol>
+<blockquote>
+<p><strong>an <em>F</em>-test of two means is equivalent to a <em>t</em>-test</strong></p>
+</blockquote>
+<center>
+<h5>
+<b><i>t</i>-test on wool</b>
+</h5>
+<div class="figure">
+<img src="images/anova-7.JPG" />
+
+</div>
+<p><br><br></p>
+</div>
+</div>
+<div id="two-factor-main-effects-model" class="section level2">
+<h2><span class="header-section-number">4.2</span> two-factor main effects model</h2>
+<p>We want to test whether wool <em>and</em> tension have a significant effect on the number of breaks. This is a two-factor main effects model.</p>
+<p>In a two-factor (or multi-factor) main effects model, you are testing the effects of two (or more) variables when considered together.</p>
+<p>Let’s consider the difference for wool type in the simple effects model and the two-factor main effects model:</p>
+<blockquote>
+<p><strong>simple effects model</strong>: wool type affects the number of breaks</p>
+</blockquote>
+<p>This simple effects model does not control for any other variable.</p>
+<blockquote>
+<p><strong>two-factor main effects model</strong>: wool type affects the number of breaks after controlling for tension</p>
+</blockquote>
+<p>The two-factor main effects model tests the influence of wool on breaks at the average number of breaks for each tension type. This is the <em>ceteris paribus</em> (“all else held equal”) assumption. We can rephrase the hypothesis with this language:</p>
+<blockquote>
+<p><strong>two-factor main effects model</strong>: tension type held equal, wool type affects the number of breaks</p>
+</blockquote>
+<p><strong>NOTE:</strong> the “all else held equal” assumption also applies to the interpretation of regression coefficients.</p>
+<div id="visualizing-the-two-factor-model" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> visualizing the two-factor model</h3>
+<p>Visualizing the grouping under the simple effects and two-factor model makes the difference more concrete.</p>
+<div id="wool-boxplot" class="section level4">
+<h4><span class="header-section-number">4.2.1.1</span> wool boxplot</h4>
+<p>Let’s start for the testing of main effect for wool:</p>
+<pre class="sas"><code>ods graphics on;
+
+proc sgplot data=mrrlib.warpbreaks;
+    vbox breaks / group=wool
+                  groupdisplay=clustered;
+    title &quot;wool only: simple effect&quot;;
+run;
+
+proc sgplot data=mrrlib.warpbreaks;
+    vbox breaks / category=tension
+                  group=wool
+                  groupdisplay=clustered;
+    title &quot;wool &amp; tension: wool main effect&quot;;
+run;
+
+ods graphics off;</code></pre>
+<center>
+<div class="figure">
+<img src="images/anova-8.JPG" />
+
+</div>
+<blockquote>
+<p>in the simple effects model, we test the difference in the mean # of breaks for wool type A (blue) and B (red)</p>
+</blockquote>
+</center>
+<center>
+<p><br><br></p>
+<div class="figure">
+<img src="images/anova-9.JPG" />
+
+</div>
+<blockquote>
+<p>in the simple effects model, we test the difference in the mean # of breaks for wool type A (blue) and B (red) <strong>at each level of tension</strong></p>
+</blockquote>
+</center>
+</div>
+<div id="tension-boxplot" class="section level4">
+<h4><span class="header-section-number">4.2.1.2</span> tension boxplot</h4>
+<p>Now for the testing of main effect for tension:</p>
+<pre class="sas"><code>ods graphics on;
+
+proc sgplot data=mrrlib.warpbreaks;
+    vbox breaks / group=tension
+                  groupdisplay=clustered;
+    title &quot;tension only: simple effect&quot;;
+run;
+
+proc sgplot data=mrrlib.warpbreaks;
+    vbox breaks / category=wool
+                  group=tension
+                  groupdisplay=clustered;
+    title &quot;wool &amp; tension: tension main effect&quot;;
+run;
+
+ods graphics off;</code></pre>
+<center>
+<div class="figure">
+<img src="images/anova-10.JPG" />
+
+</div>
+</center>
+<blockquote>
+<p>in the simple effects model, we test the difference in the mean # of breaks for tension L (blue), M (red), and H (green)</p>
+</blockquote>
+<center>
+<p><br><br></p>
+<div class="figure">
+<img src="images/anova-11.JPG" />
+
+</div>
+</center>
+<blockquote>
+<p>in the simple effects model, we test the difference in the mean # of breaks for tension L (blue), M (red), and H (green) <strong>for each wool type</strong></p>
+</blockquote>
+</div>
+</div>
+<div id="the-procedure-2" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> the procedure</h3>
+<pre class="sas"><code>proc anova data=mrrlib.warpbreaks;
+    class tension wool;
+    model breaks = tension wool;
+run;</code></pre>
+<p>In order to test the two-factor model, we include both variables in the <code>class</code> statement and on the right hand of the model.</p>
+<center>
+<div class="figure">
+<img src="images/anova-12.JPG" />
+
+</div>
+</center>
+<ol style="list-style-type: decimal">
+<li>the first box gives us a summary for the two-factor model
+<ul>
+<li>we can see the model is significant at the 0.01 level with a <em>p</em>-value of 0.0012 <br><br></li>
+</ul></li>
+<li>the second box gives us additional information about the model
+<ul>
+<li>wool and tension together explain 26.9% of the variation in the number of breaks</li>
+<li>on average, the model’s prediction error is +/- 11 breaks. <br><br></li>
+</ul></li>
+<li>the third box gives the results for tension and wool
+<ul>
+<li>in comparison to the simple effects model, we now see wool is significant at the 0.10 level</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="two-factor-main-effects-model-with-interaction" class="section level2">
+<h2><span class="header-section-number">4.3</span> two-factor main effects model with interaction</h2>
+<p>It is reasonable to think that breaks are influenced by the interaction of wool type and tension. The wool types could have different properties that influence the number of breaks at various tensions. For example, low tension could result in the fewest breaks for wool type A, but it could result in the highest breaks for wool type B.</p>
+<pre class="sas"><code>proc anova data=mrrlib.warpbreaks;
+    class tension wool;
+    model breaks = tension|wool;
+run;</code></pre>
+<p>To test the levels as well as the interaction between two variables, you can use the <code>|</code> symbol between the variables. Alternative, you could write the <code>model</code> statement as:</p>
+<p><code>model breaks = tension wool tension*wool;</code></p>
+<center>
+<div class="figure">
+<img src="images/anova-13.JPG" />
+
+</div>
+</center>
+<p>The results show us that:</p>
+<ol style="list-style-type: decimal">
+<li>the interaction effect is significant <br><br></li>
+<li>the main effect of wool is nearly significant at the 0.05 level <br><br></li>
+<li>an additional 10% of variance is explained with the inclusion of the interaction term <br><br></li>
+</ol>
+<p><strong>Beware: <em>R</em>-square is a POOR measure of model comparison because:</strong></p>
+<blockquote>
+<p><em>R</em>-square <strong>always</strong> increases with the inclusion of another factor</p>
+<p><em>R</em>-square does not penalize overfit</p>
+</blockquote>
+<p>However, an increase in <em>R</em>-square of 0.10 from a single factor is a fairly significant amount of addition variance explained by a single factor.</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
