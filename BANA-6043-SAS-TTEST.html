@@ -12,7 +12,7 @@
 <meta name="author" content="Matt Risley" />
 
 
-<title>BANA6043: <i>t</i>-tests in SAS</title>
+<title>BANA6043: t-tests in SAS</title>
 
 <script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -309,14 +309,17 @@ div.tocify {
 <div id="conceptual-example" class="section level2">
 <h2><span class="header-section-number">2.1</span> Conceptual Example</h2>
 <p>Imagine you read on the internet that the average height of a male in the United States in 2016 was 7 feet (2.1 meters). Even though people tell you if it’s on the internet, it’s true, you have your reservations.</p>
-<p>Therefore, you obtain a random sample of 100 US males and record their height. You notice that the average height among them is 5 feet and 7 inches (1.7 meters). Hypothesis testing cantell you whether that quoted figure on the internet is possible given what you’ve just seen.</p>
+<p>Therefore, you wish to test whether or not the average height is, in fact, 7 feet.</p>
+<blockquote>
+<p>It is important to formulate your hypothesis <strong>prior to</strong> sampling your data.</p>
+</blockquote>
 <div id="the-null-and-alternative" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> The Null and Alternative</h3>
 <p>Using statistics, you can test the hypothesis that the average US male is 7 feet tall. <em>Your</em> hypothesis is that 7 feet is wrong.</p>
 <p>We have two hypotheses, then: (1) The average US male is 7 feet tall, and (2) the average US male is <strong>not</strong> 7 feet tall. Hypothesis testing involves the formulation of two hypotheses: the null hypothesis and the alternative hypothesis.</p>
-<p>The null hypothesis is designated as H<sub>0</sub> and is your <em>default</em> position. Therefore, the null hypothesis for this experiment is:</p>
+<p>The null hypothesis is designated as H<sub>0</sub> and is the <em>default</em> position. Therefore, the null hypothesis for this experiment is:</p>
 <blockquote>
-<p><strong>H<sub>0</sub>:</strong> the average US male height = 7 feet</p>
+<p><strong>H<sub>0</sub>:</strong> the average US male height is 7 feet</p>
 </blockquote>
 <p>In statistics, you would see:</p>
 <blockquote>
@@ -325,7 +328,7 @@ div.tocify {
 <p>where μ is your population mean for height.</p>
 <p>The alternative hypothesis is designated as H<sub>1</sub> and is your <em>contrary</em> position. Therefore, the alternative hypothesis for this experiment is:</p>
 <blockquote>
-<p><strong>H<sub>1</sub>:</strong> the average US male height = 7 feet</p>
+<p><strong>H<sub>1</sub>:</strong> the average US male height is not 7 feet</p>
 </blockquote>
 <p>Or, in statistical notation:</p>
 <blockquote>
@@ -343,6 +346,7 @@ div.tocify {
 <p>A <strong>one-tailed or one-sided</strong> test uses an alternative hypothesis of “less than” or “greater than”.</p>
 <p>Usually the parameters of your experiment determine whether a one-tailed is more appropriate than a two-tailed.</p>
 <p>For example, you could be testing a <em>minimum threshold</em> for concentration levels of a polutant in a water sample. You want to test whether the 20 samples of water you collected suggest that the true population mean is greater than this threshold. This is a one-sided (upper) hypothesis test.</p>
+<p>Or, you may want to test whether a medication <em>reduces</em> blood pressure. You are testing whether your experimental group has lower blood pressure than your control group. This is a one-sided (lower) hypothesis test.</p>
 <p>Using the example above, we think there is enough empirical evidence in our daily lives to believe the internet figure of 7 feet is <em>overstated</em>. Therefore, we can test the one-sided (lower) hypothesis test that the average US male height is less than 7 feet:</p>
 <blockquote>
 <p><strong>H<sub>1</sub>:</strong> μ<sub>height</sub> &lt; 7 feet</p>
@@ -424,7 +428,7 @@ run;</code></pre>
 <h3><span class="header-section-number">4.3.1</span> default plots</h3>
 <p>Here we explicity specify a <em>p</em>-value threshold of 0.05 for confidence limits (the default). Note that this is for the confidence limits only. If we wanted to use a <em>p</em>-value threshold for the <em>t</em>-test, we simply determine whether the <em>p</em>-value shown is greater or less than the threshold.</p>
 <pre class="sas"><code>ods graphics on;
-proc ttest data=temp h0=792.458 alpha=0.05;
+proc ttest data=temp h0=299792.458 alpha=0.05;
     var speed;
 run;
 ods graphics off;</code></pre>
@@ -446,7 +450,7 @@ ods graphics off;</code></pre>
 <h3><span class="header-section-number">4.3.2</span> plot requests</h3>
 <p>Assuming the data are normally distributed, which they appear to be, we can request plots that specifically relate to the hypothesis test.</p>
 <pre class="sas"><code>ods graphics on;
-proc ttest data=temp h0=792.458 plots(showh0 only)=(boxplot interval) alpha=0.1;
+proc ttest data=temp h0=299792.458 plots(showh0 only)=(boxplot interval) alpha=0.1;
     var speed;
 run;
 ods graphics off;</code></pre>
@@ -482,7 +486,7 @@ proc contents data=temp short; run;</code></pre>
 <div id="using-the-by-statement" class="section level2">
 <h2><span class="header-section-number">5.2</span> Using the <code>by</code> statement</h2>
 <p>In the code below, we request <em>t</em>-tests against the null for every experiment in the data set:</p>
-<pre class="sas"><code>proc ttest data=temp h0=792.458 plots=none;
+<pre class="sas"><code>proc ttest data=temp h0=299792.458 plots=none;
     var speed;
     by expt;
     label expt = &#39;Experiment Number&#39;;
@@ -548,9 +552,9 @@ run;</code></pre>
 <blockquote>
 <p><strong>H<sub>1</sub>:</strong> μ<sub>1</sub> &lt;&gt; μ<sub>2-5</sub></p>
 </blockquote>
-<p><strong>Note that we remove the </strong> <code>h0</code> <strong>option from the proc.</strong></p>
+<p><strong>Note that we remove the </strong> <code>h0</code> <strong>option from the proc as well as the</strong> <code>h0only</code> <strong>option from the plot options.</strong></p>
 <pre class="sas"><code>ods graphics on;
-proc ttest data=temp plots(showh0 only)=(histogram boxplot) alpha=0.05;
+proc ttest data=temp plots(only)=(histogram boxplot) alpha=0.05;
     var speed;
     class expt1;
     format expt1 expt_lab.;
@@ -601,7 +605,7 @@ proc format;
 run;
 
 ods graphics on;
-proc ttest data=temp plots(showh0 only)=(histogram boxplot) alpha=0.05;
+proc ttest data=temp plots(only)=(histogram boxplot) alpha=0.05;
     var speed;
     class expt2;
     format expt2 expt_lab.;
