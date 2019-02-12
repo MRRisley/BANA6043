@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>Final Project</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Final Project</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+
+</div>
+
+
+<div id="overview" class="section level3">
+<h3>Overview</h3>
+<p>You will work individually or with another student in the class to produce a concise analysis of a dataset using tools you learned in the course. You can use R, SAS, or a combination of both.</p>
+<p>From the dataset,</p>
+<ul>
+<li><p>Students enrolled in BANA6043 will select one <strong>continuous</strong> dependent variable and <strong>2-3</strong> independent variables.</p></li>
+<li><p>Students enrolled in BANA5143 will select one <strong>continuous</strong> dependent variable and <strong>one</strong> independent variable.</p></li>
+</ul>
+<p>Remember,</p>
+<ul>
+<li><p>your independent variable is the variable you wish to explain</p></li>
+<li><p>your dependent variable(s) will explain your independent variable</p></li>
+</ul>
+<blockquote>
+<p>The objective of this project is to provide insights about your dependent variable through your dependent variables.</p>
+</blockquote>
+<p>An insight does not mean you have to “find” something. In fact, you can start with a reasonable hypothesis, and if the data do not support it, then <em>that</em> is an insight.</p>
+<p>The main components of the report are described below.</p>
+<blockquote>
+<p>The deliverables will entail a report, your dataset, and your code.</p>
+</blockquote>
+<p><strong>Output without explanations will receive a very low grade! I’d be out of a job if I gave my boss a report that contained output with no explanations.</strong></p>
+<p><strong>Explanations without output will receive a very low grade! I’d be out of a job if I gave my boss a report that contained explanation with no output.</strong></p>
+<p><br></p>
+</div>
+<div id="data-and-hypotheses-one-page-maximum---15" class="section level3">
+<h3>Data and Hypotheses (one page maximum) - 15%</h3>
+<p><strong>DO NOT do any statistical summaries in this section!!</strong></p>
+<br>
+<h5>
+Select a dataset, any dataset*
+</h5>
+<p>Here are some dataset locations:</p>
+<ul>
+<li><p>datasets in r (recommended) <br> <code>data(package = .packages(all.available = TRUE))</code> <br></p></li>
+<li><a href="https://archive.ics.uci.edu/ml/index.php">UCI Machine Learning Repository</a></li>
+<li><a href="https://www.kaggle.com/datasets">Kaggle</a></li>
+<li><p>Google “example datasets for linear regression”</p></li>
+</ul>
+<blockquote>
+<p>Rules*</p>
+<ol style="list-style-type: decimal">
+<li><p>no time series</p></li>
+<li><p>no large data (&gt; 50,000 observations)</p></li>
+<li><p>no very small data (&lt; 20 observations)</p></li>
+</ol>
+</blockquote>
+<br>
+<h5>
+Part A: describe the data
+</h5>
+<ul>
+<li>describe the dataset</li>
+<li>what is the source of the dataset?</li>
+<li>what is your independent variable? what type of data is it?</li>
+<li>descibe your dependent variable(s)</li>
+<li>how many observations do you have?</li>
+</ul>
+<br>
+<h5>
+Part B: your hypotheses
+</h5>
+<ul>
+<li>BANA6043: generate <strong>2-3</strong> hypotheses about the relationship between your dependent and independent variables</li>
+<li>BANA5143: generate <strong>one</strong> hypothesis about the relationship between your dependent and independent variable</li>
+</ul>
+<p><br></p>
+</div>
+<div id="data-summary-2-page-maximum-inclusive-of-graphstables---25" class="section level3">
+<h3>Data Summary (2 page maximum, inclusive of graphs/tables) - 25%</h3>
+<p><strong>This section is <em>entirely</em> univariate.</strong></p>
+<ul>
+<li>concisely describe your data using summary statistics
+<ul>
+<li>could include a <strong>concise</strong> table with simple summary and a paragraph to <br><br></li>
+</ul></li>
+</ul>
+<h5>
+continuous variables
+</h5>
+<ul>
+<li>describe the distributions of your variables
+<ul>
+<li>could include histograms and/or boxplots</li>
+<li>try to condense your graphical output <br><br></li>
+</ul></li>
+<li>make an assessment of whether the data are normally distributed
+<ul>
+<li><strong>DO NOT</strong> include any additional output for this section</li>
+<li>describe how you arrived at your assessment <br><br></li>
+</ul></li>
+</ul>
+<h5>
+categorical variables
+</h5>
+<ul>
+<li>describe the frequencies of values for your variables
+<ul>
+<li>could include one- or two-way frequencies</li>
+</ul></li>
+</ul>
+<p><br></p>
+</div>
+<div id="analysis-4-page-maximum-inclusive-of-graphstables-50" class="section level3">
+<h3>Analysis (4 page maximum, inclusive of graphs/tables) 50%</h3>
+<p><strong>This section is <em>entirely</em> bivariate and multivariate.</strong></p>
+<ol style="list-style-type: decimal">
+<li>examine your hypotheses with graphical output
+<ul>
+<li>you should provide a soft conclusion from this output as to whether your hypotheses are supported</li>
+<li>ex: boxplots of your continuous dependent variable by a categorical independent variable (could also bin a continuous independent variable)</li>
+<li>ex: scatterplots of your continuous dependent variable</li>
+</ul></li>
+<li>test your hypotheses
+<ul>
+<li>use <em>t</em>-tests, ANOVA, and/or regression</li>
+<li>you should provide a soft conclusion from this output as to whether your hypotheses are supported</li>
+</ul></li>
+</ol>
+<p><strong>An analysis that includes the kitchen sink and poor/minimal explanations is inferior to a very thorough discussion and analysis of a single test.</strong></p>
+<blockquote>
+<p>The point is to tell the story, not to show me you can run all tests available to you.</p>
+</blockquote>
+<p><br></p>
+</div>
+<div id="conclusion-one-paragraph-maximum---10" class="section level3">
+<h3>Conclusion (one paragraph maximum) - 10%</h3>
+<p>You should provide a firm conclusion from your analysis as to whether your hypotheses are supported.</p>
+<p>Your possible outcomes are:</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><p>your analysis definitively supports your hypotheses (a relationship exists)</p></li>
+<li><p>your analysis definitively does not support your hypotheses (a relationship does not exist)</p></li>
+<li><p>your analysis weakly supports your hypotheses (a relationship may exist)</p></li>
+</ol>
+</blockquote>
+<p><strong>You must say how and why you arrived at your outcome!!</strong></p>
+<p><br></p>
+</div>
+<div id="submission" class="section level3">
+<h3>Submission</h3>
+<p>Your submission should include:</p>
+<ol style="list-style-type: decimal">
+<li>your report</li>
+<li>your dataset</li>
+<li>your code</li>
+</ol>
+<p>Upload to Blackboard!</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
