@@ -51,6 +51,11 @@
 
 + [Week 5 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-4.html)
 
+**Homework (should be completed in this order):**
+1. DataCamp Chapter: Foundations of inference: Introduction to ideas of inference
+2. DataCamp Chapter: Foundations of inference: Completing a randomization test: gender discrimination
+3. DataCamp Chapter: Foundations of inference: Hypothesis testing errors: opportunity cost
+
 ## Final Project
 1. [Final Outline and Rubric](https://mrrisley.github.io/BANA6043/BANA-6043-Final.html)
 
