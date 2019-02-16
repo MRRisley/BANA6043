@@ -47,6 +47,9 @@
 
 ## Week 5: ANOVA
 1. [ANOVA in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-ANOVA.html)
+2. [Analysis and ANOVA in R](https://mrrisley.github.io/BANA6043/R-Code/r-anova.R)
+
++ [Week 5 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-4.html)
 
 ## Final Project
 1. [Final Outline and Rubric](https://mrrisley.github.io/BANA6043/BANA-6043-Final.html)
