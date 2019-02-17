@@ -56,7 +56,7 @@
 2. DataCamp Chapter: Foundations of inference: Completing a randomization test: gender discrimination
 3. DataCamp Chapter: Foundations of inference: Hypothesis testing errors: opportunity cost
 
-## Final Project
+## Final Project - Due March 2 at 4:50PM
 1. [Final Outline and Rubric](https://mrrisley.github.io/BANA6043/BANA-6043-Final.html)
 
 <br><br>
