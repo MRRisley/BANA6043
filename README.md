@@ -58,7 +58,7 @@
 
 ## Week 6: Linear Regression
 1. [Regression Cheatsheet](https://mrrisley.github.io/BANA6043/resources/regression-cheatsheet.pdf)
-2. [Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/coef-interpretation-cheatsheet.pdf)
+2. [Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/coef-interpret-cheatsheet.pdf)
 
 
 ## Final Project - Due March 2 at 4:50PM
