@@ -60,9 +60,9 @@
 1. [Regression Cheatsheet](https://mrrisley.github.io/BANA6043/resources/regression-cheatsheet.pdf)
 2. [Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/coef-interpret-cheatsheet-2.pdf) + [SAS example](https://mrrisley.github.io/BANA6043/SAS-Code/Week-6-SAS-Reg.txt)
 3. [Log Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/log-coef-interpret-cheatsheet.pdf) + [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-diamonds.R)
-4. Dummy Variables in Regression [R example](https://mrrisley.github.io/BANA6043/R-Code/r-insectsprays.R)
+4. Dummy Variables in Regression [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-insectsprays.R)
 
-+ [Week 6 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-6.html)
++ [Week 6 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-5.html)
 + Project due by end of next class meeting time. **We will not meet next week.**
 + +1% on final project if [couse evaluation](https://evaluation.uc.edu) response rate > 90%
 
