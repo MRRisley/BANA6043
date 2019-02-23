@@ -58,8 +58,13 @@
 
 ## Week 6: Linear Regression
 1. [Regression Cheatsheet](https://mrrisley.github.io/BANA6043/resources/regression-cheatsheet.pdf)
-2. [Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/coef-interpret-cheatsheet.pdf)
+2. [Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/coef-interpret-cheatsheet-2.pdf) + [SAS example](https://mrrisley.github.io/BANA6043/SAS-Code/Week-6-SAS-Reg.txt)
+3. [Log Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/log-coef-interpret-cheatsheet.pdf) + [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-diamonds.R)
+4. Dummy Variables in Regression [R example](https://mrrisley.github.io/BANA6043/R-Code/r-insectsprays.R)
 
++ [Week 6 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-6.html)
++ Project due by end of next class meeting time. **We will not meet next week.**
++ +1% on final project if [couse evaluation](evaluation.uc.edu) response rate > 90%
 
 ## Final Project - Due March 2 at 4:50PM
 1. [Final Outline and Rubric](https://mrrisley.github.io/BANA6043/BANA-6043-Final.html)
