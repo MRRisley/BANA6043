@@ -1,0 +1,49 @@
+/*
+libname bana6043 'C:\Users\T530\Desktop\MRRisley\BANA6043\';
+
+proc import file='C:\Users\T530\Desktop\MRRisley\BANA6043\data\diamonds.csv'
+	out=bana6043.diamonds
+	dbms='csv'
+	replace;
+run;
+*/
+
+proc contents data=bana6043.diamonds; run;
+
+
+ods graphics on;
+proc reg data=bana6043.diamonds plots(maxpoints=none);
+	model price = carat;
+run;
+ods graphics off;
+
+
+ods graphics on;
+proc reg data=bana6043.diamonds plots(maxpoints=none);
+	model price = carat depth table;
+run;
+ods graphics off;
+
+
+data temp;
+	set bana6043.diamonds;
+	lprice = log(price);
+	lcarat = log(carat);
+run;
+
+
+ods graphics on;
+proc reg data=temp plots(maxpoints=none);
+	model lprice = lcarat;
+run;
+ods graphics off;
+
+/* model selection */
+
+proc reg data=temp plots=none outest=regout;
+	eq1: model lprice = lcarat / aic bic outseb scorr1;
+	eq2: model lprice = lcarat depth / aic bic outseb scorr1;
+	eq3: model lprice = lcarat depth table / aic bic outseb scorr1;
+run;
+
+proc print data=regout; run;
