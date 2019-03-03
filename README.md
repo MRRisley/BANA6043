@@ -26,6 +26,8 @@
 + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
 + DataCamp Chapter: Introduction to R: Intro to Basics
 
+<!--
+
 ## Week 3: More on Correlation and Segmenting in SAS 
 1. [Pearson's *r* vs. Spearman's *rho*](https://mrrisley.github.io/BANA6043/R-Code/r-v-rho.R)
 2. [Segmenting Data in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Segmentation.html)
@@ -68,6 +70,8 @@
 
 ## Final Project - Due March 2 at 4:50PM
 1. [Final Outline and Rubric](https://mrrisley.github.io/BANA6043/BANA-6043-Final.html)
+
+-->
 
 <br><br>
 
