@@ -10,6 +10,7 @@
 
 + [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
 + [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
++ DataCamp Chapter: Introduction to R: Intro to Basics
 + DataCamp Chapter: Importing data from flat files with utils
 
 ## Week 2: X-Y Analysis in SAS
@@ -24,7 +25,6 @@
 
 + [Week 2 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-2.html)
 + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
-+ DataCamp Chapter: Introduction to R: Intro to Basics
 
 <!--
 
