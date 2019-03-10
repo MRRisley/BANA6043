@@ -9,7 +9,7 @@
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-1-SAS-Summary-Stats.txt)
 
 + [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
-+ [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
+<!--+ [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)-->
 + DataCamp Chapter: Introduction to R: Intro to Basics
 + DataCamp Chapter: Importing data from flat files with utils
 
@@ -23,29 +23,33 @@
 3. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-Data-Manipulation.txt)
 
+<!--
 + [Week 2 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-2.html)
 + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
-
-<!--
+-->
 
 ## Week 3: More on Correlation and Segmenting in SAS 
 1. [Pearson's *r* vs. Spearman's *rho*](https://mrrisley.github.io/BANA6043/R-Code/r-v-rho.R)
 2. [Segmenting Data in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Segmentation.html)
 
+<!--
 + [Week 3 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-3.html)
 + **No Homework**
 + DataCamp Chapter: Introduction to R: Vectors
 + DataCamp Chapter: Introduction to R: Matrix
+-->
 
 **Midterm Next Class**
 
 ## Week 4: *t*-tests in SAS
 1. [*t*-tests in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-TTEST.html)
 
+<!--
 + **No In-Class Assignment**
 + [Week 4 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-3.html)
 + DataCamp Chapter: Introduction to R: data frames
 + DataCamp Chapter: Data Analysis in R, the data.table Way: novice
+-->
 
 ## Week 5: ANOVA
 1. [ANOVA in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-ANOVA.html)
@@ -53,16 +57,20 @@
 
 + [Week 5 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-4.html)
 
+<!--
 **Homework (should be completed in this order):**
 1. DataCamp Chapter: Foundations of inference: Introduction to ideas of inference
 2. DataCamp Chapter: Foundations of inference: Completing a randomization test: gender discrimination
 3. DataCamp Chapter: Foundations of inference: Hypothesis testing errors: opportunity cost
+-->
 
 ## Week 6: Linear Regression
 1. [Regression Cheatsheet](https://mrrisley.github.io/BANA6043/resources/regression-cheatsheet.pdf)
 2. [Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/coef-interpret-cheatsheet-2.pdf) + [SAS example](https://mrrisley.github.io/BANA6043/SAS-Code/Week-6-SAS-Reg.txt)
 3. [Log Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/log-coef-interpret-cheatsheet.pdf) + [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-diamonds.R)
 4. Dummy Variables in Regression [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-insectsprays.R)
+
+<!--
 
 + [Week 6 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-5.html)
 + Project due by end of next class meeting time. **We will not meet next week.**
