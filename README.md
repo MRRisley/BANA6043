@@ -5,8 +5,8 @@
 1. [Software for this course](https://mrrisley.github.io/BANA6043/BANA-6043-Software.html)
 2. [Intro to SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Intro.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-1-SAS-Intro.txt)
-3. [Summary Statistics in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Summary-Statistics.html)
-    + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-1-SAS-Summary-Stats.txt)
+
++ [Accessing SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Desktop.html)
 
 + [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
 <!--+ [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)-->
@@ -15,13 +15,15 @@ Homework:
 + DataCamp Chapter: Importing data from flat files with utils
 
 ## Week 2: X-Y Analysis in SAS
-1. [Scatter Plots in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Scatter.html)
+1. [Summary Statistics in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Summary-Statistics.html)
+    + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-1-SAS-Summary-Stats.txt)
+2. [Scatter Plots in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Scatter.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-XY-Scatterplots.txt) & [R Code](https://mrrisley.github.io/BANA6043/R-Code/week-2-export-diamonds.txt)
     + [SAS Paper on Plotting](https://mrrisley.github.io/BANA6043/resources/SASGraphBasics.pdf)
     + [ODS Graphics Tips](https://mrrisley.github.io/BANA6043/resources/ODSGraphicsTips.pdf)
-2. [Correlation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Corr.html)
+3. [Correlation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Corr.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-XY-Correlation.txt)
-3. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
+4. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-Data-Manipulation.txt)
 
 <!--
