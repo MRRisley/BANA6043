@@ -7,10 +7,14 @@
 3. [Intro to SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Intro.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-1-SAS-Intro.txt)
 
+<br>
+
 [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
 + [video demos](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1-videos.html)
 
 <!--+ [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)-->
+
+<br>
 
 Homework:
 + DataCamp Chapter: Introduction to R: Intro to Basics
