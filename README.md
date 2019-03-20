@@ -6,19 +6,13 @@
 2. [Accessing SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Desktop.html)
 3. [Intro to SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Intro.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-1-SAS-Intro.txt)
-
-<br>
-
-[Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
-+ [video demos](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1-videos.html)
+4. [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
+    + [video demos](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1-videos.html)
+5. Homework:
+    + DataCamp Chapter: Introduction to R: Intro to Basics
+    + DataCamp Chapter: Importing data from flat files with utils
 
 <!--+ [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)-->
-
-<br>
-
-Homework:
-+ DataCamp Chapter: Introduction to R: Intro to Basics
-+ DataCamp Chapter: Importing data from flat files with utils
 
 ## Week 2: X-Y Analysis in SAS
 1. [Summary Statistics in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Summary-Statistics.html)
