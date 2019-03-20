@@ -3,12 +3,11 @@
 
 ## Week 1: Intro to SAS
 1. [Software for this course](https://mrrisley.github.io/BANA6043/BANA-6043-Software.html)
-2. [Intro to SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Intro.html)
+2. [Accessing SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Desktop.html)
+3. [Intro to SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Intro.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-1-SAS-Intro.txt)
 
-+ [Accessing SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Desktop.html)
-
-+ [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
+[Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
     + [video demos](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1-videos.html)
 <!--+ [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)-->
 
