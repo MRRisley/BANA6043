@@ -9,6 +9,7 @@
 + [Accessing SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Desktop.html)
 
 + [Week 1 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1.html)
+    + [video demos](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-1-videos.html)
 <!--+ [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)-->
 
 Homework:
