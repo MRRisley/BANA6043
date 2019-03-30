@@ -12,8 +12,6 @@
     + DataCamp Chapter: Introduction to R: Intro to Basics
     + DataCamp Chapter: Importing data from flat files with utils
 
-<!--+ [Week 1 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)-->
-
 ## Pre-Week 2: Intro to SAS PROC
 1. [Videos: Intro to SAS Procedures](https://mrrisley.github.io/BANA6043/BANA-6043-intro-sas-procs.html)
 2. [Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-pre-2.html)
@@ -29,9 +27,11 @@
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-XY-Correlation.txt)
 4. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-Data-Manipulation.txt)
-
-<!--
-+ [Week 2 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-2.html)
+5. In-Class Assignment
+    + [Week 2 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-2.html)
+6. Homework
+    + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)-->
+<!--+
 + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
 -->
 
