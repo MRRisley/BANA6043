@@ -27,7 +27,7 @@
     + [Week 2 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-2.html)
 4. Homework
     + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
-    + DataCamp Chapter: Introduction to R: Vectors
+    + DataCamp Chapter: Introduction to R for Finance: Vectors and Matrices
 
 ## Week 3: More on Correlation and Segmenting in SAS 
 1. [Correlation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Corr.html)
