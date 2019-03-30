@@ -23,26 +23,27 @@
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-XY-Scatterplots.txt) & [R Code](https://mrrisley.github.io/BANA6043/R-Code/week-2-export-diamonds.txt)
     + [SAS Paper on Plotting](https://mrrisley.github.io/BANA6043/resources/SASGraphBasics.pdf)
     + [ODS Graphics Tips](https://mrrisley.github.io/BANA6043/resources/ODSGraphicsTips.pdf)
-3. [Correlation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Corr.html)
-    + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-XY-Correlation.txt)
-4. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
-    + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-Data-Manipulation.txt)
-5. In-Class Assignment
+3. In-Class Assignment
     + [Week 2 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-2.html)
-6. Homework
+4. Homework
     + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
+    + DataCamp Chapter: Introduction to R: Vectors
+
+## Week 3: More on Correlation and Segmenting in SAS 
+1. [Correlation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Corr.html)
+    + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-XY-Correlation.txt)
+2. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
+    + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-Data-Manipulation.txt)
+3. [Pearson's *r* vs. Spearman's *rho*](https://mrrisley.github.io/BANA6043/R-Code/r-v-rho.R)
+4. [Segmenting Data in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Segmentation.html)
+
 <!--+
 + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
 -->
 
-## Week 3: More on Correlation and Segmenting in SAS 
-1. [Pearson's *r* vs. Spearman's *rho*](https://mrrisley.github.io/BANA6043/R-Code/r-v-rho.R)
-2. [Segmenting Data in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Segmentation.html)
-
 <!--
 + [Week 3 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-3.html)
 + **No Homework**
-+ DataCamp Chapter: Introduction to R: Vectors
 + DataCamp Chapter: Introduction to R: Matrix
 -->
 
