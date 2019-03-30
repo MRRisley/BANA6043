@@ -30,7 +30,7 @@
 5. In-Class Assignment
     + [Week 2 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-2.html)
 6. Homework
-    + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)-->
+    + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
 <!--+
 + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
 -->
