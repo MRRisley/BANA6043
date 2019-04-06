@@ -48,7 +48,7 @@
 + DataCamp Chapter: Introduction to R: Matrix
 -->
 
-4. [Week 3 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-3-b.html)
+4. [Week 3 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-3-v2.html)
 5. **[Midterm Next Class]**
 6. No homework.
 
