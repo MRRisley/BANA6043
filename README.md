@@ -1,5 +1,5 @@
 ## Syllabus
-[Click here for the syllabus.](https://mrrisley.github.io/BANA6043/syllabus/BANA5143-6043_001-002_Risley.pdf)
+[Click here for the syllabus.](https://mrrisley.github.io/BANA6043/syllabus/BANA5143-6043_001-002_Risley-v2.pdf)
 
 ## Week 1: Intro to SAS
 1. [Software for this course](https://mrrisley.github.io/BANA6043/BANA-6043-Software.html)
@@ -29,15 +29,16 @@
     + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-1.html)
     + DataCamp Chapter: Introduction to R for Finance: Vectors and Matrices
 
-## Week 3: More on Correlation and Segmenting in SAS 
+## Week 3: Correlation and Time Series 
 1. [Correlation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-XY-Corr.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-XY-Correlation.txt)
+2. [Pearson's *r* vs. Spearman's *rho*](https://mrrisley.github.io/BANA6043/R-Code/r-v-rho.R)
+3. [Intro to Time Series for Finance](https://mrrisley.github.io/BANA6043/R-Code/r-finance.R)
+
+<!--
 2. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-Data-Manipulation.txt)
-3. [Pearson's *r* vs. Spearman's *rho*](https://mrrisley.github.io/BANA6043/R-Code/r-v-rho.R)
 4. [Segmenting Data in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Segmentation.html)
-
-<!--+
 + [Week 2 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2.html)
 -->
 
@@ -47,7 +48,9 @@
 + DataCamp Chapter: Introduction to R: Matrix
 -->
 
-**Midterm Next Class**
+4. [Week 3 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-3-b.html)
+5. **[Midterm Next Class]**
+6. No homework.
 
 ## Week 4: *t*-tests in SAS
 1. [*t*-tests in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-TTEST.html)
