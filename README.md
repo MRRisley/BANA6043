@@ -49,7 +49,7 @@
 -->
 
 4. [Week 3 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-3-v2.html)
-5. **[Midterm Next Class]**(https://mrrisley.github.io/BANA6043/BANA-6043-midterm-guidelines.html)
+5. [**Midterm Next Class**](https://mrrisley.github.io/BANA6043/BANA-6043-midterm-guidelines.html)
 6. No homework.
 
 ## Week 4: *t*-tests in SAS
