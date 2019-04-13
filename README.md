@@ -53,9 +53,11 @@
 6. No homework.
 
 ## Week 4: Miscellaneous
-1. [logs & analysis](https://mrrisley.github.io/BANA6043/R-Code/r-logs.R)
-2. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
+1. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-Data-Manipulation.txt)
+2. [Week 4 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-Week-4.html)
+3. [logs & analysis](https://mrrisley.github.io/BANA6043/R-Code/r-logs.R)
+4. [Week 4 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2b.html)
 
 <!--
 + **No In-Class Assignment**
