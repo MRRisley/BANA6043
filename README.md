@@ -52,8 +52,10 @@
 5. [**Midterm Next Class**](https://mrrisley.github.io/BANA6043/BANA-6043-midterm-guidelines.html)
 6. No homework.
 
-## Week 4: *t*-tests in SAS
-1. [*t*-tests in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-TTEST.html)
+## Week 4: Miscellaneous
+1. [logs & analysis](https://mrrisley.github.io/BANA6043/R-Code/r-logs.R)
+2. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
+    + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-Data-Manipulation.txt)
 
 <!--
 + **No In-Class Assignment**
@@ -62,34 +64,18 @@
 + DataCamp Chapter: Data Analysis in R, the data.table Way: novice
 -->
 
-## Week 5: ANOVA
-1. [ANOVA in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-ANOVA.html)
-2. [Analysis and ANOVA in R](https://mrrisley.github.io/BANA6043/R-Code/r-anova.R)
-
-<!--
-+ [Week 5 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-4.html)
-
-**Homework (should be completed in this order):**
-1. DataCamp Chapter: Foundations of inference: Introduction to ideas of inference
-2. DataCamp Chapter: Foundations of inference: Completing a randomization test: gender discrimination
-3. DataCamp Chapter: Foundations of inference: Hypothesis testing errors: opportunity cost
--->
-
-## Week 6: Linear Regression
+## Week 5: Linear Regression
 1. [Regression Cheatsheet](https://mrrisley.github.io/BANA6043/resources/regression-cheatsheet.pdf)
 2. [Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/coef-interpret-cheatsheet-2.pdf) + [SAS example](https://mrrisley.github.io/BANA6043/SAS-Code/Week-6-SAS-Reg.txt)
 3. [Log Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/log-coef-interpret-cheatsheet.pdf) + [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-diamonds.R)
 4. Dummy Variables in Regression [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-insectsprays.R)
 
 <!--
-
 + [Week 6 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-5.html)
 + Project due by end of next class meeting time. **We will not meet next week.**
 + +1% on final project if [couse evaluation](https://evaluation.uc.edu) response rate > 90%
-
 ## Final Project - Due March 2 at 4:50PM
 1. [Final Outline and Rubric](https://mrrisley.github.io/BANA6043/BANA-6043-Final.html)
-
 -->
 
 <br><br>
