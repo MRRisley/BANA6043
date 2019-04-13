@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Risley" />
+
+
+<title>Week 4 Homework</title>
+
+<script src="rmd-dependencies/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmd-dependencies/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="rmd-dependencies/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="rmd-dependencies/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="rmd-dependencies/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="rmd-dependencies/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="rmd-dependencies/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="rmd-dependencies/navigation-1.1/tabsets.js"></script>
+<link href="rmd-dependencies/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="rmd-dependencies/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Week 4 Homework</h1>
+<h4 class="author"><em>Matt Risley</em></h4>
+
+</div>
+
+
+<div id="details" class="section level3">
+<h3>Details</h3>
+<ol style="list-style-type: decimal">
+<li>Due by the start of next class.</li>
+<li>Turn-in through the link on Blackboard.</li>
+<li>Submit Word doc with answers as well as R Code.</li>
+</ol>
+</div>
+<div id="part-1-create-a-panel-plot" class="section level3">
+<h3>Part 1: Create a panel plot</h3>
+<p>You will create a 1x2 panel plot in R using the <code>diamonds</code> dataset.</p>
+<div id="first-plot-with-logs" class="section level5">
+<h5>First Plot with logs:</h5>
+<ul>
+<li>Create two vectors in R: one for the log of price and one for the log of carat</li>
+<li>Generate a scatter plot using <code>plot()</code>.</li>
+<li>Plot log of price on the y-axis and log of carat on the x-axis</li>
+<li>add a title</li>
+</ul>
+</div>
+<div id="second-plot-with-square-roots" class="section level5">
+<h5>Second Plot with square roots:</h5>
+<ul>
+<li>Create two vectors in R: one for the square root of price and one for the square root of carat</li>
+<li>Generate a scatter plot using <code>plot()</code>.</li>
+<li>Plot square root of price on the y-axis and square root of carat on the x-axis</li>
+<li>add a title</li>
+</ul>
+<blockquote>
+<p>Q1 screenshot the panel chart</p>
+</blockquote>
+</div>
+</div>
+<div id="part-2-produce-a-correlation-matrix" class="section level3">
+<h3>Part 2: Produce a correlation matrix</h3>
+<p>The code below produces a correlation matrix for the dataset <code>mtcars</code>.</p>
+<pre class="r"><code>mat &lt;- cor(mtcars)
+
+mat</code></pre>
+<pre><code>##             mpg        cyl       disp         hp        drat         wt
+## mpg   1.0000000 -0.8521620 -0.8475514 -0.7761684  0.68117191 -0.8676594
+## cyl  -0.8521620  1.0000000  0.9020329  0.8324475 -0.69993811  0.7824958
+## disp -0.8475514  0.9020329  1.0000000  0.7909486 -0.71021393  0.8879799
+## hp   -0.7761684  0.8324475  0.7909486  1.0000000 -0.44875912  0.6587479
+## drat  0.6811719 -0.6999381 -0.7102139 -0.4487591  1.00000000 -0.7124406
+## wt   -0.8676594  0.7824958  0.8879799  0.6587479 -0.71244065  1.0000000
+## qsec  0.4186840 -0.5912421 -0.4336979 -0.7082234  0.09120476 -0.1747159
+## vs    0.6640389 -0.8108118 -0.7104159 -0.7230967  0.44027846 -0.5549157
+## am    0.5998324 -0.5226070 -0.5912270 -0.2432043  0.71271113 -0.6924953
+## gear  0.4802848 -0.4926866 -0.5555692 -0.1257043  0.69961013 -0.5832870
+## carb -0.5509251  0.5269883  0.3949769  0.7498125 -0.09078980  0.4276059
+##             qsec         vs          am       gear        carb
+## mpg   0.41868403  0.6640389  0.59983243  0.4802848 -0.55092507
+## cyl  -0.59124207 -0.8108118 -0.52260705 -0.4926866  0.52698829
+## disp -0.43369788 -0.7104159 -0.59122704 -0.5555692  0.39497686
+## hp   -0.70822339 -0.7230967 -0.24320426 -0.1257043  0.74981247
+## drat  0.09120476  0.4402785  0.71271113  0.6996101 -0.09078980
+## wt   -0.17471588 -0.5549157 -0.69249526 -0.5832870  0.42760594
+## qsec  1.00000000  0.7445354 -0.22986086 -0.2126822 -0.65624923
+## vs    0.74453544  1.0000000  0.16834512  0.2060233 -0.56960714
+## am   -0.22986086  0.1683451  1.00000000  0.7940588  0.05753435
+## gear -0.21268223  0.2060233  0.79405876  1.0000000  0.27407284
+## carb -0.65624923 -0.5696071  0.05753435  0.2740728  1.00000000</code></pre>
+<p>However, all data in the dataset are numeric. <code>cor</code> will not produce a correlation matrix when non-numeric data are present.</p>
+<p>Therefore, you will:</p>
+<ol style="list-style-type: decimal">
+<li>create a subsetted dataset for <code>diamonds</code> with the following variables:
+<ul>
+<li>carat, price, depth, table</li>
+</ul></li>
+<li>add the following variables to the dataset:
+<ul>
+<li>logs of carat &amp; price as well as square roots of carat &amp; price</li>
+</ul></li>
+</ol>
+<p><strong>Hint: use the <code>cbind</code> function.</strong></p>
+<ol start="3" style="list-style-type: decimal">
+<li>create the correlation matrix</li>
+<li>Note that the row and column names may not support readability. Therefore, you will add row and column names that allow others to interpret the output.</li>
+</ol>
+<p>The R code example below shows you how to add row and column names. For a correlation matrix, row and column names should be the same.</p>
+<pre class="r"><code>mat &lt;- matrix(1, nrow=3, ncol=3)
+# creates a 3x3 matrix
+
+mat</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    1    1
+## [2,]    1    1    1
+## [3,]    1    1    1</code></pre>
+<pre class="r"><code>rn &lt;- c(&#39;row1&#39;, &#39;var2&#39;, &#39;row3 or var 3&#39;)
+# create vector of 3 for row names
+
+rownames(mat) &lt;- rn
+# add row names to matrix
+
+cn &lt;- c(&#39;col1&#39;, &#39;col1&#39;, NA)
+# create vector of 3 for column names
+
+colnames(mat) &lt;- cn
+# add column names to matrix
+
+mat</code></pre>
+<pre><code>##               col1 col1 &lt;NA&gt;
+## row1             1    1    1
+## var2             1    1    1
+## row3 or var 3    1    1    1</code></pre>
+<blockquote>
+<p>Q2 Screenshot the corrlation matrix.</p>
+</blockquote>
+</div>
+<div id="submission" class="section level3">
+<h3>Submission:</h3>
+<p>Your submission should include:</p>
+<ol style="list-style-type: decimal">
+<li>a Word document with the screenshots</li>
+<li>your R code</li>
+</ol>
+<p>Upload to Blackboard!</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
