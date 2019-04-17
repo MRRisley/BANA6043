@@ -72,6 +72,10 @@
 3. [Log Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/log-coef-interpret-cheatsheet.pdf) + [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-diamonds.R)
 4. Dummy Variables in Regression [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-insectsprays.R)
 
+## Final Project - Due April 27 by 4:50PM
+1. [Final Project](https://mrrisley.github.io/BANA6043/BANA-6043-final-v2.html)
+
+
 <!--
 + [Week 6 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-5.html)
 + Project due by end of next class meeting time. **We will not meet next week.**
