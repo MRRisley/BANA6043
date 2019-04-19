@@ -97,18 +97,24 @@ The listed books are available as eBooks through the [UC Libraries webpage](http
 
 R:
 
-    + *R Cookbook* by Paul Teetor
-    + *R for Data Science* by Hadley Wickham and Garrett Grolemund
-    + [This website](http://cmdlinetips.com/2018/01/free-online-resources-books-to-learn-r-and-data-science/) lists 16 free R books/resources.
+   + *R Cookbook* by Paul Teetor
+    
+   + *R for Data Science* by Hadley Wickham and Garrett Grolemund
+   
+   + [This website](http://cmdlinetips.com/2018/01/free-online-resources-books-to-learn-r-and-data-science/) lists 16 free R books/resources.
 
 SAS:
 
-    + *The Little SAS Book: A Primer* by Lora Delwiche and Susan Slaughter
-    + *An Introduction to SAS University Edition* by Ronald Cody
-    + *Essential Statistics Using SAS* by Geoff Der and Brian Everitt
-    + [Free SAS e-learning](https://www.sas.com/en_us/learn/academic-programs/resources/free-sas-e-learning.html)
+   + *The Little SAS Book: A Primer* by Lora Delwiche and Susan Slaughter
+   
+   + *An Introduction to SAS University Edition* by Ronald Cody
+   
+   + *Essential Statistics Using SAS* by Geoff Der and Brian Everitt
+   
+   + [Free SAS e-learning](https://www.sas.com/en_us/learn/academic-programs/resources/free-sas-e-learning.html)
 
 3. DataCamp  
+
 ~~This class is supported by DataCamp, the most intuitive learning platform for data science. Learn R, Python and SQL the way you learn best through a combination of short expert videos and hands-on-the-keyboard exercises. Take over 100+ courses by expert instructors on topics such as importing data, data visualization or machine learning and learn faster through immediate and personalised feedback on every exercise.~~
 
 I will no longer require DataCamp as part of the course. Many in the analytics community, including me, find DataCamp's response to an incident of sexual assault by one of its executives **shamefully insufficient**. For more information, [this page provides a good amout of context.](https://dhavide.github.io/a-note-to-our-commuity-on-building-trust.html)
