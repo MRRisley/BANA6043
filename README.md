@@ -89,9 +89,9 @@
 
 ## Course Resources
 
-1. [Lectures](https://mrrisley.github.io/BANA6043/bana6043-lecture-list.html)
+### A. [Lectures](https://mrrisley.github.io/BANA6043/bana6043-lecture-list.html)
 
-2. **Books**
+### B. Books
 
 The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).
 
@@ -113,7 +113,7 @@ SAS:
    
    + [Free SAS e-learning](https://www.sas.com/en_us/learn/academic-programs/resources/free-sas-e-learning.html)
 
-3. DataCamp  
+### C. DataCamp  
 
 ~~This class is supported by DataCamp, the most intuitive learning platform for data science. Learn R, Python and SQL the way you learn best through a combination of short expert videos and hands-on-the-keyboard exercises. Take over 100+ courses by expert instructors on topics such as importing data, data visualization or machine learning and learn faster through immediate and personalised feedback on every exercise.~~
 
