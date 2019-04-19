@@ -87,6 +87,10 @@
 <br><br>
 
 ## Course Resources
+
+####[List of all lectures I've developed for this course.](https://mrrisley.github.io/BANA6043/bana6043-lecture-list.html)
+
+
 **The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).**
 
 **R:**
