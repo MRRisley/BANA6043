@@ -84,8 +84,7 @@
 1. [Final Outline and Rubric](https://mrrisley.github.io/BANA6043/BANA-6043-Final.html)
 -->
 
-<br><br>
-
+<br>
 
 ## Course Resources
 
@@ -118,5 +117,7 @@ SAS:
 ~~This class is supported by DataCamp, the most intuitive learning platform for data science. Learn R, Python and SQL the way you learn best through a combination of short expert videos and hands-on-the-keyboard exercises. Take over 100+ courses by expert instructors on topics such as importing data, data visualization or machine learning and learn faster through immediate and personalised feedback on every exercise.~~
 
 I will no longer require DataCamp as part of the course. Many in the analytics community, including me, find DataCamp's response to an incident of sexual assault by one of its executives **shamefully insufficient**. For more information, [this page provides a good amout of context.](https://dhavide.github.io/a-note-to-our-commuity-on-building-trust.html)
+
+<br><br>
 
 #### [About Me](https://mrrisley.github.io/BANA6043/MRR-CV.pdf)
