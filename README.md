@@ -95,12 +95,14 @@
 
 The listed books are available as eBooks through the [UC Libraries webpage](https://www.libraries.uc.edu/).
 
-**R:**
+R:
+
     + *R Cookbook* by Paul Teetor
     + *R for Data Science* by Hadley Wickham and Garrett Grolemund
     + [This website](http://cmdlinetips.com/2018/01/free-online-resources-books-to-learn-r-and-data-science/) lists 16 free R books/resources.
 
-**SAS:**
+SAS:
+
     + *The Little SAS Book: A Primer* by Lora Delwiche and Susan Slaughter
     + *An Introduction to SAS University Edition* by Ronald Cody
     + *Essential Statistics Using SAS* by Geoff Der and Brian Everitt
