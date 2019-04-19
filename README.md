@@ -56,8 +56,7 @@
 1. [Data Manipulation in SAS](https://mrrisley.github.io/BANA6043/BANA-6043-SAS-Data-Manipulation.html)
     + [SAS Code](https://mrrisley.github.io/BANA6043/SAS-Code/Week-2-SAS-Data-Manipulation.txt)
 2. [Week 4 In-Class Assignment](https://mrrisley.github.io/BANA6043/BANA-6043-In-Class-Assignment-Week-4.html)
-3. [logs & analysis](https://mrrisley.github.io/BANA6043/R-Code/r-logs.R)
-4. [Week 4 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2b.html)
+3. [Week 4 Homework](https://mrrisley.github.io/BANA6043/BANA-6043-Homework-2b.html)
 
 <!--
 + **No In-Class Assignment**
@@ -67,10 +66,11 @@
 -->
 
 ## Week 5: Linear Regression
-1. [Regression Cheatsheet](https://mrrisley.github.io/BANA6043/resources/regression-cheatsheet.pdf)
-2. [Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/coef-interpret-cheatsheet-2.pdf) + [SAS example](https://mrrisley.github.io/BANA6043/SAS-Code/Week-6-SAS-Reg.txt)
-3. [Log Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/log-coef-interpret-cheatsheet.pdf) + [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-diamonds.R)
-4. Dummy Variables in Regression [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-insectsprays.R)
+1. [Logs in Analytics Lecture](https://mrrisley.github.io/BANA6043/ppt/logs-in-analytics.pptx) + [R example](https://mrrisley.github.io/BANA6043/R-Code/r-logs.R)
+2. [Regression Cheatsheet](https://mrrisley.github.io/BANA6043/resources/regression-cheatsheet.pdf)
+3. [Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/coef-interpret-cheatsheet-2.pdf) + [SAS example](https://mrrisley.github.io/BANA6043/SAS-Code/Week-6-SAS-Reg.txt)
+4. [Log Coefficient Interpretation Cheatsheet](https://mrrisley.github.io/BANA6043/resources/log-coef-interpret-cheatsheet.pdf) + [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-diamonds.R)
+5. Dummy Variables in Regression [R example](https://mrrisley.github.io/BANA6043/R-Code/r-reg-insectsprays.R)
 
 ## Final Project - Due April 28 by 11:59PM
 1. [Final Project](https://mrrisley.github.io/BANA6043/bana6043-final-v2.html)
