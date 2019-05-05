@@ -116,7 +116,7 @@ SAS:
 
 Many in the analytics community, including me, find DataCamp's response to an incident of sexual assault by its CEO insufficient and troubling. Also, the incident has prompted some great movements toward open-source training methods.
 
-[See Chris Engelhardt's gist for DataCamp alternatives.](https://github.com/Chris-Engelhardt/data_sci_guide)
+[See Chris Engelhardt's repo for DataCamp alternatives.](https://github.com/Chris-Engelhardt/data_sci_guide)
 
 <br><br>
 
