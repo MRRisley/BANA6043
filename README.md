@@ -112,11 +112,11 @@ SAS:
    
    + [Free SAS e-learning](https://www.sas.com/en_us/learn/academic-programs/resources/free-sas-e-learning.html)
 
-### C. DataCamp  
+### C. ~~DataCamp~~ Alternatives to DataCamp  
 
-~~This class is supported by DataCamp, the most intuitive learning platform for data science. Learn R, Python and SQL the way you learn best through a combination of short expert videos and hands-on-the-keyboard exercises. Take over 100+ courses by expert instructors on topics such as importing data, data visualization or machine learning and learn faster through immediate and personalised feedback on every exercise.~~
+Many in the analytics community, including me, find DataCamp's response to an incident of sexual assault by its CEO insufficient and troubling. Also, the incident has prompted some great movements toward open-source training methods.
 
-I will no longer require DataCamp as part of the course. Many in the analytics community, including me, find DataCamp's response to an incident of sexual assault by one of its executives **shamefully insufficient**. For more information, [this page provides a good amout of context.](https://dhavide.github.io/a-note-to-our-commuity-on-building-trust.html)
+[See Chris Engelhardt's gist for DataCamp alternatives.](https://github.com/Chris-Engelhardt/data_sci_guide)
 
 <br><br>
 
