@@ -111,7 +111,7 @@ SAS:
    + *Essential Statistics Using SAS* by Geoff Der and Brian Everitt
    
    + [Free SAS e-learning](https://www.sas.com/en_us/learn/academic-programs/resources/free-sas-e-learning.html)
-
+<!--
 ### C. ~~DataCamp~~ Alternatives to DataCamp  
 
 Many in the analytics community, including me, find DataCamp's response to an incident of sexual assault by its CEO insufficient and troubling. Also, the incident has prompted some great movements toward open-source training methods.
@@ -121,3 +121,4 @@ Many in the analytics community, including me, find DataCamp's response to an in
 <br><br>
 
 #### [About Me](https://mrrisley.github.io/BANA6043/MRR-CV.pdf)
+-->
